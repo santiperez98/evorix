@@ -14,7 +14,7 @@ const clients = [
     project: "Proyecto A",
     projectImage: "/projectA.png",
     device: "mobile",
-    text: "Duvitek ha aumentado nuestro tráfico, palabras clave y conversión. Hemos disfrutado trabajar con ellos y los consideramos un socio comercial estratégico."
+    text: "Evorix ha aumentado nuestro tráfico, palabras clave y conversión. Hemos disfrutado trabajar con ellos y los consideramos un socio comercial estratégico."
   },
   {
     id: 2,
@@ -72,7 +72,7 @@ export default function ProjectCarousel() {
                     className="rounded-full border-2 border-cyan-500"
                   />
                 </div>
-                <p className="text-gray-300 text-center italic mb-4">"{client.text}"</p>
+                <p className="text-gray-300 text-center italic mb-4">{client.text}</p>
                 <h4 className="text-lg font-semibold text-center mb-2 text-purple-300">
                   {client.project}
                 </h4>

@@ -1,7 +1,7 @@
-'use client';
+"use client";
 
 import { useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import Image from 'next/image';
@@ -38,11 +38,8 @@ const Navbar = () => {
   return (
     <motion.nav
       className={`
-        fixed w-full top-0 z-50 transition-all duration-500 
-        ${scroll 
-          ? 'bg-gradient-to-r from-gray-900 via-gray-800 to-black shadow-xl' 
-          : 'bg-transparent'
-        }
+        w-full fixed top-0 z-50 transition-all duration-500 
+        ${scroll ? 'bg-black bg-opacity-80 backdrop-blur-lg' : 'bg-transparent'}
       `}
     >
       <div className="container mx-auto px-6 py-4 flex justify-between items-center">
@@ -172,38 +169,40 @@ const Navbar = () => {
       </div>
 
       {/* Menú Móvil Dropdown */}
-      {isOpen && (
-        <motion.div 
-          initial={{ y: -20, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          exit={{ y: -20, opacity: 0 }}
-          className="md:hidden mt-4 space-y-4 bg-gray-900 bg-opacity-90 
-          backdrop-blur-lg rounded-lg p-6 shadow-xl"
-        >
-          {['Sobre Nosotros', 'Servicios', 'Contacto', 'Clientes'].map((item) => (
-            <motion.div 
-              key={item}
-              className="relative group"
-              whileHover={{ scale: 1.05 }}
-              transition={{ duration: 0.3 }}
-            >
-              <Link 
-                href={`/${item.toLowerCase()}`}
-                className="block text-white text-lg font-medium relative z-10"
-                onClick={() => setIsOpen(false)}
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div 
+            initial={{ y: -20, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            exit={{ y: -20, opacity: 0 }}
+            className="md:hidden mt-4 space-y-4 bg-gray-900 bg-opacity-90 
+            backdrop-blur-lg rounded-lg p-6 shadow-xl"
+          >
+            {['Sobre Nosotros', 'Servicios', 'Contacto', 'Clientes'].map((item) => (
+              <motion.div 
+                key={item}
+                className="relative group"
+                whileHover={{ scale: 1.05 }}
+                transition={{ duration: 0.3 }}
               >
-                {item}
-              </Link>
-              <motion.span 
-                className="absolute bottom-0 left-0 w-full h-0.5 bg-gradient-to-r from-cyan-500 via-purple-600 to-magenta-500"
-                initial={{ width: 0 }}
-                animate={{ width: '100%' }}
-                transition={{ duration: 0.5 }}
-              />
-            </motion.div>
-          ))}
-        </motion.div>
-      )}
+                <Link 
+                  href={`/${item.toLowerCase()}`}
+                  className="block text-white text-lg font-medium relative z-10"
+                  onClick={() => setIsOpen(false)}
+                >
+                  {item}
+                </Link>
+                <motion.span 
+                  className="absolute bottom-0 left-0 w-full h-0.5 bg-gradient-to-r from-cyan-500 via-purple-600 to-magenta-500"
+                  initial={{ width: 0 }}
+                  animate={{ width: '100%' }}
+                  transition={{ duration: 0.5 }}
+                />
+              </motion.div>
+            ))}
+          </motion.div>
+        )}
+      </AnimatePresence>
     </motion.nav>
   );
 };
