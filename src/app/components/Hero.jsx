@@ -20,7 +20,7 @@ const Hero = () => {
         className="text-white max-w-lg text-center md:text-left md:absolute md:left-[15%] md:top-1/3 flex flex-col items-center md:items-start"
       >
         <h1 className="text-3xl md:text-5xl font-extrabold bg-gradient-to-r from-cyan-400 via-purple-500 to-pink-500 text-transparent bg-clip-text">
-          EVORIX: Transformamos Ideas en Realidad Digital
+          Transformamos Ideas en Realidad Digital
         </h1>
         <p className="mt-4 text-base md:text-lg text-gray-300">
           Desarrollo web, branding, marketing digital y más. Diseñamos experiencias innovadoras para impulsar tu marca.
