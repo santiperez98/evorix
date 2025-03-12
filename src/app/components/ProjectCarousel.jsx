@@ -72,7 +72,7 @@ export default function ProjectCarousel() {
                     className="rounded-full border-2 border-cyan-500"
                   />
                 </div>
-                <p className="text-gray-300 text-center italic mb-4">"{client.text}"</p>
+                <p className="text-gray-300 text-center italic mb-4">{client.text}</p>
                 <h4 className="text-lg font-semibold text-center mb-2 text-purple-300">
                   {client.project}
                 </h4>
