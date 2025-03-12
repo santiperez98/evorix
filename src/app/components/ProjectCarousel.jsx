@@ -14,7 +14,7 @@ const clients = [
     project: "Proyecto A",
     projectImage: "/projectA.png",
     device: "mobile",
-    text: "Duvitek ha aumentado nuestro tráfico, palabras clave y conversión. Hemos disfrutado trabajar con ellos y los consideramos un socio comercial estratégico."
+    text: "Evorix ha aumentado nuestro tráfico, palabras clave y conversión. Hemos disfrutado trabajar con ellos y los consideramos un socio comercial estratégico."
   },
   {
     id: 2,
