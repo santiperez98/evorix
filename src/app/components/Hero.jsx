@@ -22,36 +22,6 @@ const Hero = () => {
 
   return (
     <div className="relative h-screen w-full flex flex-col md:flex-row justify-center items-center bg-black overflow-hidden px-6 md:px-16">
-      {/* Fondo con círculos flotantes visibles */}
-      <div className="absolute top-0 left-0 w-full h-full -z-10 overflow-hidden">
-        <motion.div
-          className="absolute w-[500px] h-[500px] bg-gradient-to-r from-purple-600 to-pink-500 rounded-full opacity-40 blur-3xl"
-          animate={{
-            y: [0, -50, 0],
-            x: [0, 30, 0],
-          }}
-          transition={{
-            duration: 12,
-            repeat: Infinity,
-            ease: "easeInOut",
-          }}
-          style={{ top: "5%", left: "10%" }}
-        />
-        <motion.div
-          className="absolute w-[700px] h-[700px] bg-gradient-to-r from-blue-500 to-cyan-400 rounded-full opacity-30 blur-3xl"
-          animate={{
-            y: [0, 60, 0],
-            x: [0, -40, 0],
-          }}
-          transition={{
-            duration: 15,
-            repeat: Infinity,
-            ease: "easeInOut",
-          }}
-          style={{ bottom: "10%", right: "10%" }}
-        />
-      </div>
-
       {/* Mostrar Spline en desktop y una imagen en móviles */}
       {isMobile ? (
         <div className="w-[90%] sm:w-[70%] md:w-full flex justify-center">

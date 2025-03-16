@@ -2,12 +2,36 @@ import { motion } from "framer-motion";
 
 const HowWeCanHelp = () => {
   const services = [
-    "Desarrollo Web Avanzado",
-    "Estrategias de Marketing Digital",
-    "SEO & Posicionamiento",
-    "Community Management",
-    "E-Commerce & Tiendas Online",
-    "Diseño UX/UI Profesional",
+    { 
+      title: "Desarrollo Web Avanzado", 
+      img: "/desaweb.jpg", 
+      color: "from-cyan-500 to-blue-500"
+    },
+    { 
+      title: "Estrategias de Marketing Digital", 
+      img: "/marke.jpg", 
+      color: "from-purple-500 to-pink-500"
+    },
+    { 
+      title: "SEO & Posicionamiento", 
+      img: "/seo.jpg", 
+      color: "from-green-500 to-teal-500"
+    },
+    { 
+      title: "Community Management", 
+      img: "/cm.png", 
+      color: "from-yellow-500 to-orange-500"
+    },
+    { 
+      title: "E-Commerce & Tiendas Online", 
+      img: "/tienda.jpg", 
+      color: "from-red-500 to-pink-500"
+    },
+    { 
+      title: "Diseño UX/UI Profesional", 
+      img: "/uxui.jpg", 
+      color: "from-indigo-500 to-purple-500"
+    },
   ];
 
   return (
@@ -24,7 +48,8 @@ const HowWeCanHelp = () => {
       </h2>
       <p className="mt-4 text-lg text-gray-300 max-w-2xl mx-auto">
         Potenciamos marcas con estrategias digitales innovadoras, optimización SEO y desarrollo web 
-        de alto impacto. ¡Lleva tu negocio al siguiente nivel con <span className="text-purple-400 font-semibold">Evorix</span>!
+        de alto impacto. ¡Lleva tu negocio al siguiente nivel con{" "}
+        <span className="text-purple-400 font-semibold">Evorix</span>!
       </p>
 
       {/* Contenedor de servicios con animaciones */}
@@ -32,13 +57,29 @@ const HowWeCanHelp = () => {
         {services.map((service, index) => (
           <motion.div
             key={index}
-            whileHover={{ scale: 1.08 }}
+            whileHover={{ scale: 1.1 }}
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: index * 0.1 }}
-            className="bg-gray-900 p-6 rounded-xl shadow-xl w-64 transform hover:shadow-cyan-500/50 border border-gray-700"
+            className={`relative w-64 h-80 rounded-xl shadow-xl overflow-hidden bg-gray-900 border border-gray-700 transform hover:shadow-${service.color}`}
           >
-            <h3 className="text-lg font-semibold text-cyan-300">{service}</h3>
+            {/* Imagen con efecto de escala */}
+            <motion.img 
+              src={service.img} 
+              alt={service.title}
+              className="w-full h-40 object-cover"
+              initial={{ scale: 1 }}
+              whileHover={{ scale: 1.1 }}
+              transition={{ duration: 0.3 }}
+            />
+
+            {/* Contenedor de texto */}
+            <motion.div 
+              className="absolute inset-0 bg-gradient-to-b opacity-0 hover:opacity-90 transition-opacity duration-500 flex flex-col items-center justify-end p-6"
+              style={{ backgroundImage: `linear-gradient(to top, ${service.color})` }}
+            >
+              <h3 className="text-lg font-semibold text-white">{service.title}</h3>
+            </motion.div>
           </motion.div>
         ))}
       </div>
