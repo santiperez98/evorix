@@ -12,13 +12,13 @@ const stats = [
 
 export default function CyberStats() {
   return (
-    <section className="relative flex justify-center items-center h-[300px] bg-gradient-to-r from-cyan-500 via-purple-600 to-magenta-500 overflow-hidden">
+    <section className="relative flex justify-center items-center h-auto py-10 bg-gradient-to-r from-cyan-500 via-purple-600 to-magenta-500 overflow-hidden">
       <div className="absolute inset-0 blur-3xl opacity-30"></div>
       <motion.div 
         initial={{ opacity: 0, y: 50 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 1 }}
-        className="relative z-10 flex justify-around w-full max-w-5xl px-6 py-8 bg-gray-900 backdrop-blur-lg border border-cyan-400 shadow-lg rounded-xl"
+        className="relative z-10 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 w-full max-w-5xl px-6 py-8 bg-opacity-10 backdrop-blur-lg border border-cyan-400 shadow-lg rounded-xl"
       >
         {stats.map((stat) => (
           <motion.div 
