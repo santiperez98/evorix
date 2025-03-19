@@ -15,9 +15,9 @@ const neonColors = {
 };
 
 const Navbar = () => {
-  const [scroll, setScroll] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const [user, setUser] = useState(null);
+  const [scroll, setScroll] = useState(false); // Solo para móviles
   const router = useRouter();
 
   useEffect(() => {
@@ -37,10 +37,7 @@ const Navbar = () => {
 
   return (
     <motion.nav
-      className={`
-        w-full fixed top-0 z-50 transition-all duration-500 
-        ${scroll ? 'bg-black bg-opacity-80 backdrop-blur-lg' : 'bg-transparent'}
-      `}
+      className={`w-full absolute top-0 z-50 transition-all duration-500`}
     >
       <div className="container mx-auto px-6 py-4 flex justify-between items-center">
         {/* Logo con efecto neon */}
