@@ -18,8 +18,9 @@ const Home = () => {
         <AboutPreview />
         <HowWeCanHelp />
 
-        <ServicesPreview />
+   
         <ProjectCarousel />
+        <ServicesPreview />
         <CallToAction/>
 
       <Footer />
