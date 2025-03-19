@@ -19,9 +19,9 @@ const CallToAction = () => {
         scale: 1,
         transition: { duration: 1, delay: 0.3 }
       });
-      
+
       // Animación de pulso continua
-      logoControls.start({
+      await logoControls.start({
         scale: [1, 1.05, 1],
         transition: {
           duration: 2,
@@ -31,6 +31,8 @@ const CallToAction = () => {
         }
       });
     };
+
+    // Ejecutar la secuencia de animaciones
     sequence();
   }, [logoControls]);
 
@@ -82,8 +84,6 @@ const CallToAction = () => {
           Comenzar <FaArrowRight />
         </motion.button>
       </div>
-      
-
     </section>
   );
 };
