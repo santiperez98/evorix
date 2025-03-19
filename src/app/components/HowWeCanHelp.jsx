@@ -1,6 +1,9 @@
 import { motion } from "framer-motion";
+import { useState } from "react";
 
 const HowWeCanHelp = () => {
+  const [isVisible, setIsVisible] = useState(false);
+
   const services = [
     { 
       title: "Desarrollo Web Avanzado", 
@@ -38,28 +41,44 @@ const HowWeCanHelp = () => {
     <motion.section
       id="como-ayudarte"
       initial={{ opacity: 0, y: 50 }}
-      animate={{ opacity: 1, y: 0 }}
+      animate={isVisible ? { opacity: 1, y: 0 } : {}}
       transition={{ duration: 1 }}
       className="py-16 px-6 bg-black text-white text-center"
+      onMouseEnter={() => setIsVisible(true)} // Activar visibilidad al pasar el mouse
     >
       {/* Título con efecto neón */}
-      <h2 className="text-4xl font-extrabold bg-gradient-to-r from-cyan-400 via-purple-500 to-pink-500 bg-clip-text text-transparent">
+      <motion.h2
+        className="text-4xl font-extrabold bg-gradient-to-r from-cyan-400 via-purple-500 to-pink-500 bg-clip-text text-transparent"
+        initial={{ opacity: 0 }}
+        animate={isVisible ? { opacity: 1 } : {}}
+        transition={{ duration: 0.8, delay: 0.2 }}
+      >
         ¿Cómo Podemos Impulsar Tu Negocio?
-      </h2>
-      <p className="mt-4 text-lg text-gray-300 max-w-2xl mx-auto">
+      </motion.h2>
+      <motion.p
+        className="mt-4 text-lg text-gray-300 max-w-2xl mx-auto"
+        initial={{ opacity: 0 }}
+        animate={isVisible ? { opacity: 1 } : {}}
+        transition={{ duration: 0.8, delay: 0.4 }}
+      >
         Potenciamos marcas con estrategias digitales innovadoras, optimización SEO y desarrollo web 
         de alto impacto. ¡Lleva tu negocio al siguiente nivel con{" "}
         <span className="text-purple-400 font-semibold">Evorix</span>!
-      </p>
+      </motion.p>
 
       {/* Contenedor de servicios con animaciones */}
-      <div className="flex flex-wrap justify-center mt-10 gap-6">
+      <motion.div
+        className="flex flex-wrap justify-center mt-10 gap-6"
+        initial={{ opacity: 0 }}
+        animate={isVisible ? { opacity: 1 } : {}}
+        transition={{ duration: 0.8, delay: 0.6 }}
+      >
         {services.map((service, index) => (
           <motion.div
             key={index}
             whileHover={{ scale: 1.1 }}
             initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
+            animate={isVisible ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.5, delay: index * 0.1 }}
             className={`relative w-64 h-80 rounded-xl shadow-xl overflow-hidden bg-gray-900 border border-gray-700 transform hover:shadow-${service.color}`}
           >
@@ -82,7 +101,7 @@ const HowWeCanHelp = () => {
             </motion.div>
           </motion.div>
         ))}
-      </div>
+      </motion.div>
     </motion.section>
   );
 };
