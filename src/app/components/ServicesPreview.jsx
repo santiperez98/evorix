@@ -2,74 +2,97 @@
 
 import { motion } from 'framer-motion';
 import { FaProjectDiagram, FaBullhorn, FaMobileAlt, FaSearch, FaCode, FaShoppingCart } from 'react-icons/fa';
+import Image from 'next/image';
+import img1 from '../../../public/gestion.jpg';
+import img2 from '../../../public/marketing.jpg';
+import img3 from '../../../public/movil.jpg';
+import img4 from '../../../public/seoo.jpg';
+import img5 from '../../../public/desarrollo.jpg';
+import img6 from '../../../public/ecom.jpg';
 
 const services = [
   {
     title: 'Gestión de Proyectos',
-    description: 'Digitalizamos tu negocio y te guiamos en cada paso del proceso.',
-    icon: <FaProjectDiagram className='text-blue-400 text-5xl' />, 
+    description: 'Optimizamos la gestión de tu negocio con herramientas digitales avanzadas, asegurando eficiencia en cada proceso.',
+    icon: <FaProjectDiagram className='text-blue-400 text-5xl' />,
+    image: img1,
   },
   {
     title: 'Estrategias de Marketing',
-    description: 'Creamos campañas de alto impacto en redes sociales y Google Ads.',
-    icon: <FaBullhorn className='text-pink-400 text-5xl' />, 
+    description: 'Diseñamos estrategias efectivas en redes sociales, publicidad pagada y branding para maximizar tu alcance y engagement.',
+    icon: <FaBullhorn className='text-pink-400 text-5xl' />,
+    image: img2,
   },
   {
     title: 'Aplicaciones Móviles',
-    description: 'Desarrollamos apps iOS y Android para potenciar tu negocio.',
-    icon: <FaMobileAlt className='text-green-400 text-5xl' />, 
+    description: 'Creamos apps para iOS y Android con UX/UI optimizado, garantizando rendimiento y compatibilidad con múltiples dispositivos.',
+    icon: <FaMobileAlt className='text-green-400 text-5xl' />,
+    image: img3,
   },
   {
     title: 'SEO & Posicionamiento',
-    description: 'Aumenta tu visibilidad online con optimización de motores de búsqueda.',
-    icon: <FaSearch className='text-yellow-400 text-5xl' />, 
+    description: 'Mejoramos tu visibilidad en Google con técnicas avanzadas de SEO, posicionando tu marca por encima de la competencia.',
+    icon: <FaSearch className='text-yellow-400 text-5xl' />,
+    image: img4,
   },
   {
     title: 'Desarrollo Web',
-    description: 'Creamos sitios web responsivos y optimizados para conversión.',
-    icon: <FaCode className='text-cyan-400 text-5xl' />, 
+    description: 'Desarrollamos páginas web personalizadas, optimizadas para velocidad, seguridad y conversión de clientes.',
+    icon: <FaCode className='text-cyan-400 text-5xl' />,
+    image: img5,
   },
   {
     title: 'E-Commerce Avanzado',
-    description: 'Desarrollamos tiendas online con UX/UI optimizado para ventas.',
-    icon: <FaShoppingCart className='text-orange-400 text-5xl' />, 
+    description: 'Creamos tiendas en línea intuitivas y seguras, integradas con múltiples métodos de pago y estrategias de venta.',
+    icon: <FaShoppingCart className='text-orange-400 text-5xl' />,
+    image: img6,
   },
 ];
 
-export default function ServicesPreview() {
+export default function ServicesTimeline() {
   return (
-    <section className='bg-gradient-to-r from-cyan-500 via-purple-600 to-magenta-500 py-16 px-6'>
-      <motion.h2 
+    <section className='bg-gradient-to-r from-cyan-500 via-purple-600 to-magenta-500 py-16 px-6 flex flex-col items-center relative'>
+      <motion.h2
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8 }}
-        className='text-center text-4xl font-extrabold bg-gradient-to-r from-cyan-400 to-pink-500 bg-clip-text text-transparent'
+        className='text-4xl font-extrabold bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent'
       >
-        Soluciones Digitales Personalizadas
+        Soluciones Digitales Innovadoras
       </motion.h2>
-      
-      <motion.p 
-        className='mt-4 text-lg text-gray-400 text-center max-w-2xl mx-auto'
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.8, delay: 0.3 }}
-      >
-        Desde estrategias digitales hasta desarrollo web, potenciamos tu marca con tecnología e innovación.
-      </motion.p>
 
-      <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-12'>
+      <div className='relative mt-12 w-full max-w-3xl'>
+        {/* Línea de tiempo */}
+        <div className='absolute left-1/2 transform -translate-x-1/2 w-1 bg-gray-700 h-full z-0 hidden md:block'></div>
+
         {services.map((service, index) => (
           <motion.div
             key={index}
-            className='bg-gray-900 p-8 rounded-2xl shadow-lg border border-gray-700 text-center flex flex-col items-center transition-transform hover:scale-105 hover:border-cyan-400'
-            whileHover={{ scale: 1.08 }}
-            initial={{ opacity: 0, y: 50 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: index * 0.15 }}
+            className={`relative flex flex-col items-center md:flex-row ${index % 2 === 0 ? 'md:flex-row-reverse' : ''} mb-12`}
+            initial={{ opacity: 0, x: index % 2 === 0 ? 100 : -100 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8, delay: index * 0.1 }}
+            viewport={{ once: true }}
           >
-            <div className='mb-4'>{service.icon}</div>
-            <h3 className='text-xl font-semibold text-white mb-2'>{service.title}</h3>
-            <p className='text-gray-300 text-md'>{service.description}</p>
+            {/* Tarjeta de Servicio */}
+            <div className='relative z-10 w-full md:w-1/2 p-6 bg-gray-800 rounded-lg shadow-lg hover:scale-105 transition-transform duration-300'>
+              <div className='flex items-center gap-4'>
+                {service.icon}
+                <h3 className='text-xl font-semibold text-white'>{service.title}</h3>
+              </div>
+              <p className='text-gray-300 mt-2'>{service.description}</p>
+            </div>
+
+            {/* Imagen */}
+            <div className='relative z-10 w-full md:w-1/2 flex justify-center mt-4 md:mt-0'>
+              <Image 
+                src={service.image} 
+                alt={service.title} 
+                className='rounded-lg shadow-md object-cover'
+                width={350} 
+                height={200} 
+              />
+            </div>
           </motion.div>
         ))}
       </div>

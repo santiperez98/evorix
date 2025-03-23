@@ -50,11 +50,11 @@ const Hero = () => {
         <h1 className="text-3xl md:text-5xl font-extrabold bg-gradient-to-r from-cyan-400 via-purple-500 to-pink-500 text-transparent bg-clip-text">
           <TypeAnimation
             sequence={[
-              "Impulsamos tu negocio con tecnología.",
+              "IMPULSAMOS TU NEGOCIO CON TECNOLOGIA.",
               2000,
-              "Desarrollo web y software a medida.",
+              "DESARROLLO WEB Y SOFTWARE A MEDIDA.",
               2000,
-              "Soluciones digitales innovadoras.",
+              "SOLUCIONES DIGITALES INNOVADORAS.",
               2000,
             ]}
             speed={50}
