@@ -17,7 +17,7 @@ const neonColors = {
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [user, setUser] = useState(null);
-  const [scroll, setScroll] = useState(false); // Solo para móviles
+  const [scroll, setScroll] = useState(false);
   const router = useRouter();
 
   useEffect(() => {
@@ -41,24 +41,26 @@ const Navbar = () => {
     >
       <div className="container mx-auto px-6 py-4 flex justify-between items-center">
         {/* Logo con efecto neon */}
-        <motion.div 
-          className="relative flex items-center"
-          whileHover={{ scale: 1.05 }}
-          transition={{ type: 'spring', stiffness: 300 }}
-        >
-          <Image 
-            src={logo}
-            alt="Logo"
-            width={150}
-            height={70}
-            className="relative z-10"
-          />
+        <Link href="/">
           <motion.div 
-            className="absolute inset-0 bg-gradient-to-r from-cyan-500 via-purple-600 to-magenta-500 
-            rounded-lg opacity-30 blur-lg filter transition-all duration-500"
-            layoutId="neon-glow"
-          />
-        </motion.div>
+            className="relative flex items-center"
+            whileHover={{ scale: 1.05 }}
+            transition={{ type: 'spring', stiffness: 300 }}
+          >
+            <Image 
+              src={logo}
+              alt="Logo"
+              width={150}
+              height={70}
+              className="relative z-10"
+            />
+            <motion.div 
+              className="absolute inset-0 bg-gradient-to-r from-cyan-500 via-purple-600 to-magenta-500 
+              rounded-lg opacity-30 blur-lg filter transition-all duration-500"
+              layoutId="neon-glow"
+            />
+          </motion.div>
+        </Link>
 
         {/* Menú Desktop con efectos holográficos */}
         <div className="hidden md:flex space-x-6 items-center">
@@ -70,7 +72,7 @@ const Navbar = () => {
               transition={{ duration: 0.3 }}
             >
               <Link 
-                href={`/${item.toLowerCase()}`}
+                href={`/${item.toLowerCase().replace(/\s+/g, '-')}`}
                 className="text-white text-lg font-medium relative z-10"
               >
                 {item}
@@ -183,7 +185,7 @@ const Navbar = () => {
                 transition={{ duration: 0.3 }}
               >
                 <Link 
-                  href={`/${item.toLowerCase()}`}
+                  href={`/${item.toLowerCase().replace(/\s+/g, '-')}`}
                   className="block text-white text-lg font-medium relative z-10"
                   onClick={() => setIsOpen(false)}
                 >
