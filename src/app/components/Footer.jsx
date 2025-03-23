@@ -177,11 +177,16 @@ const Footer = () => {
           &copy; 2024 Duvitek. Todos los derechos reservados.
           <span className="absolute inset-0 bg-gradient-to-r from-cyan-500 via-purple-600 to-magenta-500 
             bg-clip-text text-transparent opacity-30 blur-sm" 
-            style={{ filter: 'blur(2px)' }}>
+            style={{ filter: 'blur(2px)' }} >
             &copy; 2024 Duvitek. Todos los derechos reservados.
           </span>
         </motion.p>
       </div>
+
+      {/* Script del Chatbot */}
+      <script src="//code.tidio.co/veikqmet1dlqgwph1hgswmybig8varem.js" async></script>
+
+
     </footer>
   );
 };

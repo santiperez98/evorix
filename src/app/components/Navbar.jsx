@@ -64,7 +64,7 @@ const Navbar = () => {
 
         {/* Menú Desktop con efectos holográficos */}
         <div className="hidden md:flex space-x-6 items-center">
-          {['Sobre Nosotros', 'Servicios', 'Contacto', 'Clientes'].map((item) => (
+          {['Nosotros', 'Servicios', 'Contacto', 'Clientes'].map((item) => (
             <motion.div 
               key={item}
               className="relative group"
