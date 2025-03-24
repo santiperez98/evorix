@@ -9,13 +9,7 @@ const ContactPage = () => {
       <Navbar />
       <div className="bg-gradient-to-r from-black via-gray-900 to-black text-white py-16">
         <div className="container mx-auto px-6 lg:px-12 mt-16">
-          {/* Título */}
-          <h1 className="text-5xl font-extrabold text-center text-cyan-400 mb-8">
-            Contáctanos
-          </h1>
-          <p className="text-center text-gray-300 mb-12 text-lg">
-            Estamos aquí para ayudarte. Déjanos un mensaje y nos pondremos en contacto contigo.
-          </p>
+
 
           {/* Formulario de Contacto */}
           <div className="bg-gray-900 p-8 rounded-xl shadow-2xl border border-cyan-400 mb-12">
