@@ -42,7 +42,7 @@ const ContactForm = () => {
         <p className="text-lg text-gray-300">Envíanos tu consulta.</p>
         <p className="text-lg">
           Podés completar el siguiente formulario o escribirnos a{" "}
-          <span className="font-bold text-cyan-300">contacto@azafran.agency</span>
+          <span className="font-bold text-cyan-300">contacto@evorix.com</span>
         </p>
 
         {/* Redes sociales */}
