@@ -14,7 +14,7 @@ const ContactForm = () => {
     e.preventDefault();
     setIsLoading(true);
     emailjs
-      .sendForm("YOUR_SERVICE_ID", "YOUR_TEMPLATE_ID", form.current, "YOUR_USER_ID")
+      .sendForm("service_2tagqhn", "template_dakwjpf", form.current, "QmOlOePyPj5BKGDqE")
       .then(
         () => {
           setIsSuccess(true);
