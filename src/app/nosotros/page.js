@@ -7,7 +7,7 @@ import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import Image from "next/image";
 
-const techLogos = ["/react.png", "/nextjs.png", "/nodejs.png", "/tailwind.png", "/docker.png"];
+const techLogos = ["/react.png", "/nextjs.png", "/nodejs.png", "/tail.png", "/postgre.png"];
 
 export default function SobreNosotros() {
   const controls = useAnimation();
