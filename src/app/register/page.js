@@ -25,7 +25,9 @@ export default function RegisterForm() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post("http://localhost:3001/api/auth/register", formData);
+      await axios.post("http://localhost:3001/api/auth/register", formData, {
+        withCredentials: true,
+      });
       router.push("/login");
     } catch (err) {
       console.error("Error en el registro:", err.response?.data || err.message);
@@ -38,12 +40,12 @@ export default function RegisterForm() {
       const decoded = jwtDecode(credentialResponse.credential);
       const { name, email } = decoded;
 
-      const response = await axios.post("http://localhost:3001/api/auth/google", {
-        name,
-        email,
-      });
+      const response = await axios.post(
+        "http://localhost:3001/api/auth/google",
+        { name, email },
+        { withCredentials: true }
+      );
 
-      localStorage.setItem("token", response.data.token);
       localStorage.setItem("user", JSON.stringify(response.data.user));
       router.push("/");
     } catch (error) {

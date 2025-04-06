@@ -1,4 +1,4 @@
-"use client";
+"use client"; 
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
@@ -25,10 +25,12 @@ export default function LoginForm() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post("http://localhost:3001/api/auth/login", formData);
+      const response = await axios.post("http://localhost:3001/api/auth/login", formData, {
+        withCredentials: true,
+      });
+
       const { token, role, user } = response.data;
 
-      localStorage.setItem("token", token);
       localStorage.setItem("role", role);
       localStorage.setItem("user", JSON.stringify(user));
 
@@ -44,14 +46,13 @@ export default function LoginForm() {
       const decoded = jwtDecode(credentialResponse.credential);
       const { name, email } = decoded;
 
-      const response = await axios.post("http://localhost:3001/api/auth/google", {
-        name,
-        email,
-      });
+      const response = await axios.post(
+        "http://localhost:3001/api/auth/google",
+        { name, email },
+        { withCredentials: true }
+      );
 
-      localStorage.setItem("token", response.data.token);
       localStorage.setItem("user", JSON.stringify(response.data.user));
-
       router.push("/");
     } catch (error) {
       console.error("Error al iniciar sesión con Google:", error);
