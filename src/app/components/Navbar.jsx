@@ -8,12 +8,6 @@ import Image from 'next/image';
 import logo from '../../../public/TEXT LOGO.png';
 import userImage from '../../../public/user.png';
 
-const neonColors = {
-  cyan: 'from-cyan-500 via-cyan-600 to-cyan-700',
-  purple: 'from-purple-500 via-purple-600 to-purple-700',
-  magenta: 'from-magenta-500 via-magenta-600 to-magenta-700',
-};
-
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [user, setUser] = useState(null);
@@ -62,7 +56,7 @@ const Navbar = () => {
           </motion.div>
         </Link>
 
-        {/* Menú Desktop con efectos holográficos */}
+        {/* Menú Desktop */}
         <div className="hidden md:flex space-x-6 items-center">
           {['Nosotros', 'Servicios', 'Contacto', 'Clientes'].map((item) => (
             <motion.div 
@@ -88,25 +82,28 @@ const Navbar = () => {
             </motion.div>
           ))}
 
-          {/* Botones de autenticación con efecto cyberpunk */}
+          {/* Autenticación */}
           {user ? (
             <div className="flex items-center space-x-4">
-              <div className="relative">
-                <Image 
-                  src={userImage}
-                  alt="User"
-                  width={40}
-                  height={40}
-                  className="rounded-full border-2 border-cyan-500"
-                />
-                <div className="absolute inset-0 bg-gradient-to-r from-cyan-500 via-purple-600 to-magenta-500 
-                  rounded-full opacity-50 blur-md" />
+              <div className="flex items-center space-x-2">
+                <div className="relative w-10 h-10">
+                  <Image 
+                    src={userImage}
+                    alt="User"
+                    width={40}
+                    height={40}
+                    className="rounded-full border-2 border-cyan-500 object-cover"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-r from-cyan-500 via-purple-600 to-magenta-500 
+                    rounded-full opacity-50 blur-md" />
+                </div>
+                <span className="text-white font-medium hidden sm:inline">{user?.name}</span>
               </div>
               <button 
                 onClick={handleLogout}
-                className="px-5 py-2 bg-gradient-to-r from-red-600 to-red-800 
+                className="px-4 py-1.5 bg-gradient-to-r from-red-600 to-red-800 
                 hover:bg-gradient-to-l text-white rounded-full shadow-lg 
-                hover:shadow-red-500/50 transition-all duration-300"
+                hover:shadow-red-500/50 transition-all duration-300 text-sm sm:text-base"
               >
                 Logout
               </button>
@@ -131,7 +128,7 @@ const Navbar = () => {
           )}
         </div>
 
-        {/* Menú Móvil */}
+        {/* Botón Menú Móvil */}
         <div className="md:hidden">
           <button
             onClick={() => setIsOpen(!isOpen)}
