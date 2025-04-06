@@ -23,7 +23,7 @@ const LoginForm = () => {
     e.preventDefault();
     try {
       // Aquí debes ajustar la URL de la API al endpoint correspondiente
-      const response = await axios.post('http://localhost:3001/login', form); // Asegúrate de que la URL sea correcta
+      const response = await axios.post('http://localhost:3001/login', form , {withCredentials: true}); // Asegúrate de que la URL sea correcta
 
       if (response.data.token) {
         setMessage('Inicio de sesión exitoso.');
