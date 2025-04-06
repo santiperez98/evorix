@@ -24,11 +24,12 @@ export default function LoginForm() {
     e.preventDefault();
     try {
       const response = await axios.post('http://localhost:3001/api/auth/login', formData);
-      const { token, role } = response.data;
-
+      const { token, role, user } = response.data;
+  
       localStorage.setItem('token', token);
       localStorage.setItem('role', role);
-
+      localStorage.setItem('user', JSON.stringify(user)); // <-- 🔥 Esto guarda el usuario
+  
       if (role === "admin") {
         router.push('/dashboard');
       } else {
