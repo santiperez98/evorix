@@ -3,11 +3,13 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import axios from "axios";
+import { GoogleLogin } from "@react-oauth/google";
+import jwtDecode from "jwt-decode";
 
 export default function RegisterForm() {
   const router = useRouter();
   const [formData, setFormData] = useState({
-    name: "", // Corregido: el backend espera "name" en lugar de "username"
+    name: "",
     email: "",
     password: "",
   });
@@ -23,12 +25,29 @@ export default function RegisterForm() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post("http://localhost:3001/api/auth/register", formData);
-      console.log("Respuesta del backend:", response.data);
-      router.push("/login"); // Mejor usar router.push en Next.js
+      await axios.post("http://localhost:3001/api/auth/register", formData);
+      router.push("/login");
     } catch (err) {
-      console.error("Error en la solicitud:", err.response ? err.response.data : err.message);
-      setError(err.response?.data?.msg || "Error en el registro. Verifica los datos ingresados.");
+      console.error("Error en el registro:", err.response?.data || err.message);
+      setError(err.response?.data?.msg || "Error en el registro.");
+    }
+  };
+
+  const handleGoogleSuccess = async (credentialResponse) => {
+    try {
+      const decoded = jwtDecode(credentialResponse.credential);
+      const { name, email } = decoded;
+
+      const response = await axios.post("http://localhost:3001/api/auth/google", {
+        name,
+        email,
+      });
+
+      localStorage.setItem("token", response.data.token);
+      localStorage.setItem("user", JSON.stringify(response.data.user));
+      router.push("/");
+    } catch (error) {
+      console.error("Error al iniciar sesión con Google:", error);
     }
   };
 
@@ -72,6 +91,14 @@ export default function RegisterForm() {
             Registrarse
           </button>
         </form>
+
+        <div className="mt-4 text-center">
+          <p className="mb-2">O registrate con:</p>
+          <GoogleLogin
+            onSuccess={handleGoogleSuccess}
+            onError={() => console.log("Error en login con Google")}
+          />
+        </div>
       </div>
     </div>
   );
