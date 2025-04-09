@@ -11,12 +11,9 @@ import userImage from "../../../public/user.png";
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [user, setUser] = useState(null);
-  const [scroll, setScroll] = useState(false);
   const router = useRouter();
 
   useEffect(() => {
-    const handleScroll = () => setScroll(window.scrollY > 50);
-    window.addEventListener("scroll", handleScroll);
 
     const fetchUser = async () => {
       try {
@@ -36,7 +33,7 @@ const Navbar = () => {
 
     fetchUser();
 
-    return () => window.removeEventListener("scroll", handleScroll);
+   
   }, []);
 
   const handleLogout = async () => {
@@ -58,12 +55,9 @@ const Navbar = () => {
 
   return (
     <motion.nav
-      className={`w-full fixed top-0 z-50 transition-all duration-500 ${
-        scroll
-          ? "bg-black/70 backdrop-blur-md shadow-lg"
-          : "bg-transparent backdrop-blur-none"
-      }`}
-    >
+    className="w-full absolute z-50 bg-transparent backdrop-blur-none transition-all duration-500"
+>
+
       <div className="container mx-auto px-6 py-4 flex justify-between items-center">
         <Link href="/">
           <motion.div
