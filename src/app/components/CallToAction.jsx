@@ -1,5 +1,7 @@
 'use client';
 
+'use client';
+
 import { motion, useAnimation } from 'framer-motion';
 import { useEffect } from 'react';
 import { FaArrowRight } from 'react-icons/fa';
@@ -13,27 +15,29 @@ const CallToAction = () => {
 
   useEffect(() => {
     const sequence = async () => {
-      // Animación inicial
       await logoControls.start({
         opacity: 1,
         scale: 1,
-        transition: { duration: 1, delay: 0.3 }
+        transition: { duration: 1, delay: 0.3 },
       });
 
-      // Animación de pulso continua
       await logoControls.start({
         scale: [1, 1.05, 1],
         transition: {
           duration: 2,
           repeat: Infinity,
           repeatType: 'reverse',
-          ease: 'easeInOut'
-        }
+          ease: 'easeInOut',
+        },
       });
     };
 
-    // Ejecutar la secuencia de animaciones
-    sequence();
+    // Esperamos al menos un frame para asegurar que el componente esté montado
+    const timeout = setTimeout(() => {
+      sequence();
+    }, 0);
+
+    return () => clearTimeout(timeout); // cleanup
   }, [logoControls]);
 
   return (
