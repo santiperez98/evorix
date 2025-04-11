@@ -51,18 +51,25 @@ const services = [
 
 export default function ServicesTimeline() {
   return (
-    <section className='bg-gradient-to-r from-cyan-500 via-purple-600 to-magenta-500 py-16 px-6 flex flex-col items-center relative'>
+    <section
+      className='relative py-24 px-6 flex flex-col items-center bg-fixed bg-center bg-cover text-white'
+      style={{ backgroundImage: "url('/nasa.jpg')" }}
+    >
+      {/* Capa oscura encima del fondo */}
+      <div className="absolute inset-0 bg-black bg-opacity-60 z-0" />
+
+      {/* Contenido principal */}
       <motion.h2
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8 }}
-        className='text-4xl font-extrabold bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent'
+        className='text-4xl font-extrabold bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent z-10'
       >
         Soluciones Digitales Innovadoras
       </motion.h2>
 
-      <div className='relative mt-12 w-full max-w-3xl'>
-        {/* Línea de tiempo */}
+      <div className='relative mt-12 w-full max-w-3xl z-10'>
+        {/* Línea de tiempo (solo en desktop) */}
         <div className='absolute left-1/2 transform -translate-x-1/2 w-1 bg-gray-700 h-full z-0 hidden md:block'></div>
 
         {services.map((service, index) => (

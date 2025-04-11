@@ -39,6 +39,7 @@ const Hero = () => {
           scene="https://prod.spline.design/QJ3uElRbWA53GQY1/scene.splinecode"
         />
       )}
+      
 
       {/* Texto animado */}
       <motion.div
