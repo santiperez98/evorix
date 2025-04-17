@@ -21,10 +21,19 @@ const Hero = () => {
   }, []);
 
   return (
-    <div className="relative h-screen w-full flex flex-col md:flex-row justify-center items-center bg-black overflow-hidden px-6 md:px-16">
+    <div
+      className="relative h-screen w-full flex flex-col md:flex-row justify-center items-center bg-cover bg-center bg-fixed overflow-hidden px-6 md:px-16"
+      style={{
+        backgroundImage: "linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('/nasa.jpg')",
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+      }}
+    >
+      
+
       {/* Mostrar Spline en desktop y una imagen en móviles */}
       {isMobile ? (
-        <div className="w-[90%] sm:w-[70%] md:w-full flex justify-center">
+        <div className="w-[90%] sm:w-[70%] md:w-full flex justify-center z-10">
           <Image
             src={mobileImage}
             alt="Mobile Hero Image"
@@ -34,19 +43,17 @@ const Hero = () => {
           />
         </div>
       ) : (
-        <Spline
-          className="w-[90%] sm:w-[70%] md:w-full -ml-4 sm:ml-0"
-          scene="https://prod.spline.design/QJ3uElRbWA53GQY1/scene.splinecode"
-        />
+        <div className="z-10 w-[90%] sm:w-[70%] md:w-full -ml-4 sm:ml-0">
+          <Spline scene="https://prod.spline.design/QJ3uElRbWA53GQY1/scene.splinecode" />
+        </div>
       )}
-      
 
       {/* Texto animado */}
       <motion.div
         initial={{ x: -100, opacity: 0 }}
         animate={{ x: 0, opacity: 1 }}
         transition={{ duration: 1 }}
-        className="text-white max-w-lg text-center md:text-left md:absolute md:left-[15%] md:top-1/3 flex flex-col items-center md:items-start"
+        className="z-10 text-white max-w-lg text-center md:text-left md:absolute md:left-[15%] md:top-1/3 flex flex-col items-center md:items-start"
       >
         <h1 className="text-3xl md:text-5xl font-extrabold bg-gradient-to-r from-cyan-400 via-purple-500 to-pink-500 text-transparent bg-clip-text">
           <TypeAnimation
@@ -63,7 +70,8 @@ const Hero = () => {
           />
         </h1>
         <p className="mt-4 text-base md:text-lg text-gray-300">
-          Desarrollo web, branding, marketing digital y más. Diseñamos experiencias innovadoras para impulsar tu marca.
+          Desarrollo web, branding, marketing digital y más. Diseñamos
+          experiencias innovadoras para impulsar tu marca.
         </p>
         <button
           className="mt-6 px-6 py-3 bg-gradient-to-r from-cyan-500 to-purple-600 text-white font-semibold rounded-lg shadow-lg flex items-center gap-2 transition-all duration-300 hover:opacity-80 relative overflow-hidden"
