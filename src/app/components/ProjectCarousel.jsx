@@ -1,47 +1,104 @@
 import React from "react";
 import { motion } from "framer-motion";
-import { FaUsers, FaProjectDiagram, FaUserTie, FaCertificate, FaSmile } from "react-icons/fa";
+import { FaGlobeAmericas, FaBriefcase, FaUsers } from "react-icons/fa";
 
-const stats = [
-  { id: 1, icon: <FaUsers />, value: "15+", label: "Clientes Satisfechos" },
-  { id: 2, icon: <FaProjectDiagram />, value: "15+", label: "Proyectos" },
-  { id: 3, icon: <FaUserTie />, value: "Equipo", label: "Profesionales en Desarrollo y Marketing" },
-  { id: 4, icon: <FaCertificate />, value: "2 años", label: "Experiencia y Certificaciones" },
-  { id: 5, icon: <FaSmile />, value: "100%", label: "Clientes Satisfechos" },
+const websites = [
+  {
+    id: 1,
+    title: "NYG Accesorios",
+    description: "Accesorios para autos",
+    image: "/nyg.jpg",
+    url: "https://nyg--accesorios.web.app/",
+  },
+  {
+    id: 2,
+    title: "Ceramicas San Rafael",
+    description: "Casa de ceramicas",
+    image: "/cera.jpg",
+    url: "https://www.ceramicassanrafael.com/",
+  },
+  {
+    id: 3,
+    title: "La diamantina",
+    description: "Piedras de afilar",
+    image: "/diam.jpg",
+    url: "https://www.ladiamantina.com.ar/",
+  },
 ];
 
-export default function CyberStats() {
+export default function ProjectsAndStats() {
   return (
-    <section className="relative flex flex-col items-center py-16 bg-gradient-to-r from-cyan-500 via-purple-600 to-magenta-500 overflow-hidden">
-      <div className="absolute inset-0 blur-3xl opacity-30"></div>
-      <motion.img 
-        src="./desarrollador.png" 
-        alt="Persona" 
-        className="absolute bottom-4 right-10 w-48 sm:w-56 md:w-64 lg:w-72 drop-shadow-xl z-20"
-        animate={{ y: [0, -10, 0] }}
-        transition={{ repeat: Infinity, duration: 3, ease: "easeInOut" }}
-      />
-      <div className="relative flex flex-wrap justify-center items-center w-full max-w-6xl px-6 py-8 bg-opacity-10 backdrop-blur-lg border border-cyan-400 shadow-lg rounded-xl z-10 mt-10">
-        {stats.map((stat) => (
-          <motion.div 
-            key={stat.id}
-            whileHover={{ scale: 1.1 }}
-            className="flex items-center text-white text-center mx-4 my-2 p-4 rounded-lg bg-opacity-20"
+    <section className="bg-black text-white py-20 px-6">
+      {/* PROYECTOS */}
+      <div className="text-center mb-16">
+        <h2 className="text-3xl sm:text-4xl font-bold mb-4 text-cyan-400">
+          Algunos de los proyectos realizados
+        </h2>
+        <p className="text-gray-400 text-lg max-w-2xl mx-auto">
+          Sitios web creados para distintas empresas y países.
+        </p>
+      </div>
+
+      <div className="flex flex-wrap justify-center gap-10 max-w-7xl mx-auto">
+        {websites.map((site) => (
+          <motion.a
+            key={site.id}
+            href={site.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            whileHover={{ scale: 1.03 }}
+            className="w-[320px] bg-[#1a1a1d] rounded-2xl overflow-hidden border border-gray-700 shadow-md hover:shadow-cyan-500/30 transition-all"
           >
-            <motion.div
-              className="text-4xl text-cyan-300 mr-3 drop-shadow-[0_0_15px_cyan]"
-              animate={{ rotate: [0, 10, -10, 0] }}
-              transition={{ repeat: Infinity, duration: 4, ease: "easeInOut" }}
-            >
-              {stat.icon}
-            </motion.div>
-            <div>
-              <h3 className="text-3xl font-bold text-white drop-shadow-lg">{stat.value}</h3>
-              <p className="text-lg text-gray-300">{stat.label}</p>
+            <img
+              src={site.image}
+              alt={site.title}
+              className="w-full h-[200px] object-cover object-center transition-transform duration-300"
+            />
+            <div className="p-5">
+              <h3 className="text-xl font-semibold text-white">{site.title}</h3>
+              <p className="text-gray-400">{site.description}</p>
+              <img
+                src="https://flagcdn.com/w40/ar.png"
+                alt="Bandera Argentina"
+                className="w-6 h-4 mt-3"
+              />
             </div>
-          </motion.div>
+          </motion.a>
         ))}
       </div>
+
+      {/* ESTADÍSTICAS */}
+      <div className="mt-24 text-center">
+        <h3 className="text-2xl font-semibold mb-10 text-cyan-400">Impacto y Alcance</h3>
+        <div className="flex flex-wrap justify-center gap-12">
+          <motion.div
+            whileHover={{ scale: 1.05 }}
+            className="bg-[#1e1e20] p-6 rounded-xl shadow-md w-64 border border-gray-700"
+          >
+            <FaBriefcase className="text-cyan-400 text-4xl mb-3 mx-auto" />
+            <h4 className="text-xl font-bold">+200 Sitios creados</h4>
+            <p className="text-gray-400 mt-2">Empresas, PyMEs y profesionales</p>
+          </motion.div>
+          <motion.div
+            whileHover={{ scale: 1.05 }}
+            className="bg-[#1e1e20] p-6 rounded-xl shadow-md w-64 border border-gray-700"
+          >
+            <FaGlobeAmericas className="text-cyan-400 text-4xl mb-3 mx-auto" />
+            <h4 className="text-xl font-bold">+10 Países</h4>
+            <p className="text-gray-400 mt-2">Presencia internacional</p>
+          </motion.div>
+          <motion.div
+            whileHover={{ scale: 1.05 }}
+            className="bg-[#1e1e20] p-6 rounded-xl shadow-md w-64 border border-gray-700"
+          >
+            <FaUsers className="text-cyan-400 text-4xl mb-3 mx-auto" />
+            <h4 className="text-xl font-bold">+50 Rubros</h4>
+            <p className="text-gray-400 mt-2">Diversidad de industrias</p>
+          </motion.div>
+        </div>
+      </div>
+
+
     </section>
   );
 }
