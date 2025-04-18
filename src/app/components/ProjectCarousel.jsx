@@ -35,7 +35,8 @@ export default function ProjectsAndStats() {
           Algunos de los proyectos realizados
         </h2>
         <p className="text-gray-400 text-lg max-w-2xl mx-auto">
-          Sitios web creados para distintas empresas y paises
+          Sitios web creados para distintas empresas y países.
+        </p>
       </div>
 
       <div className="flex flex-wrap justify-center gap-10 max-w-7xl mx-auto">
