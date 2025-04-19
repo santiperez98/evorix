@@ -67,37 +67,6 @@ export default function ProjectsAndStats() {
         ))}
       </div>
 
-      {/* ESTADÍSTICAS */}
-      <div className="mt-24 text-center">
-        <h3 className="text-2xl font-semibold mb-10 text-cyan-400">Impacto y Alcance</h3>
-        <div className="flex flex-wrap justify-center gap-12">
-          <motion.div
-            whileHover={{ scale: 1.05 }}
-            className="bg-[#1e1e20] p-6 rounded-xl shadow-md w-64 border border-gray-700"
-          >
-            <FaBriefcase className="text-cyan-400 text-4xl mb-3 mx-auto" />
-            <h4 className="text-xl font-bold">+200 Sitios creados</h4>
-            <p className="text-gray-400 mt-2">Empresas, PyMEs y profesionales</p>
-          </motion.div>
-          <motion.div
-            whileHover={{ scale: 1.05 }}
-            className="bg-[#1e1e20] p-6 rounded-xl shadow-md w-64 border border-gray-700"
-          >
-            <FaGlobeAmericas className="text-cyan-400 text-4xl mb-3 mx-auto" />
-            <h4 className="text-xl font-bold">+10 Países</h4>
-            <p className="text-gray-400 mt-2">Presencia internacional</p>
-          </motion.div>
-          <motion.div
-            whileHover={{ scale: 1.05 }}
-            className="bg-[#1e1e20] p-6 rounded-xl shadow-md w-64 border border-gray-700"
-          >
-            <FaUsers className="text-cyan-400 text-4xl mb-3 mx-auto" />
-            <h4 className="text-xl font-bold">+50 Rubros</h4>
-            <p className="text-gray-400 mt-2">Diversidad de industrias</p>
-          </motion.div>
-        </div>
-      </div>
-
 
     </section>
   );

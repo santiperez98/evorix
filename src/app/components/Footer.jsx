@@ -22,8 +22,7 @@ const Footer = () => {
       }));
     };
     setShapes(generateShapes());
-    
-    // Animación del logo
+
     logoControls.start({
       scale: [1, 1.05, 1],
       transition: {
@@ -97,18 +96,24 @@ const Footer = () => {
               Navegación
             </h3>
             <div className="flex flex-col space-y-2">
-              {['Inicio', 'Sobre Nosotros', 'Servicios', 'Contacto', 'Clientes'].map((item) => (
+              {[
+                { name: 'Inicio', path: '/' },
+                { name: 'Nosotros', path: '/nosotros' },
+                { name: 'Servicios', path: '/servicios' },
+                { name: 'Contacto', path: '/contacto' },
+                { name: 'Clientes', path: '/clientes' }
+              ].map(({ name, path }) => (
                 <motion.div 
-                  key={item}
+                  key={name}
                   className="relative group"
                   whileHover={{ scale: 1.05 }}
                   transition={{ duration: 0.3 }}
                 >
                   <Link 
-                    href={`/#${item.toLowerCase()}`}
+                    href={path}
                     className="text-gray-300 hover:text-white transition duration-500 relative z-10"
                   >
-                    {item}
+                    {name}
                   </Link>
                   <motion.span 
                     className="absolute bottom-0 left-0 w-full h-0.5 bg-gradient-to-r from-cyan-500 via-purple-600 to-magenta-500"
@@ -185,8 +190,6 @@ const Footer = () => {
 
       {/* Script del Chatbot */}
       <script src="//code.tidio.co/veikqmet1dlqgwph1hgswmybig8varem.js" async></script>
-
-
     </footer>
   );
 };
