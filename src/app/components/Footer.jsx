@@ -166,7 +166,7 @@ const Footer = () => {
               </svg>
               <div>
                 <p className="text-sm">Soporte Email</p>
-                <p className="font-mono text-purple-400">help@duvitek.ai</p>
+                <p className="font-mono text-purple-400">soporte@evorix.com</p>
               </div>
             </div>
           </div>
@@ -179,11 +179,11 @@ const Footer = () => {
           animate={{ opacity: 1 }}
           transition={{ delay: 0.3 }}
         >
-          &copy; 2024 Duvitek. Todos los derechos reservados.
+          &copy; 2024 Evorix. Todos los derechos reservados.
           <span className="absolute inset-0 bg-gradient-to-r from-cyan-500 via-purple-600 to-magenta-500 
             bg-clip-text text-transparent opacity-30 blur-sm" 
             style={{ filter: 'blur(2px)' }} >
-            &copy; 2024 Duvitek. Todos los derechos reservados.
+            &copy; 2024 Evorix. Todos los derechos reservados.
           </span>
         </motion.p>
       </div>

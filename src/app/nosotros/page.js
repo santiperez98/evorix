@@ -93,52 +93,81 @@ export default function SobreNosotros() {
       </div>
 
       {/* ¿Por qué elegirnos? */}
-      <section className="py-20 bg-gray-900 text-white">
-        <h2 className="text-6xl font-bold text-center mb-12 neon-text">
-          ¿Por qué confiar en nosotros?
-        </h2>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 px-6">
-          <motion.div
-            className="p-8 bg-gray-800 rounded-xl flex flex-col items-center border border-cyan-400 shadow-lg"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-          >
-            <FaCheckCircle className="text-6xl text-cyan-400 mb-4" />
-            <h3 className="text-2xl font-bold">Calidad Garantizada</h3>
-            <p className="text-lg text-gray-300 text-center">
-              Desarrollo robusto y escalable con las mejores prácticas del mercado.
-            </p>
-          </motion.div>
-          <motion.div
-            className="p-8 bg-gray-800 rounded-xl flex flex-col items-center border border-purple-500 shadow-lg"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8, delay: 0.4 }}
-          >
-            <FaUsers className="text-6xl text-purple-400 mb-4" />
-            <h3 className="text-2xl font-bold">Atención Personalizada</h3>
-            <p className="text-lg text-gray-300 text-center">
-              Acompañamiento en cada etapa con asesoría experta y comunicación fluida.
-            </p>
-          </motion.div>
-          <motion.div
-            className="p-8 bg-gray-800 rounded-xl flex flex-col items-center border border-green-400 shadow-lg"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8, delay: 0.6 }}
-          >
-            <FaShieldAlt className="text-6xl text-green-400 mb-4" />
-            <h3 className="text-2xl font-bold">Seguridad y Eficiencia</h3>
-            <p className="text-lg text-gray-300 text-center">
-              Implementamos tecnologías avanzadas para proteger tu negocio y optimizar recursos.
-            </p>
-          </motion.div>
-        </div>
-      </section>
+      <section className="py-20 bg-gray-200 text-black">
+  <h2 className="text-6xl font-bold text-center mb-16 text-gray-800">
+    ¿Por qué confiar en nosotros?
+  </h2>
+  <div className="flex flex-col md:flex-row justify-center items-center gap-12 px-4 md:px-20">
+    {/* Card 1 */}
+    <motion.div
+      className="relative w-64 h-80 rounded-t-[50px] bg-gray-700 overflow-hidden shadow-lg group"
+      initial={{ opacity: 0, y: 30 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.8, delay: 0.2 }}
+    >
+      <div className="absolute top-[-25px] left-1/2 transform -translate-x-1/2 bg-gray-200 w-[100px] h-[100px] rounded-full flex items-center justify-center z-10">
+        <FaCheckCircle className="text-4xl text-cyan-600" />
+      </div>
+      <div
+        className="absolute inset-0 bg-[url('/confianza.png')] bg-cover bg-center transition-transform duration-300 group-hover:scale-110"
+      />
+      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent opacity-0 group-hover:opacity-100 transition duration-500" />
+      <div className="absolute bottom-6 left-0 right-0 text-center px-4 opacity-0 group-hover:opacity-100 transition duration-500 text-white z-10">
+        <h3 className="text-xl font-bold mb-2">Calidad Garantizada</h3>
+        <p className="text-sm">
+          Desarrollos modernos, rápidos y 100% adaptables. Priorizamos eficiencia y performance.
+        </p>
+      </div>
+    </motion.div>
+
+    {/* Card 2 */}
+    <motion.div
+      className="relative w-64 h-80 rounded-t-[50px] bg-gray-700 overflow-hidden shadow-lg group"
+      initial={{ opacity: 0, y: 30 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.8, delay: 0.4 }}
+    >
+      <div className="absolute top-[-25px] left-1/2 transform -translate-x-1/2 bg-gray-200 w-[100px] h-[100px] rounded-full flex items-center justify-center z-10">
+        <FaUsers className="text-4xl text-purple-600" />
+      </div>
+      <div
+        className="absolute inset-0 bg-[url('/atencion.png')] bg-cover bg-center transition-transform duration-300 group-hover:scale-110"
+      />
+      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent opacity-0 group-hover:opacity-100 transition duration-500" />
+      <div className="absolute bottom-6 left-0 right-0 text-center px-4 opacity-0 group-hover:opacity-100 transition duration-500 text-white z-10">
+        <h3 className="text-xl font-bold mb-2">Atención Personalizada</h3>
+        <p className="text-sm">
+          Te escuchamos, te entendemos, y adaptamos cada solución a tu visión. Siempre a tu lado.
+        </p>
+      </div>
+    </motion.div>
+
+    {/* Card 3 */}
+    <motion.div
+      className="relative w-64 h-80 rounded-t-[50px] bg-gray-700 overflow-hidden shadow-lg group"
+      initial={{ opacity: 0, y: 30 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.8, delay: 0.6 }}
+    >
+      <div className="absolute top-[-25px] left-1/2 transform -translate-x-1/2 bg-gray-200 w-[100px] h-[100px] rounded-full flex items-center justify-center z-10">
+        <FaShieldAlt className="text-4xl text-green-600" />
+      </div>
+      <div
+        className="absolute inset-0 bg-[url('/seguridad.png')] bg-cover bg-center transition-transform duration-300 group-hover:scale-110"
+      />
+      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent opacity-0 group-hover:opacity-100 transition duration-500" />
+      <div className="absolute bottom-6 left-0 right-0 text-center px-4 opacity-0 group-hover:opacity-100 transition duration-500 text-white z-10">
+        <h3 className="text-xl font-bold mb-2">Seguridad y Confianza</h3>
+        <p className="text-sm">
+          Tus datos y los de tus clientes están protegidos. Trabajamos con ética y responsabilidad.
+        </p>
+      </div>
+    </motion.div>
+  </div>
+</section>
 
       <NuestroProceso />
 
