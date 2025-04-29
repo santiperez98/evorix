@@ -1,9 +1,9 @@
 import { motion } from "framer-motion";
 import { useState, useEffect, useRef } from "react";
 
-const AboutPreview = () => {
-  const [isVisible, setIsVisible] = useState(false);
-  const sectionRef = useRef(null);
+const AboutPreview: React.FC = () => {
+  const [isVisible, setIsVisible] = useState<boolean>(false);
+  const sectionRef = useRef<HTMLElement | null>(null);
 
   // Detecta cuando el componente entra en pantalla
   useEffect(() => {
@@ -22,12 +22,12 @@ const AboutPreview = () => {
   }, []);
 
   return (
-    <motion.section 
+    <motion.section
       ref={sectionRef}
       id="sobre-nosotros"
       className="py-20 px-6 bg-black text-white flex flex-col md:flex-row items-center justify-center text-center md:text-left relative overflow-hidden"
     >
-      {/* Fondo sólido negro (sin degradado) */}
+      {/* Fondo sólido negro */}
       <div className="absolute inset-0 bg-black z-0" />
 
       {/* Contenido de texto */}
@@ -40,7 +40,7 @@ const AboutPreview = () => {
         <h2 className="text-3xl md:text-4xl font-extrabold bg-gradient-to-r from-cyan-400 via-purple-500 to-pink-500 bg-clip-text text-transparent">
           Innovamos, Transformamos, Conectamos 🚀
         </h2>
-        <motion.div 
+        <motion.div
           className="w-20 md:w-24 h-1 bg-gradient-to-r from-cyan-400 to-pink-500 mt-2 mx-auto md:mx-0"
           initial={{ scaleX: 0 }}
           animate={isVisible ? { scaleX: 1 } : {}}
@@ -48,20 +48,20 @@ const AboutPreview = () => {
         />
 
         <p className="mt-6 text-base md:text-lg text-gray-300 leading-relaxed">
-          En <span className="text-cyan-400 font-semibold">Evorix</span>, fusionamos creatividad y tecnología 
+          En <span className="text-cyan-400 font-semibold">Evorix</span>, fusionamos creatividad y tecnología
           para llevar tu negocio al siguiente nivel. Nos especializamos en{" "}
-          <span className="text-purple-400 font-semibold"> 
+          <span className="text-purple-400 font-semibold">
             desarrollo web, branding, marketing digital y optimización SEO
           </span>, creando soluciones digitales que generan impacto.
         </p>
         <p className="mt-4 text-base md:text-lg text-gray-300 leading-relaxed">
           Nuestra misión es hacer que tu marca brille en el mundo digital, con{" "}
-          <span className="text-pink-400 font-semibold">diseños futuristas</span> 
-          y estrategias inteligentes que potencien tu presencia en línea.
+          <span className="text-pink-400 font-semibold">diseños futuristas</span>
+          {" "}y estrategias inteligentes que potencien tu presencia en línea.
         </p>
 
         {/* Botón CTA */}
-        <motion.a 
+        <motion.a
           href="#contacto"
           className="mt-6 inline-block px-5 md:px-6 py-3 text-base md:text-lg font-semibold text-white bg-gradient-to-r from-cyan-500 to-pink-500 rounded-xl shadow-lg hover:scale-105 transition-transform"
           whileHover={{ scale: 1.1 }}
@@ -71,8 +71,8 @@ const AboutPreview = () => {
       </motion.div>
 
       {/* Imagen futurista */}
-      <motion.img 
-        src="/hombre.png"  
+      <motion.img
+        src="/hombre.png"
         alt="Profesional futurista interactuando con tecnología"
         className="w-4/5 sm:w-3/5 md:w-2/5 lg:w-1/3 rounded-xl shadow-lg mt-10 md:mt-0 relative z-10"
         initial={{ opacity: 0, x: 50 }}
