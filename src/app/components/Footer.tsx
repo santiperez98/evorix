@@ -1,13 +1,23 @@
-"use client";
-import Image from "next/image";
-import Link from "next/link";
-import { FaFacebook, FaInstagram, FaTwitter, FaRobot } from "react-icons/fa";
-import { motion, useAnimation } from "framer-motion";
-import { useState, useEffect } from "react";
+'use client';
+
+import Image from 'next/image';
+import Link from 'next/link';
+import { FaFacebook, FaInstagram, FaTwitter, FaRobot } from 'react-icons/fa';
+import { motion, useAnimation } from 'framer-motion';
+import { useState, useEffect } from 'react';
 import image1 from '../../../public/TEXT LOGO.png';
 
+interface Shape {
+  width: string;
+  height: string;
+  top: string;
+  left: string;
+  opacity: number;
+  key: number;
+}
+
 const Footer = () => {
-  const [shapes, setShapes] = useState([]);
+  const [shapes, setShapes] = useState<Shape[]>([]);
   const logoControls = useAnimation();
 
   useEffect(() => {
@@ -18,7 +28,7 @@ const Footer = () => {
         top: `${Math.random() * 100}%`,
         left: `${Math.random() * 100}%`,
         opacity: Math.random() * 0.3 + 0.1,
-        key: i
+        key: i,
       }));
     };
     setShapes(generateShapes());
@@ -29,8 +39,8 @@ const Footer = () => {
         duration: 2,
         repeat: Infinity,
         repeatType: 'reverse',
-        ease: 'easeInOut'
-      }
+        ease: 'easeInOut',
+      },
     });
   }, [logoControls]);
 
@@ -53,12 +63,12 @@ const Footer = () => {
               height: shape.height,
               top: shape.top,
               left: shape.left,
-              opacity: shape.opacity
+              opacity: shape.opacity,
             }}
             animate={{
               y: [0, Math.random() * 20 - 10, 0],
               x: [0, Math.random() * 20 - 10, 0],
-              transition: { duration: Math.random() * 3 + 2, repeat: Infinity }
+              transition: { duration: Math.random() * 3 + 2, repeat: Infinity },
             }}
           />
         ))}
@@ -66,21 +76,21 @@ const Footer = () => {
 
       <div className="container mx-auto px-4 pt-24 pb-12 relative z-10">
         {/* Logo en la izquierda */}
-        <motion.div 
+        <motion.div
           className="mb-12 md:mb-16"
           initial={{ opacity: 0, x: -50 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.8 }}
         >
           <div className="relative inline-block">
-            <Image 
-              src={image1} 
-              alt="Logo" 
+            <Image
+              src={image1}
+              alt="Logo"
               width={280}
-              height={80} 
+              height={80}
               className="relative z-10"
             />
-            <motion.div 
+            <motion.div
               className="absolute inset-0 bg-gradient-to-r from-cyan-500 via-purple-600 to-magenta-500 
               rounded-lg opacity-30 blur-3xl filter transition-all duration-500"
               layoutId="footer-logo-glow"
@@ -101,21 +111,21 @@ const Footer = () => {
                 { name: 'Nosotros', path: '/nosotros' },
                 { name: 'Servicios', path: '/servicios' },
                 { name: 'Contacto', path: '/contacto' },
-                { name: 'Clientes', path: '/clientes' }
+                { name: 'Clientes', path: '/clientes' },
               ].map(({ name, path }) => (
-                <motion.div 
+                <motion.div
                   key={name}
                   className="relative group"
                   whileHover={{ scale: 1.05 }}
                   transition={{ duration: 0.3 }}
                 >
-                  <Link 
+                  <Link
                     href={path}
                     className="text-gray-300 hover:text-white transition duration-500 relative z-10"
                   >
                     {name}
                   </Link>
-                  <motion.span 
+                  <motion.span
                     className="absolute bottom-0 left-0 w-full h-0.5 bg-gradient-to-r from-cyan-500 via-purple-600 to-magenta-500"
                     initial={{ width: 0 }}
                     animate={{ width: '100%' }}
@@ -173,7 +183,7 @@ const Footer = () => {
         </div>
 
         {/* Texto de derechos */}
-        <motion.p 
+        <motion.p
           className="text-center mt-12 text-gray-400 text-sm relative"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}

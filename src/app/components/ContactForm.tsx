@@ -1,25 +1,38 @@
-"use client";
-import React, { useRef, useState } from "react";
-import emailjs from "emailjs-com";
-import { motion } from "framer-motion";
-import { FaInstagram, FaLinkedin, FaTiktok } from "react-icons/fa";
+'use client';
+
+import React, { useRef, useState } from 'react';
+import emailjs from 'emailjs-com';
+import { motion } from 'framer-motion';
+import { FaInstagram, FaLinkedin, FaTiktok } from 'react-icons/fa';
+
+// Definimos el tipo para el formulario actual (usando HTMLFormElement)
+interface EmailJsForm extends HTMLFormElement {
+  user_name: HTMLInputElement;
+  company_name: HTMLInputElement;
+  user_phone: HTMLInputElement;
+  user_email: HTMLInputElement;
+  message: HTMLTextAreaElement;
+}
 
 const ContactForm = () => {
-  const form = useRef();
+  const form = useRef<EmailJsForm | null>(null);
   const [isSuccess, setIsSuccess] = useState(false);
   const [isError, setIsError] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
-  const sendEmail = (e) => {
+  const sendEmail = (e: React.FormEvent) => {
     e.preventDefault();
     setIsLoading(true);
+
+    if (!form.current) return;
+
     emailjs
-      .sendForm("service_2tagqhn", "template_dakwjpf", form.current, "QmOlOePyPj5BKGDqE")
+      .sendForm('service_2tagqhn', 'template_dakwjpf', form.current, 'QmOlOePyPj5BKGDqE')
       .then(
         () => {
           setIsSuccess(true);
           setIsError(false);
-          form.current.reset();
+          form.current?.reset();
         },
         () => {
           setIsError(true);
@@ -41,7 +54,7 @@ const ContactForm = () => {
         <h2 className="text-5xl font-bold text-cyan-400">CONECTAMOS</h2>
         <p className="text-lg text-gray-300">Envíanos tu consulta.</p>
         <p className="text-lg">
-          Podés completar el siguiente formulario o escribirnos a{" "}
+          Podés completar el siguiente formulario o escribirnos a{' '}
           <span className="font-bold text-cyan-300">contacto@evorix.com</span>
         </p>
 
@@ -115,15 +128,19 @@ const ContactForm = () => {
         <motion.button
           type="submit"
           disabled={isLoading}
-          whileHover={{ scale: 1.05, backgroundColor: "#00FFFF" }}
+          whileHover={{ scale: 1.05, backgroundColor: '#00FFFF' }}
           whileTap={{ scale: 0.95 }}
           className="w-full px-6 py-3 bg-cyan-500 rounded shadow-lg text-lg font-semibold hover:bg-cyan-600 transition-colors text-black"
         >
-          {isLoading ? "Enviando..." : "Enviar"}
+          {isLoading ? 'Enviando...' : 'Enviar'}
         </motion.button>
 
-        {isSuccess && <p className="mt-4 text-center text-green-400">¡Mensaje enviado con éxito! 🚀</p>}
-        {isError && <p className="mt-4 text-center text-red-400">Error al enviar el mensaje ❌</p>}
+        {isSuccess && (
+          <p className="mt-4 text-center text-green-400">¡Mensaje enviado con éxito! 🚀</p>
+        )}
+        {isError && (
+          <p className="mt-4 text-center text-red-400">Error al enviar el mensaje ❌</p>
+        )}
       </form>
     </motion.div>
   );

@@ -1,7 +1,5 @@
 'use client';
 
-'use client';
-
 import { motion, useAnimation } from 'framer-motion';
 import { useEffect } from 'react';
 import { FaArrowRight } from 'react-icons/fa';
@@ -32,12 +30,11 @@ const CallToAction = () => {
       });
     };
 
-    // Esperamos al menos un frame para asegurar que el componente esté montado
     const timeout = setTimeout(() => {
       sequence();
     }, 0);
 
-    return () => clearTimeout(timeout); // cleanup
+    return () => clearTimeout(timeout);
   }, [logoControls]);
 
   return (
@@ -45,7 +42,7 @@ const CallToAction = () => {
       <div className="absolute top-0 left-0 w-full h-40 bg-gradient-to-r from-cyan-500 via-purple-600 to-magenta-500 rounded-b-[50%]"></div>
       
       <div className="relative z-10 max-w-3xl mx-auto px-6">
-        {/* Logo con animación de pulso */}
+        {/* Logo con animación */}
         <motion.div 
           initial={{ opacity: 0, scale: 0.8 }}
           animate={logoControls}

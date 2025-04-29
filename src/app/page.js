@@ -11,7 +11,7 @@ import ProjectCarousel from './components/ProjectCarousel';
 
 const Home = () => {
   return (
-    <div className="bg-gradient-to-r from-gray-800 to-black text-dark">
+    <div className="bg-gradient-to-r from-black to-black text-dark">
       <Navbar />
       
         <Hero />
