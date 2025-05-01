@@ -1,23 +1,43 @@
 'use client';
-import { useState } from 'react';
+import { useState, ChangeEvent, FormEvent } from 'react';
 import { motion } from 'framer-motion';
-import axios from 'axios';
+import axios, { AxiosError } from 'axios';
 
-const RegisterForm = () => {
-  const [form, setForm] = useState({ nombre: '', email: '', password: '', rol: 'usuario' });
-  const [message, setMessage] = useState('');
+// Tipado del formulario
+interface FormData {
+  nombre: string;
+  email: string;
+  password: string;
+  rol: 'usuario' | 'cliente' | 'admin';
+}
 
-  const handleChange = (e) => {
+const RegisterForm: React.FC = () => {
+
+  const [form, setForm] = useState<FormData>({
+    nombre: '',
+    email: '',
+    password: '',
+    rol: 'usuario',
+  });
+
+  const [message, setMessage] = useState<string>('');
+
+  const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
-      const response = await axios.post('http://localhost:3001/usuarios', form, {withCredentials: true});
+      const response = await axios.post<{ message: string }>(
+        'http://localhost:3001/usuarios',
+        form,
+        { withCredentials: true }
+      );
       setMessage(response.data.message);
     } catch (error) {
-      setMessage(error.response?.data?.message || 'Error al registrar.');
+      const err = error as AxiosError<{ message: string }>;
+      setMessage(err.response?.data?.message || 'Error al registrar.');
     }
   };
 
