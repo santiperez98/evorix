@@ -85,17 +85,22 @@ const services: Service[] = [
 
 const CustomIntroSection: React.FC = () => {
   return (
-    <section className="relative bg-black text-white px-6 py-20 flex flex-col items-center">
+    <section className="relative bg-gradient-to-r from-cyan-500 via-purple-600 to-magenta-500 rounded-b-[50%]k text-white px-6 py-20 flex flex-col items-center overflow-hidden">
+      {/* Fondo con degradado recto hacia abajo que conecta con la sección inferior */}
+      <div
+        className="absolute bottom-0 left-0 w-full h-1/2 z-0"
+      
+      />
       <motion.h2
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 1, ease: 'easeInOut' }}
-        className="text-5xl md:text-6xl font-extrabold text-center mb-20 bg-gradient-to-r from-cyan-400 via-purple-500 to-pink-500 bg-clip-text text-transparent"
+        className="relative z-10 text-5xl md:text-6xl font-extrabold text-center mb-20 bg-gradient-to-r from-cyan-400 via-purple-500 to-pink-500 bg-clip-text text-transparent"
       >
         Soluciones Digitales Innovadoras
       </motion.h2>
 
-      <div className="flex flex-col gap-24 w-full max-w-6xl">
+      <div className="relative z-10 flex flex-col gap-24 w-full max-w-6xl">
         {services.map((service, index) => (
           <div
             key={index}
@@ -109,23 +114,22 @@ const CustomIntroSection: React.FC = () => {
                   transition={{ duration: 0.8, ease: 'easeOut' }}
                   className="w-[500px] h-[450px] relative overflow-hidden rounded-lg shadow-neon"
                 >
-<div
-  className="absolute inset-0"
-  style={{
-    clipPath: service.blob,
-    transform: 'translateX(-10px)',
-    filter: 'brightness(0.8) saturate(1.2)',
-  }}
->
-  <Image
-    src={service.image}
-    alt={service.title}
-    fill
-    className="object-cover"
-    style={{ objectFit: 'cover' }}
-  />
-</div>
-
+                  <div
+                    className="absolute inset-0"
+                    style={{
+                      clipPath: service.blob,
+                      transform: 'translateX(-10px)',
+                      filter: 'brightness(0.8) saturate(1.2)',
+                    }}
+                  >
+                    <Image
+                      src={service.image}
+                      alt={service.title}
+                      fill
+                      className="object-cover"
+                      style={{ objectFit: 'cover' }}
+                    />
+                  </div>
                 </motion.div>
 
                 <motion.div
@@ -185,6 +189,6 @@ const CustomIntroSection: React.FC = () => {
       </div>
     </section>
   );
-}
+};
 
 export default CustomIntroSection;

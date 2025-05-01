@@ -38,10 +38,10 @@ const CallToAction = () => {
   }, [logoControls]);
 
   return (
-    <section className="relative py-20 overflow-hidden text-center bg-gray-900">
+    <section className="relative py-20 overflow-hidden text-center ">
       <div className="absolute top-0 left-0 w-full h-40 bg-gradient-to-r from-cyan-500 via-purple-600 to-magenta-500 rounded-b-[50%]"></div>
       
-      <div className="relative z-10 max-w-3xl mx-auto px-6">
+      <div className="relative z-10 max-w-3xl mx-auto px-6 ">
         {/* Logo con animación */}
         <motion.div 
           initial={{ opacity: 0, scale: 0.8 }}
