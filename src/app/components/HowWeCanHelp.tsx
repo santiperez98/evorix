@@ -1,11 +1,18 @@
+"use client";
 import { motion } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 
-const HowWeCanHelp = () => {
-  const [isVisible, setIsVisible] = useState(false);
-  const sectionRef = useRef(null);
+interface Service {
+  title: string;
+  img: string;
+  color: string;
+}
 
-  const services = [
+const HowWeCanHelp = () => {
+  const [isVisible, setIsVisible] = useState<boolean>(false);
+  const sectionRef = useRef<HTMLElement | null>(null);
+
+  const services: Service[] = [
     { title: "Desarrollo Web Avanzado", img: "/desaweb.jpg", color: "from-cyan-500 to-blue-500" },
     { title: "Estrategias de Marketing Digital", img: "/marke.jpg", color: "from-purple-500 to-pink-500" },
     { title: "SEO & Posicionamiento", img: "/seo.jpg", color: "from-green-500 to-teal-500" },
@@ -19,9 +26,12 @@ const HowWeCanHelp = () => {
       ([entry]) => setIsVisible(entry.isIntersecting),
       { threshold: 0.3 }
     );
-    if (sectionRef.current) observer.observe(sectionRef.current);
+
+    const currentRef = sectionRef.current;
+    if (currentRef) observer.observe(currentRef);
+
     return () => {
-      if (sectionRef.current) observer.unobserve(sectionRef.current);
+      if (currentRef) observer.unobserve(currentRef);
     };
   }, []);
 
@@ -37,10 +47,9 @@ const HowWeCanHelp = () => {
       {/* Fondo negro fijo */}
       <div className="fixed inset-0 bg-black z-0"></div>
 
-      {/* Contenedor principal con borde neón */}
+      {/* Contenedor principal */}
       <div className="relative z-10 max-w-7xl mx-auto p-6 rounded-3xl border-4 border-transparent bg-black bg-clip-padding shadow-lg shadow-pink-500/30 ring-4 ring-cyan-400/40 hover:ring-pink-500/50 transition-all duration-700 ease-in-out">
 
-        {/* Título */}
         <motion.h2
           className="text-4xl font-extrabold bg-gradient-to-r from-pink-500 via-cyan-400 to-purple-500 bg-clip-text text-transparent"
           initial={{ opacity: 0 }}
@@ -50,7 +59,6 @@ const HowWeCanHelp = () => {
           ¿Cómo Podemos Impulsar Tu Negocio?
         </motion.h2>
 
-        {/* Descripción */}
         <motion.p
           className="mt-4 text-lg text-gray-300 max-w-2xl mx-auto"
           initial={{ opacity: 0 }}
@@ -62,7 +70,6 @@ const HowWeCanHelp = () => {
           <span className="text-pink-400 font-semibold">Evorix</span>!
         </motion.p>
 
-        {/* Servicios en grilla */}
         <motion.div
           className="mt-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 place-items-center"
           initial={{ opacity: 0 }}
@@ -78,7 +85,6 @@ const HowWeCanHelp = () => {
               transition={{ duration: 0.5, delay: index * 0.1 }}
               className="relative w-64 h-80 rounded-xl bg-gray-900 overflow-hidden border-2 border-pink-400/40 hover:border-cyan-400/60 transition-all duration-300 shadow-lg shadow-cyan-500/20"
             >
-              {/* Imagen */}
               <motion.img 
                 src={service.img} 
                 alt={service.title}
@@ -88,7 +94,6 @@ const HowWeCanHelp = () => {
                 transition={{ duration: 0.3 }}
               />
 
-              {/* Overlay con texto */}
               <motion.div 
                 className={`absolute inset-0 opacity-0 hover:opacity-90 transition-opacity duration-500 flex flex-col items-center justify-end p-6 bg-gradient-to-b ${service.color}`}
               >

@@ -1,52 +1,53 @@
 'use client';
-import { useEffect, useState } from 'react';
-import { useRouter } from 'next/navigation'; // Para redirigir después del login
-import axios from 'axios'; // Asegúrate de importar axios
+import { useEffect, useState, ChangeEvent, FormEvent } from 'react';
+import { useRouter } from 'next/navigation';
+import axios from 'axios';
 import { motion } from 'framer-motion';
 
-const LoginForm = () => {
-  const [form, setForm] = useState({ email: '', password: '' });
-  const [message, setMessage] = useState('');
-  const [isClient, setIsClient] = useState(false); // Estado para controlar si estamos en el cliente
-  const router = useRouter(); // Usamos el hook de router para redirigir
+// Definimos el tipo para el estado del formulario
+interface LoginFormState {
+  email: string;
+  password: string;
+}
 
-  // Usamos useEffect para asegurarnos de que solo se ejecute en el cliente
+const LoginForm = () => {
+  const [form, setForm] = useState<LoginFormState>({ email: '', password: '' });
+  const [message, setMessage] = useState<string>('');
+  const [isClient, setIsClient] = useState<boolean>(false);
+  const router = useRouter();
+
   useEffect(() => {
-    setIsClient(true); // Activamos la parte de cliente
+    setIsClient(true);
   }, []);
 
-  const handleChange = (e) => {
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
-      // Aquí debes ajustar la URL de la API al endpoint correspondiente
-      const response = await axios.post('http://localhost:3001/login', form , {withCredentials: true}); // Asegúrate de que la URL sea correcta
+      const response = await axios.post(
+        'http://localhost:3001/login',
+        form,
+        { withCredentials: true }
+      );
 
       if (response.data.token) {
         setMessage('Inicio de sesión exitoso.');
-
-        // Guardamos el token y los datos del usuario en localStorage
-        localStorage.setItem('token', response.data.token); 
-        localStorage.setItem('user', JSON.stringify(response.data.user)); // Guardar el usuario
-
-        // Redirigir a una página protegida después del login (por ejemplo, dashboard)
+        localStorage.setItem('token', response.data.token);
+        localStorage.setItem('user', JSON.stringify(response.data.user));
         if (isClient) {
-          router.push('/'); // Cambia la URL según tu ruta
+          router.push('/');
         }
       }
-    } catch (error) {
-      // Si hay un error, mostramos el mensaje de error
+    } catch (error: any) {
       const errorMessage = error.response?.data?.message || 'Error al iniciar sesión.';
       setMessage(errorMessage);
     }
   };
 
-  if (!isClient) {
-    return null; // O puedes mostrar un loading, etc., mientras se monta en el cliente
-  }
+  if (!isClient) return null;
 
   return (
     <motion.div

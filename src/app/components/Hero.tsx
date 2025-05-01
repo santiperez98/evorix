@@ -4,13 +4,12 @@ import { motion } from "framer-motion";
 import { useState, useEffect } from "react";
 import { TypeAnimation } from "react-type-animation";
 import Image from "next/image";
-import mobileImage from "../../../public/TEXT LOGO.png"; // Imagen alternativa para móviles
+import mobileImage from "../../../public/TEXT LOGO.png"; // Imagen para móviles
 
-const Hero = () => {
-  const [hovered, setHovered] = useState(false);
-  const [isMobile, setIsMobile] = useState(false);
+const Hero: React.FC = () => {
+  const [hovered, setHovered] = useState<boolean>(false);
+  const [isMobile, setIsMobile] = useState<boolean>(false);
 
-  // Detectar si es un dispositivo móvil
   useEffect(() => {
     const checkIfMobile = () => setIsMobile(window.innerWidth <= 768);
     checkIfMobile();
@@ -24,13 +23,12 @@ const Hero = () => {
     <div
       className="relative h-screen w-full flex flex-col md:flex-row justify-center items-center bg-cover bg-center bg-fixed overflow-hidden px-6 md:px-16"
       style={{
-        backgroundImage: "linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('/nasa.jpg')",
+        backgroundImage:
+          "linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('/nasa.jpg')",
         backgroundSize: "cover",
         backgroundPosition: "center",
       }}
     >
-      
-
       {/* Mostrar Spline en desktop y una imagen en móviles */}
       {isMobile ? (
         <div className="w-[90%] sm:w-[70%] md:w-full flex justify-center z-10">

@@ -1,7 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import Image from 'next/image';
+import Image, { StaticImageData } from 'next/image';
 import {
   FaProjectDiagram,
   FaBullhorn,
@@ -18,7 +18,15 @@ import img4 from '../../../public/seoo.jpg';
 import img5 from '../../../public/desarrollo.jpg';
 import img6 from '../../../public/ecom.jpg';
 
-const services = [
+interface Service {
+  title: string;
+  description: string;
+  icon: React.ReactNode;
+  image: StaticImageData;
+  blob: string;
+}
+
+const services: Service[] = [
   {
     title: 'Gestión de Proyectos',
     description:
@@ -75,10 +83,9 @@ const services = [
   },
 ];
 
-export default function CustomIntroSection() {
+const CustomIntroSection: React.FC = () => {
   return (
     <section className="relative bg-black text-white px-6 py-20 flex flex-col items-center">
-      {/* Título Animado */}
       <motion.h2
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
@@ -88,7 +95,6 @@ export default function CustomIntroSection() {
         Soluciones Digitales Innovadoras
       </motion.h2>
 
-      {/* Contenido Principal */}
       <div className="flex flex-col gap-24 w-full max-w-6xl">
         {services.map((service, index) => (
           <div
@@ -97,27 +103,31 @@ export default function CustomIntroSection() {
           >
             {index % 2 === 0 ? (
               <>
-                {/* Imagen Izquierda */}
                 <motion.div
                   initial={{ scale: 0.8, opacity: 0 }}
                   whileInView={{ scale: 1, opacity: 1 }}
                   transition={{ duration: 0.8, ease: 'easeOut' }}
                   className="w-[500px] h-[450px] relative overflow-hidden rounded-lg shadow-neon"
                 >
-                  <Image
-                    src={service.image}
-                    alt={service.title}
-                    fill
-                    className="object-cover"
-                    style={{
-                      clipPath: service.blob, // Aplicar clipPath para dar forma orgánica
-                      transform: 'translateX(-10px)', // Corrección hacia la izquierda
-                      filter: 'brightness(0.8) saturate(1.2)', // Efecto sci-fi
-                    }}
-                  />
+<div
+  className="absolute inset-0"
+  style={{
+    clipPath: service.blob,
+    transform: 'translateX(-10px)',
+    filter: 'brightness(0.8) saturate(1.2)',
+  }}
+>
+  <Image
+    src={service.image}
+    alt={service.title}
+    fill
+    className="object-cover"
+    style={{ objectFit: 'cover' }}
+  />
+</div>
+
                 </motion.div>
 
-                {/* Texto Derecha */}
                 <motion.div
                   initial={{ x: 100, opacity: 0 }}
                   whileInView={{ x: 0, opacity: 1 }}
@@ -135,7 +145,6 @@ export default function CustomIntroSection() {
               </>
             ) : (
               <>
-                {/* Texto Izquierda */}
                 <motion.div
                   initial={{ x: -100, opacity: 0 }}
                   whileInView={{ x: 0, opacity: 1 }}
@@ -151,7 +160,6 @@ export default function CustomIntroSection() {
                   <p className="text-gray-300">{service.description}</p>
                 </motion.div>
 
-                {/* Imagen Derecha */}
                 <motion.div
                   initial={{ scale: 0.8, opacity: 0 }}
                   whileInView={{ scale: 1, opacity: 1 }}
@@ -164,9 +172,9 @@ export default function CustomIntroSection() {
                     fill
                     className="object-cover"
                     style={{
-                      clipPath: service.blob, // Aplicar clipPath para dar forma orgánica
-                      transform: 'translateX(-10px)', // Corrección hacia la izquierda
-                      filter: 'brightness(0.8) saturate(1.2)', // Efecto sci-fi
+                      clipPath: service.blob,
+                      transform: 'translateX(-10px)',
+                      filter: 'brightness(0.8) saturate(1.2)',
                     }}
                   />
                 </motion.div>
@@ -179,5 +187,4 @@ export default function CustomIntroSection() {
   );
 }
 
-
-
+export default CustomIntroSection;

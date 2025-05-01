@@ -8,13 +8,19 @@ import Image from "next/image";
 import logo from "../../../public/TEXT LOGO.png";
 import userImage from "../../../public/user.png";
 
+// Tipado del usuario
+interface User {
+  name?: string;
+  picture?: string;
+  role?: "admin" | "user" | string;
+}
+
 const Navbar = () => {
-  const [isOpen, setIsOpen] = useState(false);
-  const [user, setUser] = useState(null);
+  const [isOpen, setIsOpen] = useState<boolean>(false);
+  const [user, setUser] = useState<User | null>(null);
   const router = useRouter();
 
   useEffect(() => {
-
     const fetchUser = async () => {
       try {
         const res = await fetch("http://localhost:3001/api/auth/me", {
@@ -23,7 +29,7 @@ const Navbar = () => {
         });
 
         if (res.ok) {
-          const data = await res.json();
+          const data: User = await res.json();
           setUser(data);
         }
       } catch (error) {
@@ -32,8 +38,6 @@ const Navbar = () => {
     };
 
     fetchUser();
-
-   
   }, []);
 
   const handleLogout = async () => {
@@ -42,22 +46,19 @@ const Navbar = () => {
         method: "POST",
         credentials: "include",
       });
-  
+
       setUser(null);
       router.push("/login");
-      router.refresh(); // 👈 fuerza el refetch de datos del server (Next.js 13+)
+      router.refresh();
     } catch (error) {
       console.error("Error al cerrar sesión:", error);
     }
   };
 
-  const navItems = ["Nosotros", "Servicios", "Contacto", "Clientes"];
+  const navItems: string[] = ["Nosotros", "Servicios", "Contacto", "Clientes"];
 
   return (
-    <motion.nav
-    className="w-full absolute z-50 bg-transparent backdrop-blur-none transition-all duration-500"
->
-
+    <motion.nav className="w-full absolute z-50 bg-transparent backdrop-blur-none transition-all duration-500">
       <div className="container mx-auto px-6 py-4 flex justify-between items-center">
         <Link href="/">
           <motion.div
@@ -129,14 +130,14 @@ const Navbar = () => {
             <div className="flex items-center space-x-4">
               <div className="relative w-10 h-10">
                 <Image
-                  src={user?.picture || userImage}
+                  src={user.picture || userImage}
                   alt="User"
                   fill
                   className="rounded-full border-2 border-cyan-500 object-cover"
                 />
               </div>
               <span className="text-white font-medium hidden sm:inline">
-                {user?.name || "Usuario"}
+                {user.name || "Usuario"}
               </span>
               <button
                 onClick={handleLogout}
