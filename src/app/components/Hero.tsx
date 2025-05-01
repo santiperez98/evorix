@@ -1,10 +1,10 @@
-"use client";
+'use client';
 import Spline from "@splinetool/react-spline";
 import { motion } from "framer-motion";
 import { useState, useEffect } from "react";
 import { TypeAnimation } from "react-type-animation";
 import Image from "next/image";
-import mobileImage from "../../../public/TEXT LOGO.png"; // Imagen para móviles
+import mobileImage from "../../../public/LOGO1.png"; // Imagen para móviles
 
 const Hero: React.FC = () => {
   const [hovered, setHovered] = useState<boolean>(false);
@@ -46,14 +46,10 @@ const Hero: React.FC = () => {
         </div>
       )}
 
-      {/* Texto animado */}
-      <motion.div
-        initial={{ x: -100, opacity: 0 }}
-        animate={{ x: 0, opacity: 1 }}
-        transition={{ duration: 1 }}
-        className="z-10 text-white max-w-lg text-center md:text-left md:absolute md:left-[15%] md:top-1/3 flex flex-col items-center md:items-start"
-      >
-        <h1 className="text-3xl md:text-5xl font-extrabold bg-gradient-to-r from-cyan-400 via-purple-500 to-pink-500 text-transparent bg-clip-text">
+      {/* Contenedor principal para los textos y el botón */}
+      <div className="z-10 text-white max-w-lg md:absolute md:left-[15%] md:top-1/3 flex flex-col items-center md:items-start">
+        {/* Texto animado */}
+        <h1 className="text-3xl md:text-5xl font-extrabold bg-gradient-to-r from-cyan-400 via-purple-500 to-pink-500 text-transparent bg-clip-text text-center md:text-left">
           <TypeAnimation
             sequence={[
               "IMPULSAMOS TU NEGOCIO CON TECNOLOGIA.",
@@ -67,26 +63,29 @@ const Hero: React.FC = () => {
             repeat={Infinity}
           />
         </h1>
-        <p className="mt-4 text-base md:text-lg text-gray-300">
-          Desarrollo web, branding, marketing digital y más. Diseñamos
-          experiencias innovadoras para impulsar tu marca.
-        </p>
-        <button
-          className="mt-6 px-6 py-3 bg-gradient-to-r from-cyan-500 to-purple-600 text-white font-semibold rounded-lg shadow-lg flex items-center gap-2 transition-all duration-300 hover:opacity-80 relative overflow-hidden"
-          onMouseEnter={() => setHovered(true)}
-          onMouseLeave={() => setHovered(false)}
-        >
-          Descubre Más
-          <motion.span
-            className="flex items-center"
-            initial={{ x: -10, opacity: 0 }}
-            animate={hovered ? { x: 10, opacity: 1 } : { x: -10, opacity: 0 }}
-            transition={{ duration: 0.3 }}
+        {/* Contenedor para el texto fijo y el botón */}
+        <div className="mt-4 flex flex-col items-center md:items-start">
+          {/* Texto fijo */}
+          <p className="font-bold text-lg text-gray-300 text-center md:text-left">
+            Desarrollo web, branding, marketing digital y más. Diseñamos experiencias innovadoras para impulsar tu marca.
+          </p>
+          <button
+            className="mt-6 px-6 py-3 bg-gradient-to-r from-cyan-500 to-purple-600 text-white font-semibold rounded-lg shadow-lg flex items-center gap-2 transition-all duration-300 hover:opacity-80 relative overflow-hidden"
+            onMouseEnter={() => setHovered(true)}
+            onMouseLeave={() => setHovered(false)}
           >
-            ➝➝
-          </motion.span>
-        </button>
-      </motion.div>
+            Descubre Más
+            <motion.span
+              className="flex items-center"
+              initial={{ x: -10, opacity: 0 }}
+              animate={hovered ? { x: 10, opacity: 1 } : { x: -10, opacity: 0 }}
+              transition={{ duration: 0.3 }}
+            >
+              ➝➝
+            </motion.span>
+          </button>
+        </div>
+      </div>
     </div>
   );
 };
