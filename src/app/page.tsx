@@ -7,6 +7,7 @@ import HowWeCanHelp from './components/HowWeCanHelp';
 import CallToAction from './components/CallToAction';
 import ServicesPreview from './components/ServicesPreview';
 import ProjectCarousel from './components/ProjectCarousel';
+import ChatBot from './components/ChatBot';
 
 const Home: React.FC = () => {
   return (
@@ -20,7 +21,7 @@ const Home: React.FC = () => {
       <ProjectCarousel />
       <ServicesPreview />
       <CallToAction />
-
+      <ChatBot/>
       <Footer />
     </div>
   );

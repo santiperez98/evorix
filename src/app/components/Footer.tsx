@@ -198,8 +198,7 @@ const Footer = () => {
         </motion.p>
       </div>
 
-      {/* Script del Chatbot */}
-      <script src="//code.tidio.co/veikqmet1dlqgwph1hgswmybig8varem.js" async></script>
+   
     </footer>
   );
 };

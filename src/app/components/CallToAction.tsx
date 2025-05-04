@@ -38,17 +38,17 @@ const CallToAction = () => {
   }, [logoControls]);
 
   return (
-    <section className="relative py-20 overflow-hidden text-center ">
+    <section className="relative py-20 overflow-hidden text-center bg-gradient-to-b from-black to-gray-900 via-gray-800">
       <div className="absolute top-0 left-0 w-full h-40 bg-gradient-to-r from-cyan-500 via-purple-600 to-magenta-500 rounded-b-[50%]"></div>
-      
+
       <div className="relative z-10 max-w-3xl mx-auto px-6 ">
         {/* Logo con animación */}
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0, scale: 0.8 }}
           animate={logoControls}
           className="mb-8"
         >
-          <Image 
+          <Image
             src={image1}
             alt="Logo"
             width={280}
@@ -57,7 +57,7 @@ const CallToAction = () => {
           />
         </motion.div>
 
-        <motion.h2 
+        <motion.h2
           className="text-3xl md:text-4xl font-bold text-white mb-4"
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -65,8 +65,8 @@ const CallToAction = () => {
         >
           Lleve su sitio web al siguiente <span className="text-cyan-300">¡nivel ahora mismo!</span>
         </motion.h2>
-        
-        <motion.p 
+
+        <motion.p
           className="text-gray-300 mb-12"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
@@ -76,7 +76,7 @@ const CallToAction = () => {
         </motion.p>
 
         {/* Botón centrado */}
-        <motion.button 
+        <motion.button
           whileHover={{ scale: 1.1, boxShadow: '0px 0px 15px rgba(0, 255, 255, 0.8)' }}
           whileTap={{ scale: 0.95 }}
           onClick={() => router.push('/contacto')}
