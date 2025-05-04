@@ -23,17 +23,20 @@ const Navbar: React.FC = () => {
   useEffect(() => {
     const fetchUser = async () => {
       try {
-        const res = await fetch('http://localhost:3001/api/auth/me', {
-          method: 'GET',
-          credentials: 'include',
-        });
-
-        if (res.ok) {
-          const data: User = await res.json();
-          setUser(data);
+        const res = await fetch('http://localhost:3001/api/auth/me', { credentials: 'include' });
+        
+        if (!res.ok) {
+          throw new Error('No autenticado');
         }
+        
+        const data = await res.json();
+        setUser(data);
       } catch (error) {
-        console.error('Error al obtener el usuario:', error);
+        if (error instanceof Error) {
+          console.error('Error al obtener el usuario:', error.message);
+        } else {
+          console.error('Error al obtener el usuario:', error);
+        }
       }
     };
 
