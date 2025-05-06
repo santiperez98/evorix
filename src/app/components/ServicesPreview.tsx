@@ -85,107 +85,88 @@ const services: Service[] = [
 
 const CustomIntroSection: React.FC = () => {
   return (
-    <section className="relative bg-gradient-to-r from-cyan-500 via-purple-600 to-magenta-500 rounded-b-[50%]k text-white px-6 py-20 flex flex-col items-center overflow-hidden">
-      {/* Fondo con degradado recto hacia abajo que conecta con la sección inferior */}
-      <div
-        className="absolute bottom-0 left-0 w-full h-1/2 z-0"
-      
+    <section className="relative bg-gradient-to-br from-cyan-900 via-purple-900 to-pink-900 text-white py-20 overflow-hidden">
+      {/* Animaciones de fondo */}
+      <motion.div 
+        className="absolute top-1/4 right-1/4 w-96 h-96 bg-emerald-500 rounded-full mix-blend-multiply filter blur-3xl opacity-20"
+        animate={{ scale: [1, 1.2, 1], rotate: [0, 360, 0] }}
+        transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
       />
-      <motion.h2
-        initial={{ opacity: 0, y: -20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 1, ease: 'easeInOut' }}
-        className="relative z-10 text-5xl md:text-6xl font-extrabold text-center mb-20 bg-gradient-to-r from-cyan-400 via-purple-500 to-pink-500 bg-clip-text text-transparent"
-      >
-        Soluciones Digitales Innovadoras
-      </motion.h2>
+      <motion.div 
+        className="absolute bottom-1/4 left-1/4 w-96 h-96 bg-pink-500 rounded-full mix-blend-multiply filter blur-3xl opacity-20"
+        animate={{ scale: [1.2, 1, 1.2], rotate: [360, 0, 360] }}
+        transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
+      />
 
-      <div className="relative z-10 flex flex-col gap-24 w-full max-w-6xl">
-        {services.map((service, index) => (
-          <div
-            key={index}
-            className="flex flex-col md:flex-row items-center justify-center gap-12"
-          >
-            {index % 2 === 0 ? (
-              <>
-                <motion.div
-                  initial={{ scale: 0.8, opacity: 0 }}
-                  whileInView={{ scale: 1, opacity: 1 }}
-                  transition={{ duration: 0.8, ease: 'easeOut' }}
-                  className="w-[500px] h-[450px] relative overflow-hidden rounded-lg shadow-neon"
-                >
-                  <div
-                    className="absolute inset-0"
-                    style={{
-                      clipPath: service.blob,
-                      transform: 'translateX(-10px)',
-                      filter: 'brightness(0.8) saturate(1.2)',
-                    }}
-                  >
-                    <Image
-                      src={service.image}
-                      alt={service.title}
-                      fill
-                      className="object-cover"
-                      style={{ objectFit: 'cover' }}
-                    />
-                  </div>
-                </motion.div>
+      <div className="max-w-7xl mx-auto px-6 relative z-10">
+        <motion.h2
+          initial={{ opacity: 0, y: -40 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1.2, ease: 'easeOut' }}
+          className="text-5xl md:text-6xl font-extrabold text-center mb-32 bg-gradient-to-r from-emerald-400 via-fuchsia-400 to-pink-500 bg-clip-text text-transparent"
+        >
+          Soluciones Digitales Futuristas
+        </motion.h2>
 
-                <motion.div
-                  initial={{ x: 100, opacity: 0 }}
-                  whileInView={{ x: 0, opacity: 1 }}
-                  transition={{ duration: 0.8, ease: 'easeOut' }}
-                  className="bg-gray-900 p-8 rounded-lg shadow-neon w-full md:w-[400px]"
-                >
-                  <div className="flex items-center gap-4 mb-4">
-                    {service.icon}
-                    <h3 className="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-purple-500">
-                      {service.title}
-                    </h3>
-                  </div>
-                  <p className="text-gray-300">{service.description}</p>
-                </motion.div>
-              </>
-            ) : (
-              <>
-                <motion.div
-                  initial={{ x: -100, opacity: 0 }}
-                  whileInView={{ x: 0, opacity: 1 }}
-                  transition={{ duration: 0.8, ease: 'easeOut' }}
-                  className="bg-gray-900 p-8 rounded-lg shadow-neon w-full md:w-[400px]"
-                >
-                  <div className="flex items-center gap-4 mb-4">
-                    {service.icon}
-                    <h3 className="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-purple-500">
-                      {service.title}
-                    </h3>
-                  </div>
-                  <p className="text-gray-300">{service.description}</p>
-                </motion.div>
-
-                <motion.div
-                  initial={{ scale: 0.8, opacity: 0 }}
-                  whileInView={{ scale: 1, opacity: 1 }}
-                  transition={{ duration: 0.8, ease: 'easeOut' }}
-                  className="w-[500px] h-[450px] relative overflow-hidden rounded-lg shadow-neon"
+        <div className="space-y-24">
+          {services.map((service, index) => (
+            <motion.div
+              key={index}
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, ease: 'easeOut' }}
+              className={`flex flex-col ${index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'} items-center gap-12 md:gap-20`}
+            >
+              {/* Imagen con forma personalizada */}
+              <motion.div
+                whileHover={{ scale: 1.04, rotate: index % 2 === 0 ? -1 : 1 }}
+                transition={{ type: "spring", stiffness: 300, damping: 10 }}
+                className="w-full md:w-1/2 lg:w-5/12 h-[350px] md:h-[450px] relative overflow-hidden rounded-3xl shadow-[0_0_25px_#00ffd0] transition-all duration-300"
+              >
+                <div
+                  className="absolute inset-0"
+                  style={{
+                    clipPath: service.blob,
+                    transform: 'translateX(-10px)',
+                    filter: 'brightness(0.8) saturate(1.2)',
+                  }}
                 >
                   <Image
                     src={service.image}
                     alt={service.title}
                     fill
-                    className="object-cover"
-                    style={{
-                      clipPath: service.blob,
-                      transform: 'translateX(-10px)',
-                      filter: 'brightness(0.8) saturate(1.2)',
-                    }}
+                    className="object-cover transition-transform duration-500 hover:scale-110"
                   />
-                </motion.div>
-              </>
-            )}
-          </div>
-        ))}
+                </div>
+              </motion.div>
+
+              {/* Contenido de la tarjeta */}
+              <motion.div
+                initial={{ x: index % 2 === 0 ? 50 : -50, opacity: 0 }}
+                whileInView={{ x: 0, opacity: 1 }}
+                transition={{ duration: 0.8, ease: 'easeOut' }}
+                className="w-full md:w-1/2 lg:w-5/12 bg-white/5 backdrop-blur-xl p-8 md:p-10 rounded-3xl border border-white/20 shadow-[0_4px_30px_rgba(0,0,0,0.1)]"
+              >
+                <div className="flex items-center gap-4 mb-6">
+                  {service.icon}
+                  <h3 className="text-2xl md:text-3xl font-bold text-emerald-400">
+                    {service.title}
+                  </h3>
+                </div>
+                <p className="text-gray-200 text-lg leading-relaxed mb-6">
+                  {service.description}
+                </p>
+                <motion.button
+                  whileHover={{ scale: 1.06 }}
+                  whileTap={{ scale: 0.95 }}
+                  className="mt-4 bg-gradient-to-r from-emerald-500 via-cyan-400 to-pink-500 text-white px-6 py-3 rounded-full font-semibold shadow-lg transition-all hover:shadow-cyan-500/50"
+                >
+                  Saber más →
+                </motion.button>
+              </motion.div>
+            </motion.div>
+          ))}
+        </div>
       </div>
     </section>
   );
