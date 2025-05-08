@@ -8,6 +8,7 @@ import CallToAction from './components/CallToAction';
 import ServicesPreview from './components/ServicesPreview';
 import ProjectCarousel from './components/ProjectCarousel';
 import ChatBot from './components/ChatBot';
+import ServiceOverview from './components/ServiceOverview';
 
 const Home: React.FC = () => {
   return (
@@ -17,7 +18,7 @@ const Home: React.FC = () => {
       <Hero />
       <AboutPreview />
       <HowWeCanHelp />
-
+      <ServiceOverview />
       <ProjectCarousel />
       <ServicesPreview />
       <CallToAction />
