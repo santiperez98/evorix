@@ -1,194 +1,146 @@
 'use client';
-
-import { motion } from 'framer-motion';
-import Image, { StaticImageData } from 'next/image';
+import React, { useState, useEffect } from 'react';
 import {
-  FaProjectDiagram,
+  FaCogs,
+  FaGlobe,
+  FaChartLine,
   FaBullhorn,
-  FaMobileAlt,
-  FaSearch,
-  FaCode,
-  FaShoppingCart,
+  FaUsers,
+  FaStar,
+  FaRegStar,
 } from 'react-icons/fa';
+import Image from 'next/image';
 
-import img1 from '../../../public/gestion.jpg';
-import img2 from '../../../public/marketing.jpg';
-import img3 from '../../../public/movil.jpg';
-import img4 from '../../../public/seoo.jpg';
-import img5 from '../../../public/desarrollo.jpg';
-import img6 from '../../../public/ecom.jpg';
-
-interface Service {
-  title: string;
-  description: string;
+type Service = {
+  name: string;
+  image: string;
+  text: string;
+  features: string[];
+  extraInfo: string;
+  persuasion: string;
   icon: React.ReactNode;
-  image: StaticImageData;
-  blob: string;
-}
+  rating: number;
+};
 
 const services: Service[] = [
   {
-    title: 'Gestión de Proyectos',
-    description:
-      'Optimizamos la gestión de tu negocio con herramientas digitales avanzadas, asegurando eficiencia en cada proceso.',
-    icon: <FaProjectDiagram className="text-cyan-400 text-5xl" />,
-    image: img1,
-    blob:
-      'path("M433,311Q379,372,311,397Q243,422,184,388Q125,354,92,297Q59,240,99,186Q139,132,202,93Q265,54,321,92Q377,130,429,185Q481,240,433,311Z")',
+    name: 'Gestión de Proyecto',
+    image: '/gestion.jpg',
+    text: 'Planificamos, ejecutamos y controlamos cada etapa del proyecto para que tu idea se transforme en resultados concretos.',
+    features: ['Organización efectiva', 'Gestión de tiempo', 'Entregables claros'],
+    extraInfo: 'Más de 30 proyectos finalizados con éxito.',
+    persuasion: '¿Querés que tu proyecto no se desvíe? Nosotros lo guiamos de principio a fin.',
+    icon: <FaCogs size={24} />,
+    rating: 4,
   },
   {
-    title: 'Estrategias de Marketing',
-    description:
-      'Diseñamos estrategias efectivas en redes sociales, publicidad pagada y branding para maximizar tu alcance y engagement.',
-    icon: <FaBullhorn className="text-pink-400 text-5xl" />,
-    image: img2,
-    blob:
-      'path("M418,310Q368,380,296,398Q224,416,157,377Q90,338,86,269Q82,200,99,135Q144,70,219,79Q294,88,365,120Q436,152,439,226Q442,300,418,310Z")',
+    name: 'Desarrollo Web',
+    image: '/desarrollo.jpg',
+    text: 'Creamos sitios rápidos, intuitivos y modernos que cautivan desde el primer clic.',
+    features: ['Diseño responsive', 'Código limpio', 'Rendimiento elevado'],
+    extraInfo: '98% de nuestros clientes aumentaron su tasa de conversión.',
+    persuasion: 'Tu web es tu carta de presentación. Hacela inolvidable.',
+    icon: <FaGlobe size={24} />,
+    rating: 5,
   },
   {
-    title: 'Aplicaciones Móviles',
-    description:
-      'Creamos apps para iOS y Android con UX/UI optimizado, garantizando rendimiento y compatibilidad con múltiples dispositivos.',
-    icon: <FaMobileAlt className="text-green-400 text-5xl" />,
-    image: img3,
-    blob:
-      'path("M423,293Q395,346,344,392Q293,438,226,436Q159,434,112,387Q65,340,73,270Q81,200,110,138Q139,76,206,72Q273,68,329,104Q385,140,418,195Q451,250,423,293Z")',
+    name: 'SEO',
+    image: '/seo.jpg',
+    text: 'Te ayudamos a posicionarte en Google para que tus clientes te encuentren primero.',
+    features: ['Palabras clave', 'SEO técnico', 'Contenido optimizado'],
+    extraInfo: '300% más visitas mensuales en promedio.',
+    persuasion: 'Estar primero en Google ya no es un sueño.',
+    icon: <FaChartLine size={24} />,
+    rating: 4,
   },
   {
-    title: 'SEO & Posicionamiento',
-    description:
-      'Mejoramos tu visibilidad en Google con técnicas avanzadas de SEO, posicionando tu marca por encima de la competencia.',
-    icon: <FaSearch className="text-yellow-400 text-5xl" />,
-    image: img4,
-    blob:
-      'path("M415,314Q382,388,311,409Q240,430,177,400Q114,370,92,306Q70,242,108,189Q146,136,205,104Q264,72,322,99Q380,126,410,188Q440,250,415,314Z")',
+    name: 'Marketing',
+    image: '/marketing.jpg',
+    text: 'Diseñamos campañas que conectan y venden.',
+    features: ['Publicidad online', 'Email marketing', 'Análisis de campañas'],
+    extraInfo: 'Retorno promedio x4 en campañas activas.',
+    persuasion: 'Un buen producto necesita buena visibilidad. Te la damos.',
+    icon: <FaBullhorn size={24} />,
+    rating: 4,
   },
   {
-    title: 'Desarrollo Web',
-    description:
-      'Desarrollamos páginas web personalizadas, optimizadas para velocidad, seguridad y conversión de clientes.',
-    icon: <FaCode className="text-purple-400 text-5xl" />,
-    image: img5,
-    blob:
-      'path("M418,294Q390,348,340,386Q290,424,231,424Q172,424,119,391Q66,358,77,288Q88,218,120,164Q152,110,214,91Q276,58,325,107Q374,142,408,196Q442,250,418,294Z")',
-  },
-  {
-    title: 'E-Commerce Avanzado',
-    description:
-      'Creamos tiendas en línea intuitivas y seguras, integradas con múltiples métodos de pago y estrategias de venta.',
-    icon: <FaShoppingCart className="text-orange-400 text-5xl" />,
-    image: img6,
-    blob:
-      'path("M420,307Q390,364,340,396Q290,428,229,420Q168,412,113,371Q58,330,80,267Q102,204,124,148Q146,92,208,75Q270,58,317,97Q364,136,399,188Q434,240,420,307Z")',
+    name: 'Community Manager',
+    image: '/comu.jpg',
+    text: 'Gestionamos tus redes con contenido estratégico y conexión real.',
+    features: ['Contenido atractivo', 'Interacción activa', 'Crecimiento orgánico'],
+    extraInfo: 'Aumento del 150% en seguidores en 3 meses.',
+    persuasion: 'Crea una comunidad, no solo números.',
+    icon: <FaUsers size={24} />,
+    rating: 5,
   },
 ];
 
-const CustomIntroSection: React.FC = () => {
+const ServicesCarousel = () => {
+  const [current, setCurrent] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrent((prev) => (prev + 1) % services.length);
+    }, 6000);
+    return () => clearInterval(interval);
+  }, []);
+
+  const goTo = (index: number) => setCurrent(index);
+
+  const renderStars = (rating: number) => (
+    <div className="flex gap-1 mt-2 text-yellow-400">
+      {Array.from({ length: 5 }, (_, i) =>
+        i < rating ? <FaStar key={i} /> : <FaRegStar key={i} />
+      )}
+    </div>
+  );
+
   return (
-    <section className="relative bg-gradient-to-r from-cyan-500 via-purple-600 to-magenta-500 rounded-b-[50%]k text-white px-6 py-20 flex flex-col items-center overflow-hidden">
-      {/* Fondo con degradado recto hacia abajo que conecta con la sección inferior */}
-      <div
-        className="absolute bottom-0 left-0 w-full h-1/2 z-0"
-      
-      />
-      <motion.h2
-        initial={{ opacity: 0, y: -20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 1, ease: 'easeInOut' }}
-        className="relative z-10 text-5xl md:text-6xl font-extrabold text-center mb-20 bg-gradient-to-r from-cyan-400 via-purple-500 to-pink-500 bg-clip-text text-transparent"
-      >
-        Soluciones Digitales Innovadoras
-      </motion.h2>
-
-      <div className="relative z-10 flex flex-col gap-24 w-full max-w-6xl">
-        {services.map((service, index) => (
-          <div
-            key={index}
-            className="flex flex-col md:flex-row items-center justify-center gap-12"
-          >
-            {index % 2 === 0 ? (
-              <>
-                <motion.div
-                  initial={{ scale: 0.8, opacity: 0 }}
-                  whileInView={{ scale: 1, opacity: 1 }}
-                  transition={{ duration: 0.8, ease: 'easeOut' }}
-                  className="w-[500px] h-[450px] relative overflow-hidden rounded-lg shadow-neon"
-                >
-                  <div
-                    className="absolute inset-0"
-                    style={{
-                      clipPath: service.blob,
-                      transform: 'translateX(-10px)',
-                      filter: 'brightness(0.8) saturate(1.2)',
-                    }}
-                  >
-                    <Image
-                      src={service.image}
-                      alt={service.title}
-                      fill
-                      className="object-cover"
-                      style={{ objectFit: 'cover' }}
-                    />
-                  </div>
-                </motion.div>
-
-                <motion.div
-                  initial={{ x: 100, opacity: 0 }}
-                  whileInView={{ x: 0, opacity: 1 }}
-                  transition={{ duration: 0.8, ease: 'easeOut' }}
-                  className="bg-gray-900 p-8 rounded-lg shadow-neon w-full md:w-[400px]"
-                >
-                  <div className="flex items-center gap-4 mb-4">
-                    {service.icon}
-                    <h3 className="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-purple-500">
-                      {service.title}
-                    </h3>
-                  </div>
-                  <p className="text-gray-300">{service.description}</p>
-                </motion.div>
-              </>
-            ) : (
-              <>
-                <motion.div
-                  initial={{ x: -100, opacity: 0 }}
-                  whileInView={{ x: 0, opacity: 1 }}
-                  transition={{ duration: 0.8, ease: 'easeOut' }}
-                  className="bg-gray-900 p-8 rounded-lg shadow-neon w-full md:w-[400px]"
-                >
-                  <div className="flex items-center gap-4 mb-4">
-                    {service.icon}
-                    <h3 className="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-purple-500">
-                      {service.title}
-                    </h3>
-                  </div>
-                  <p className="text-gray-300">{service.description}</p>
-                </motion.div>
-
-                <motion.div
-                  initial={{ scale: 0.8, opacity: 0 }}
-                  whileInView={{ scale: 1, opacity: 1 }}
-                  transition={{ duration: 0.8, ease: 'easeOut' }}
-                  className="w-[500px] h-[450px] relative overflow-hidden rounded-lg shadow-neon"
-                >
-                  <Image
-                    src={service.image}
-                    alt={service.title}
-                    fill
-                    className="object-cover"
-                    style={{
-                      clipPath: service.blob,
-                      transform: 'translateX(-10px)',
-                      filter: 'brightness(0.8) saturate(1.2)',
-                    }}
-                  />
-                </motion.div>
-              </>
-            )}
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-r from-cyan-500 via-purple-600 to-magenta-500 p-4">
+      <div className="w-full max-w-6xl bg-white/90 backdrop-blur-md rounded-3xl shadow-2xl overflow-hidden">
+        <div className="grid md:grid-cols-2 gap-6 items-center p-6 md:p-10">
+          <div className="w-full">
+            <Image
+              src={services[current].image}
+              alt={services[current].name}
+              width={600}
+              height={400}
+              className="w-full h-auto rounded-xl object-cover shadow-lg"
+            />
           </div>
-        ))}
+
+          <div className="text-gray-800">
+            <h2 className="text-xl md:text-2xl font-bold flex items-center gap-2 mb-2">
+              {services[current].icon}
+              {services[current].name}
+            </h2>
+            <p className="text-sm md:text-base">{services[current].text}</p>
+            <ul className="list-disc pl-5 mt-3 text-sm">
+              {services[current].features.map((f, i) => (
+                <li key={i}>{f}</li>
+              ))}
+            </ul>
+            <p className="mt-3 italic text-gray-600 text-sm">{services[current].extraInfo}</p>
+            <p className="mt-2 text-sm md:text-base font-medium">{services[current].persuasion}</p>
+            {renderStars(services[current].rating)}
+          </div>
+        </div>
+
+        <div className="flex justify-center gap-3 pb-6">
+          {services.map((_, i) => (
+            <button
+              key={i}
+              onClick={() => goTo(i)}
+              className={`h-3 w-3 rounded-full transition-colors duration-300 ${
+                i === current ? 'bg-blue-700' : 'bg-gray-300'
+              }`}
+              aria-label={`Ir al servicio ${i + 1}`}
+            ></button>
+          ))}
+        </div>
       </div>
-    </section>
+    </div>
   );
 };
 
-export default CustomIntroSection;
+export default ServicesCarousel;

@@ -75,6 +75,10 @@ const AboutPreview: React.FC = () => {
         src="/hombre.png"
         alt="Profesional futurista interactuando con tecnología"
         className="w-4/5 sm:w-3/5 md:w-2/5 lg:w-1/3 rounded-xl shadow-lg mt-10 md:mt-0 relative z-10"
+          style={{
+    WebkitMaskImage: 'linear-gradient(black 80%, transparent)',
+    maskImage: 'linear-gradient(black 80%, transparent)',
+  }}
         initial={{ opacity: 0, x: 50 }}
         animate={isVisible ? { opacity: 1, x: 0 } : {}}
         transition={{ duration: 0.8 }}
