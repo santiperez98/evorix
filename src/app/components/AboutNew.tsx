@@ -4,7 +4,7 @@ import React from 'react';
 import Image from 'next/image';
 
 // Importa la imagen (reemplaza con la ruta real de tu imagen)
-import aboutUsImage from '../../../public/NYG.jpg';
+
 
 const AboutUsSection = () => {
   return (
@@ -28,7 +28,7 @@ const AboutUsSection = () => {
             {/* Marco Decorativo (puedes personalizar el estilo) */}
             <div className="absolute inset-0 border-4 border-fuchsia-400 rounded-lg pointer-events-none"></div>
             <Image
-              src={aboutUsImage}
+              src="/NYG.jpg" 
               alt="Equipo trabajando en una laptop"
               className="w-full h-auto object-cover rounded-lg"
               style={{ aspectRatio: '16 / 9' }} // Ajusta la proporción según tu imagen
