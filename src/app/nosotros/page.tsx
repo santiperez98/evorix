@@ -118,32 +118,36 @@ export default function SobreNosotros() {
           </motion.div>
         </section>
 
-        {/* Carrusel de Tecnologías Continuo */}
-        <section className="relative z-10 py-16 md:py-20 overflow-hidden">
-          <div className="w-full overflow-hidden">
-            <motion.div
-              className="flex space-x-4 md:space-x-16 animate-loop-scroll"
-              animate={{ x: ["0%", "-100%"] }}
-              transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-            >
-              {[...techLogos, ...techLogos].map((logo, index) => (
-                <motion.div
-                  key={index}
-                  className="inline-block p-2 md:p-6 rounded-lg bg-white/10 hover:scale-110 transition-transform duration-300"
-                  whileHover={{ scale: 1.1 }}
-                >
-                  <Image
-                    src={logo}
-                    alt={`Tech logo ${index}`}
-                    width={60}
-                    height={60}
-                    className="mx-auto w-16 h-16 md:w-32 md:h-32"
-                  />
-                </motion.div>
-              ))}
-            </motion.div>
-          </div>
-        </section>
+<section className="relative z-10 py-16 md:py-24 bg-trasparent text-white">
+  <h2 className="text-3xl md:text-4xl font-bold text-center mb-10 neon-basic" style={{ textShadow: '0 0 5px #00FFFF' }}>
+    Tecnologías que usamos
+  </h2>
+
+  <div className="overflow-hidden w-full relative">
+    <motion.div
+      className="flex gap-10 md:gap-20 animate-loop-scroll px-4"
+      animate={{ x: ["0%", "-100%"] }}
+      transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
+    >
+      {[...techLogos, ...techLogos].map((logo, index) => (
+        <motion.div
+          key={index}
+          className="min-w-[120px] md:min-w-[160px] h-[120px] md:h-[160px] flex items-center justify-center bg-white/10 rounded-xl shadow-md hover:scale-110 transition-transform duration-300 p-4 backdrop-blur-md"
+          whileHover={{ scale: 1.15 }}
+        >
+          <Image
+            src={logo}
+            alt={`Tech logo ${index}`}
+            width={120}
+            height={120}
+            className="object-contain w-full h-full"
+          />
+        </motion.div>
+      ))}
+    </motion.div>
+  </div>
+</section>
+
       </div>
 
       {/* Sección "Somos Evorix" */}

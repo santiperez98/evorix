@@ -2,132 +2,100 @@
 
 import React from 'react';
 import Image from 'next/image';
-
-// Importa la imagen (reemplaza con la ruta real de tu imagen)
-
+import { motion } from 'framer-motion';
 
 const AboutUsSection = () => {
   return (
     <section
-      className="bg-black text-white py-16 md:py-24 relative"
+      className="bg-black text-white py-20 md:py-28 relative overflow-hidden"
       style={{
-        background: 'linear-gradient(to bottom, #111, #000)',
-        // backgroundColor: '#000',
-        // backgroundImage: 'url("/noise.png")', // Reemplaza con tu imagen de ruido
-        // backgroundBlendMode: 'overlay',
-        // filter: 'blur(5px)',
+        background: 'linear-gradient(to bottom, #0a0a0a, #000)',
       }}
     >
-      <div className="absolute inset-0 bg-gradient-to-b from-black/80 to-black/40 z-0" />
+      <div className="absolute inset-0 bg-gradient-to-b from-black/80 to-black/40 z-0 pointer-events-none" />
+
       <div className="container mx-auto px-6 relative z-10">
-
-        {/* Sección Principal con Imagen y Texto */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
-          {/* Contenedor de la Imagen con Marco */}
-          <div className="relative rounded-lg overflow-hidden shadow-lg">
-            {/* Marco Decorativo (puedes personalizar el estilo) */}
-            <div className="absolute inset-0 border-4 border-fuchsia-400 rounded-lg pointer-events-none"></div>
+        {/* Intro */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
+          {/* Imagen */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.8 }}
+            className="relative rounded-xl overflow-hidden shadow-2xl"
+          >
+            <div className="absolute inset-0 border-4 border-cyan-400 rounded-xl animate-pulse pointer-events-none" />
             <Image
-              src="/NYG.jpg" 
-              alt="Equipo trabajando en una laptop"
-              className="w-full h-auto object-cover rounded-lg"
-              style={{ aspectRatio: '16 / 9' }} // Ajusta la proporción según tu imagen
+              src="/NYG.jpg"
+              alt="Equipo trabajando"
+              className="w-full h-auto object-cover rounded-xl"
+              style={{ aspectRatio: '16 / 9' }}
+              width={600}
+              height={400}
             />
-          </div>
+          </motion.div>
 
-          {/* Texto de la Agencia */}
-          <div>
-            <h3 className="text-2xl font-semibold text-cyan-400 mb-4">
+          {/* Texto */}
+          <motion.div
+            initial={{ opacity: 0, x: 50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8 }}
+          >
+            <h3 className="text-3xl font-bold text-cyan-400 mb-4 tracking-wide">
               Impulsando tu Éxito en el Mundo Digital
             </h3>
-            <p className="text-gray-300 mb-4 leading-relaxed">
-              Somos una agencia digital apasionada por transformar ideas en resultados tangibles.
-              Con un enfoque en la innovación y la excelencia, brindamos soluciones integrales para
-              impulsar tu presencia en línea y alcanzar tus objetivos de negocio.
+            <p className="text-gray-300 mb-4 leading-relaxed text-lg">
+              Somos una agencia apasionada por transformar ideas en resultados tangibles.
+              Brindamos soluciones integrales para tu presencia online.
             </p>
-            <ul className="list-disc list-inside text-gray-300 mb-6 leading-relaxed">
+            <ul className="list-disc list-inside text-gray-300 mb-6 leading-loose text-sm md:text-base">
               <li>Desarrollo Web a medida y optimizado</li>
               <li>Estrategias SEO para un mayor alcance orgánico</li>
               <li>Marketing Digital efectivo y basado en datos</li>
-              <li>Sitios web dinámicos y gestionables con WordPress</li>
               <li>Gestión profesional de Comunidades Online</li>
               <li>Branding creativo y coherente con tu identidad</li>
             </ul>
-            <button className="bg-fuchsia-500 hover:bg-fuchsia-600 text-white font-semibold py-3 px-6 rounded-full shadow-md transition duration-300">
+            <button className="bg-fuchsia-500 hover:bg-fuchsia-600 text-white font-bold py-3 px-6 rounded-full shadow-lg transition duration-300 hover:shadow-fuchsia-500/50">
               Conoce más sobre nuestros servicios
             </button>
-          </div>
+          </motion.div>
         </div>
 
-        {/* Sección de Nuestro Equipo  */}
-        <div className="mt-16">
-          <h2 className="text-2xl font-semibold text-cyan-400 text-center mb-6 neon-text" style={{ textShadow: '0 0 8px #00FFFF, 0 0 16px #00FFFF' }}>
+        {/* Nuestro Equipo */}
+        <div className="mt-24">
+          <h2
+            className="text-3xl font-semibold text-center mb-12"
+            style={{ textShadow: '0 0 10px #00FFFF, 0 0 20px #00FFFF' }}
+          >
             Nuestro Equipo
           </h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
-            {/* Miembro del Equipo 1 */}
-            <div
-              className="rounded-lg shadow-md p-6 text-center"
-              style={{
-                background: 'rgba(255, 255, 255, 0.1)',
-                backdropFilter: 'blur(10px)',
-              }}
-            >
-              <div className="relative w-32 h-48 overflow-hidden mx-auto mb-4">
-                <Image
-                  src="" // Reemplaza con la imagen real
-                  alt="Miembro del equipo 1"
-                  width={200}
-                  height={300}
-                  className="object-cover"
-                  style={{objectPosition: 'top'}}
-                />
-              </div>
-              <h4 className="text-lg font-semibold text-white mb-1">Nombre del Miembro 1</h4>
-              <p className="text-sm text-gray-300">Desarrollo Web</p>
-            </div>
-            {/* Miembro del Equipo 2 */}
-            <div
-              className="rounded-lg shadow-md p-6 text-center"
-              style={{
-                background: 'rgba(255, 255, 255, 0.1)',
-                backdropFilter: 'blur(10px)',
-              }}
-            >
-              <div className="relative w-32 h-48 overflow-hidden mx-auto mb-4">
-                <Image
-                  src="" // Reemplaza con la imagen real
-                  alt="Miembro del equipo 2"
-                  width={200}
-                  height={300}
-                  className="object-cover"
-                  style={{objectPosition: 'top'}}
-                />
-              </div>
-              <h4 className="text-lg font-semibold text-white mb-1">Nombre del Miembro 2</h4>
-              <p className="text-sm text-gray-300">Marketing Digital</p>
-            </div>
-            {/* Miembro del Equipo 3 */}
-            <div
-              className="rounded-lg shadow-md p-6 text-center"
-              style={{
-                background: 'rgba(255, 255, 255, 0.1)',
-                backdropFilter: 'blur(10px)',
-              }}
-            >
-              <div className="relative w-32 h-48 overflow-hidden mx-auto mb-4">
-                <Image
-                  src="" // Reemplaza con la imagen real
-                  alt="Miembro del equipo 3"
-                  width={200}
-                  height={300}
-                  className="object-cover"
-                  style={{objectPosition: 'top'}}
-                />
-              </div>
-              <h4 className="text-lg font-semibold text-white mb-1">Nombre del Miembro 3</h4>
-              <p className="text-sm text-gray-300">SEO y Contenido</p>
-            </div>
+            {[1, 2, 3].map((i) => (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, y: 40 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ delay: i * 0.2, duration: 0.6 }}
+                className="rounded-xl p-6 text-center bg-white/5 backdrop-blur-md border border-white/10 shadow-xl hover:shadow-cyan-500/30 transition"
+              >
+                <div className="relative w-32 h-48 overflow-hidden mx-auto mb-4 rounded-lg border border-cyan-400">
+                  <Image
+                    src={`/member${i}.jpg`} // Reemplaza con las imágenes reales
+                    alt={`Miembro ${i}`}
+                    width={200}
+                    height={300}
+                    className="object-cover"
+                    style={{ objectPosition: 'top' }}
+                  />
+                </div>
+                <h4 className="text-lg font-semibold text-white mb-1">
+                  {`Nombre del Miembro ${i}`}
+                </h4>
+                <p className="text-sm text-gray-300">
+                  {i === 1 ? 'Desarrollo Web' : i === 2 ? 'Marketing Digital' : 'SEO y Contenido'}
+                </p>
+              </motion.div>
+            ))}
           </div>
         </div>
       </div>
