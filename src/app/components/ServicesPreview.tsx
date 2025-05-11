@@ -10,6 +10,7 @@ import {
   FaRegStar,
 } from 'react-icons/fa';
 import Image from 'next/image';
+import { motion, AnimatePresence } from 'framer-motion';
 
 type Service = {
   name: string;
@@ -75,13 +76,19 @@ const services: Service[] = [
   },
 ];
 
+const fadeVariants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.6 } },
+  exit: { opacity: 0, y: -20, transition: { duration: 0.3 } },
+};
+
 const ServicesCarousel = () => {
   const [current, setCurrent] = useState(0);
 
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrent((prev) => (prev + 1) % services.length);
-    }, 6000);
+    }, 7000);
     return () => clearInterval(interval);
   }, []);
 
@@ -96,35 +103,48 @@ const ServicesCarousel = () => {
   );
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-r from-cyan-500 via-purple-600 to-magenta-500 p-4">
-      <div className="w-full max-w-6xl bg-white/90 backdrop-blur-md rounded-3xl shadow-2xl overflow-hidden">
-        <div className="grid md:grid-cols-2 gap-6 items-center p-6 md:p-10">
-          <div className="w-full">
-            <Image
-              src={services[current].image}
-              alt={services[current].name}
-              width={600}
-              height={400}
-              className="w-full h-auto rounded-xl object-cover shadow-lg"
-            />
-          </div>
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-r from-cyan-500 via-purple-600 to-magenta-500  p-4">
+      <div className="w-full max-w-6xl bg-white/90 backdrop-blur-lg rounded-3xl shadow-2xl overflow-hidden">
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={current}
+            variants={fadeVariants}
+            initial="hidden"
+            animate="visible"
+            exit="exit"
+            className="grid md:grid-cols-2 gap-6 items-center p-6 md:p-10"
+          >
+            <div className="w-full">
+              <Image
+                src={services[current].image}
+                alt={services[current].name}
+                width={600}
+                height={400}
+                className="w-full h-auto rounded-xl object-cover shadow-lg hover:scale-105 transition-transform duration-500"
+              />
+            </div>
 
-          <div className="text-gray-800">
-            <h2 className="text-xl md:text-2xl font-bold flex items-center gap-2 mb-2">
-              {services[current].icon}
-              {services[current].name}
-            </h2>
-            <p className="text-sm md:text-base">{services[current].text}</p>
-            <ul className="list-disc pl-5 mt-3 text-sm">
-              {services[current].features.map((f, i) => (
-                <li key={i}>{f}</li>
-              ))}
-            </ul>
-            <p className="mt-3 italic text-gray-600 text-sm">{services[current].extraInfo}</p>
-            <p className="mt-2 text-sm md:text-base font-medium">{services[current].persuasion}</p>
-            {renderStars(services[current].rating)}
-          </div>
-        </div>
+            <div className="text-gray-800">
+              <h2 className="text-xl md:text-2xl font-extrabold flex items-center gap-2 mb-2">
+                {services[current].icon}
+                {services[current].name}
+              </h2>
+              <motion.p className="text-sm md:text-base leading-relaxed" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.3 }}>
+                {services[current].text}
+              </motion.p>
+              <ul className="list-disc pl-5 mt-3 text-sm space-y-1">
+                {services[current].features.map((f, i) => (
+                  <motion.li key={i} initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.4 + i * 0.1 }}>
+                    {f}
+                  </motion.li>
+                ))}
+              </ul>
+              <p className="mt-3 italic text-gray-600 text-sm">{services[current].extraInfo}</p>
+              <p className="mt-2 text-sm md:text-base font-medium text-blue-800">{services[current].persuasion}</p>
+              {renderStars(services[current].rating)}
+            </div>
+          </motion.div>
+        </AnimatePresence>
 
         <div className="flex justify-center gap-3 pb-6">
           {services.map((_, i) => (
@@ -132,7 +152,7 @@ const ServicesCarousel = () => {
               key={i}
               onClick={() => goTo(i)}
               className={`h-3 w-3 rounded-full transition-colors duration-300 ${
-                i === current ? 'bg-blue-700' : 'bg-gray-300'
+                i === current ? 'bg-blue-700 scale-110' : 'bg-gray-300'
               }`}
               aria-label={`Ir al servicio ${i + 1}`}
             ></button>
