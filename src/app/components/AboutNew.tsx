@@ -75,7 +75,7 @@ const AboutUsSection = () => {
             >
               <div className="relative w-32 h-48 overflow-hidden mx-auto mb-4">
                 <Image
-                  src="https://via.placeholder.com/200x300" // Reemplaza con la imagen real
+                  src="" // Reemplaza con la imagen real
                   alt="Miembro del equipo 1"
                   width={200}
                   height={300}
@@ -96,7 +96,7 @@ const AboutUsSection = () => {
             >
               <div className="relative w-32 h-48 overflow-hidden mx-auto mb-4">
                 <Image
-                  src="https://via.placeholder.com/200x300" // Reemplaza con la imagen real
+                  src="" // Reemplaza con la imagen real
                   alt="Miembro del equipo 2"
                   width={200}
                   height={300}
@@ -117,7 +117,7 @@ const AboutUsSection = () => {
             >
               <div className="relative w-32 h-48 overflow-hidden mx-auto mb-4">
                 <Image
-                  src="https://via.placeholder.com/200x300" // Reemplaza con la imagen real
+                  src="" // Reemplaza con la imagen real
                   alt="Miembro del equipo 3"
                   width={200}
                   height={300}

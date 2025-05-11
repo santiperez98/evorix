@@ -62,17 +62,17 @@ const AboutUsData = {
     {
       name: "Nombre del Miembro 1",
       role: "Desarrollo Web",
-      imageSrc: "https://via.placeholder.com/200x300", // Reemplaza con la ruta real
+      imageSrc: "", // Reemplaza con la ruta real
     },
     {
       name: "Nombre del Miembro 2",
       role: "Marketing Digital",
-      imageSrc: "https://via.placeholder.com/200x300", // Reemplaza con la ruta real
+      imageSrc: "", // Reemplaza con la ruta real
     },
     {
       name: "Nombre del Miembro 3",
       role: "SEO y Contenido",
-      imageSrc: "https://via.placeholder.com/200x300", // Reemplaza con la ruta real
+      imageSrc: "", // Reemplaza con la ruta real
     },
   ],
 };

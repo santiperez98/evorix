@@ -30,7 +30,7 @@ const ServiceOverview: React.FC = () => {
       {/* Background overlay image */}
       <div
         className="absolute inset-0 opacity-10 bg-cover bg-center bg-no-repeat"
-        style={{ backgroundImage: 'url("/assets/background-team.png")' }}
+     
       />
       <div className="relative z-10 max-w-6xl mx-auto text-center">
         <h2 className="text-3xl md:text-5xl font-extrabold mb-6">

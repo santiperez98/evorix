@@ -39,7 +39,7 @@ const CallToAction = () => {
 
   return (
     <section className="relative py-20 overflow-hidden text-center bg-gradient-to-b from-black to-gray-900 via-gray-800 ">
-      <div className="absolute top-0 left-0 w-full h-40 bg-gradient-to-br from-cyan-900 via-purple-900 to-magenta-900 rounded-b-[50%] overflow-hidden"></div>
+      <div className="absolute top-0 left-0 w-full h-40 bg-gradient-to-r from-cyan-500 via-purple-600 to-magenta-500 rounded-b-[50%] overflow-hidden"></div>
 
       <div className="relative z-10 max-w-3xl mx-auto px-6 ">
         {/* Logo con animación */}
