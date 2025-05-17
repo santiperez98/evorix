@@ -8,6 +8,7 @@ import {
   FaNodeJs,
   FaDatabase,
   FaShoppingCart,
+  FaWhatsapp,
 } from 'react-icons/fa';
 import {
   SiRedux,
@@ -25,8 +26,10 @@ import type { IconType } from 'react-icons';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import Footer from '../components/Footer';
-import Navbar from '../components/Navbar';
 import { useState, useEffect } from 'react';
+import { motion } from 'framer-motion';
+import Navbar from '../components/Navbar';
+
 
 interface Service {
   Icon: IconType;
@@ -189,6 +192,32 @@ const Servicios: React.FC = () => {
           </div>
         </div>
       </div>
+
+         {/* CTA Final Modificado */}
+      <section className="py-16 md:py-20 text-white px-6"
+      style={{ backgroundImage: "url('/conectamos.png')", backgroundSize: 'cover' }}>
+        <div className="md:flex md:justify-end"> {/* Contenedor para alinear a la derecha en pantallas medianas y mayores */}
+          <div className="text-center md:text-left md:mr-22"> {/* Reducido el margen izquierdo a 8 */}
+            <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-4" style={{ color: '#ffffff' }}>
+              Conectamos marcas con personas
+            </h2>
+            <p className="text-lg md:text-xl mb-6 leading-relaxed" style={{ color: '#ff00ff' }}> {/* Color fucsia */}
+              Estamos listos para llevar tu negocio al siguiente nivel. ¡Hablemos!
+            </p>
+            <motion.a
+              href="https://wa.me/5491234567890"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center bg-white text-green-500 font-semibold py-3 px-6 rounded-full shadow-lg hover:bg-gray-200 transition duration-300"
+              whileHover={{ scale: 1.05 }}
+            >
+              <FaWhatsapp className="mr-2 text-xl" /> {/* Icono de WhatsApp a la izquierda */}
+              Contáctanos por WhatsApp {/* Texto verde */}
+            </motion.a>
+          </div>
+        </div>
+      </section>
+
       <Footer />
     </>
   );
