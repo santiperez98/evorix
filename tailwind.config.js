@@ -13,8 +13,8 @@ module.exports = {
         'light': '#ffffff',
         'gray-light': '#f4f4f4',
       },
-      fontFamily: {
-        sans: ['Poppins', 'Roboto', 'sans-serif'],
+        fontFamily: {
+        sans: ["Inter", "sans-serif"],
       },
     },
   },

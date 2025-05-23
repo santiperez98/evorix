@@ -1,226 +1,190 @@
-'use client';
+"use client";
 
-import {
-  FaJs,
-  FaHtml5,
-  FaCss3Alt,
-  FaReact,
-  FaNodeJs,
-  FaDatabase,
-  FaShoppingCart,
-  FaWhatsapp,
-} from 'react-icons/fa';
-import {
-  SiRedux,
-  SiTailwindcss,
-  SiNextdotjs,
-  SiVite,
-  SiBootstrap,
-  SiPostgresql,
-  SiGoogleanalytics,
-} from 'react-icons/si';
-import { MdWeb, MdDesignServices } from 'react-icons/md';
-import { GiCompass, GiMegaphone } from 'react-icons/gi';
-import { BsGraphUp } from 'react-icons/bs';
-import type { IconType } from 'react-icons';
-import AOS from 'aos';
-import 'aos/dist/aos.css';
-import Footer from '../components/Footer';
-import { useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
-import Navbar from '../components/Navbar';
+import React from "react";
+import { motion } from "framer-motion";
+import Navbar from "../components/Navbar";
+import Footer from "../components/Footer";
 
+const services = [
+  {
+    title: "Desarrollo Web",
+    description:
+      "Creamos sitios web modernos, funcionales y atractivos. Adaptados a tus objetivos, con foco en velocidad, UX y escalabilidad.",
+    features: [
+      "Landing pages a medida",
+      "Tiendas online completas (e-commerce)",
+      "Diseños mobile-first",
+      "Optimización de carga y SEO técnico",
+    ],
+    image: "/desarrollo-web.svg",
+    whatsappMsg: "Hola! Estoy interesado en el servicio de Desarrollo Web 🚀",
+  },
+  {
+    title: "SEO",
+    description:
+      "Hacemos que tu negocio aparezca en Google. Con análisis técnico, estrategia de palabras clave y mejoras de rendimiento, atraé tráfico orgánico real.",
+    features: [
+      "Auditoría SEO técnica",
+      "Optimización on-page",
+      "Estrategia de contenidos",
+      "Mejora de velocidad (Core Web Vitals)",
+    ],
+    image: "/seo-servicios.svg",
+    whatsappMsg: "Hola! Quiero más info sobre el servicio de SEO 🔍",
+  },
+  {
+    title: "Marketing Digital",
+    description:
+      "Diseñamos campañas efectivas en redes sociales, Google Ads y más. Atraemos y convertimos usuarios en clientes.",
+    features: [
+      "Campañas en Meta Ads / Google Ads",
+      "Email marketing y automatización",
+      "Estrategias personalizadas",
+      "Optimización de embudos de conversión",
+    ],
+    image: "/mark-servicios.svg",
+    whatsappMsg: "Hola! Me interesa el servicio de Marketing Digital 📣",
+  },
+  {
+    title: "Community Manager",
+    description:
+      "Gestionamos tus redes con contenido visual, lenguaje de marca y estrategia semanal para fidelizar y crecer tu comunidad.",
+    features: [
+      "Diseño y planificación semanal",
+      "Respuestas personalizadas",
+      "Análisis de métricas",
+      "Tonos de comunicación por marca",
+    ],
+    image: "/cm-servicios.svg",
+    whatsappMsg: "¡Hola! Quiero saber más sobre Community Manager 💬",
+  },
+  {
+    title: "Branding",
+    description:
+      "Te ayudamos a destacar con una identidad visual fuerte y coherente. Desde el logo hasta tu mensaje de marca.",
+    features: [
+      "Diseño de logo y paleta de colores",
+      "Manual de marca",
+      "Tipografía y tono de voz",
+      "Rediseño o evolución de marca",
+    ],
+    image: "/branding-servicios.svg",
+    whatsappMsg: "Hola, me interesa el servicio de Branding 🎨",
+  },
+];
 
-interface Service {
-  Icon: IconType;
-  title: string;
-  details: string[];
-}
-
-const Servicios: React.FC = () => {
-  const [activeTab, setActiveTab] = useState<number>(1);
-
-  useEffect(() => {
-    if (typeof window !== 'undefined') {
-      AOS.init();
-    }
-  }, []);
-
-  const neonGlow =
-    'shadow-[0_0_15px_rgba(0,255,255,0.8)] hover:shadow-[0_0_30px_rgba(255,0,255,0.8)] transition-all duration-300';
-
-  const techIcons: IconType[] = [
-    FaJs,
-    FaHtml5,
-    FaCss3Alt,
-    SiTailwindcss,
-    FaReact,
-    SiRedux,
-    FaNodeJs,
-    FaDatabase,
-    SiPostgresql,
-    SiNextdotjs,
-    SiVite,
-    SiBootstrap,
-  ];
-
-  const services: Service[] = [
-    {
-      Icon: MdWeb,
-      title: 'Landing Page',
-      details: [
-        'Diseño responsivo y moderno',
-        'Optimización para SEO',
-        'Entrega en 5 días',
-        'Formulario de contacto integrado',
-        'Integración con Google Analytics',
-      ],
+const fadeVariant = {
+  hidden: { opacity: 0, y: 30 },
+  visible: (i: number) => ({
+    opacity: 1,
+    y: 0,
+    transition: {
+      delay: i * 0.2,
+      duration: 0.6,
+      ease: "easeOut",
     },
-    {
-      Icon: FaShoppingCart,
-      title: 'Ecommerce',
-      details: [
-        'Panel para agregar y gestionar productos',
-        'Integración con métodos de pago',
-        'Hosting premium gratis por 1 año',
-        '4 secciones personalizadas',
-        'Cuentas de correo corporativas',
-      ],
-    },
-    {
-      Icon: GiCompass,
-      title: 'Páginas de Administración',
-      details: [
-        'Panel de control intuitivo',
-        'Gestión de usuarios y roles',
-        'Integración con bases de datos',
-        'Automatización de tareas',
-      ],
-    },
-    {
-      Icon: SiGoogleanalytics,
-      title: 'SEO & Analytics',
-      details: [
-        'Optimización para motores de búsqueda',
-        'Análisis de tráfico web',
-        'Auditoría de rendimiento',
-        'Estrategia de contenido SEO',
-        'Indexación en Google',
-      ],
-    },
-    {
-      Icon: GiMegaphone,
-      title: 'Marketing Digital',
-      details: [
-        'Publicidad en redes sociales',
-        'Campañas de Google Ads',
-        'Email Marketing',
-        'Estrategias de contenido',
-        'Análisis de conversiones',
-      ],
-    },
-    {
-      Icon: BsGraphUp,
-      title: 'Community Manager',
-      details: [
-        'Gestión de redes sociales',
-        'Creación de contenido',
-        'Interacción con la audiencia',
-        'Monitoreo de métricas',
-        'Estrategia de engagement',
-      ],
-    },
-    {
-      Icon: MdDesignServices,
-      title: 'Edición y Branding',
-      details: [
-        'Diseño de logos',
-        'Creación de banners',
-        'Isotipos personalizados',
-        'Diseño de identidad corporativa',
-        'Animaciones básicas',
-      ],
-    },
-  ];
+  }),
+};
 
+const ServicesPage: React.FC = () => {
   return (
     <>
       <Navbar />
-      <div className="py-16 bg-black text-white min-h-screen flex flex-col items-center">
-        <div className="container mx-auto px-6 lg:px-12 mt-16 text-center">
-          <h2 className="text-5xl font-extrabold text-cyan-400 tracking-widest mb-6 animate-pulse">
-            Nuestros Servicios
-          </h2>
-          <p className="text-lg text-gray-300 max-w-3xl mx-auto mb-12 leading-relaxed">
-            Exploramos nuevas fronteras digitales con diseños innovadores,
-            tecnología de punta y estrategias personalizadas para potenciar tu
-            negocio en línea.
-          </p>
+      <section className="bg-black text-white py-20 px-6 font-sans">
+        <div className="max-w-6xl mx-auto text-center mb-20">
+          <motion.h2
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            className="text-4xl md:text-5xl font-display font-bold mb-4 text-cyan-400"
+          >
+            Soluciones digitales para crecer
+          </motion.h2>
+          <motion.p
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.3, duration: 0.8 }}
+            className="text-lg text-gray-300 max-w-3xl mx-auto"
+          >
+            En <span className="text-fuchsia-400 font-semibold">Evorix</span>{" "}
+            transformamos ideas en productos digitales. Acompañamos tu negocio
+            desde el diseño hasta la ejecución con una visión estratégica y
+            moderna.
+          </motion.p>
+          <motion.p
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.6, duration: 0.8 }}
+            className="text-base text-gray-400 mt-4"
+          >
+            Descubrí cómo podemos ayudarte a destacarte online con nuestras soluciones integrales 👇
+          </motion.p>
+        </div>
 
-          <div className="flex flex-wrap justify-center gap-6 mb-12" data-aos="fade-up">
-            {techIcons.map((Icon, index) => (
-              <Icon
-                key={index}
-                size={50}
-                className={`text-cyan-300 hover:text-pink-400 ${neonGlow}`}
+        {services.map((service, index) => (
+          <motion.div
+            key={index}
+            className={`flex flex-col md:flex-row items-center gap-10 mb-24 ${
+              index % 2 !== 0 ? "md:flex-row-reverse" : ""
+            }`}
+            custom={index}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={fadeVariant}
+          >
+            <div className="md:w-1/2">
+              <img
+                src={service.image}
+                alt={service.title}
+                className="w-full rounded-xl shadow-2xl"
               />
-            ))}
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {services.map((service, index) => (
-              <div
-                key={index}
-                className={`p-6 rounded-lg ${neonGlow} bg-gray-900 transform transition-transform hover:scale-105`}
-                data-aos="zoom-in-up"
-                onClick={() => setActiveTab(index + 1)}
-              >
-                <service.Icon size={40} className="mb-4 text-cyan-300" />
-                <h3 className="text-2xl font-bold text-pink-400 mb-4">
-                  {service.title}
-                </h3>
-                <ul className="list-disc list-inside text-gray-300 text-sm">
-                  {service.details.map((detail, idx) => (
-                    <li key={idx}>{detail}</li>
+            </div>
+            <div className="md:w-1/2 text-left">
+              <h3 className="text-3xl font-display font-semibold mb-4 text-fuchsia-400">
+                {service.title}
+              </h3>
+              <p className="text-gray-300 mb-4">{service.description}</p>
+              {service.features && (
+                <ul className="list-disc list-inside text-gray-400 space-y-2 mb-4">
+                  {service.features.map((feat, i) => (
+                    <li key={i}>{feat}</li>
                   ))}
                 </ul>
-                <button className="mt-4 px-4 py-2 bg-pink-400 text-black font-bold rounded-lg hover:bg-cyan-300 transition-all">
-                  ¡Consigue este servicio!
-                </button>
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
+              )}
+              <a
+                href={`https://wa.me/549xxxxxxxxxx?text=${encodeURIComponent(service.whatsappMsg)}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-block mt-2 px-6 py-2 bg-cyan-500 hover:bg-cyan-600 text-white rounded-full text-sm font-medium transition"
+              >
+                Quiero este servicio
+              </a>
+            </div>
+          </motion.div>
+        ))}
 
-         {/* CTA Final Modificado */}
-      <section className="py-16 md:py-20 text-white px-6"
-      style={{ backgroundImage: "url('/conectamos.png')", backgroundSize: 'cover' }}>
-        <div className="md:flex md:justify-end"> {/* Contenedor para alinear a la derecha en pantallas medianas y mayores */}
-          <div className="text-center md:text-left md:mr-22"> {/* Reducido el margen izquierdo a 8 */}
-            <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-4" style={{ color: '#ffffff' }}>
-              Conectamos marcas con personas
-            </h2>
-            <p className="text-lg md:text-xl mb-6 leading-relaxed" style={{ color: '#ff00ff' }}> {/* Color fucsia */}
-              Estamos listos para llevar tu negocio al siguiente nivel. ¡Hablemos!
-            </p>
-            <motion.a
-              href="https://wa.me/5491234567890"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center bg-white text-green-500 font-semibold py-3 px-6 rounded-full shadow-lg hover:bg-gray-200 transition duration-300"
-              whileHover={{ scale: 1.05 }}
-            >
-              <FaWhatsapp className="mr-2 text-xl" /> {/* Icono de WhatsApp a la izquierda */}
-              Contáctanos por WhatsApp {/* Texto verde */}
-            </motion.a>
-          </div>
-        </div>
+        <motion.div
+          className="text-center mt-20"
+          initial={{ opacity: 0, scale: 0.95 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.6 }}
+          viewport={{ once: true }}
+        >
+          <h4 className="text-2xl font-medium text-white mb-4">
+            ¿Listo para dar el siguiente paso?
+          </h4>
+          <a
+            href="/contacto"
+            className="inline-block px-8 py-3 bg-fuchsia-500 hover:bg-fuchsia-600 text-white rounded-full text-lg transition"
+          >
+            Contactanos
+          </a>
+        </motion.div>
       </section>
-
       <Footer />
     </>
   );
 };
 
-export default Servicios;
+export default ServicesPage;

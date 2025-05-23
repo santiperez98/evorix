@@ -1,40 +1,18 @@
-import localFont from 'next/font/local';
-import './globals.css';
-import { GoogleOAuthProvider } from '@react-oauth/google';
-import { Metadata } from 'next';
-import { ReactNode } from 'react';
-
-const geistSans = localFont({
-  src: './fonts/GeistVF.woff',
-  variable: '--font-geist-sans',
-  weight: '100 900',
-});
-
-const geistMono = localFont({
-  src: './fonts/GeistMonoVF.woff',
-  variable: '--font-geist-mono',
-  weight: '100 900',
-});
+// app/layout.tsx
+import "./globals.css";
+import "@fontsource/inter/400.css"; // Importa los estilos de la fuente Inter
+import { ReactNode } from "react";
+import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: 'EVORIX - Desarrollo web - SEO - Diseño web',
-  description: 'Sitio Oficial EVORIX',
+  title: "Evorix | Agencia Digital",
+  description: "Servicios de desarrollo web, marketing digital, branding y más.",
 };
 
-interface RootLayoutProps {
-  children: ReactNode;
-}
-
-export default function RootLayout({ children }: RootLayoutProps) {
+export default function RootLayout({ children }: { children: ReactNode }) {
   return (
-    <GoogleOAuthProvider clientId={process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID as string}>
-      <html lang="es">
-        <body
-          className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-        >
-          {children}
-        </body>
-      </html>
-    </GoogleOAuthProvider>
+    <html lang="es">
+      <body className="bg-black text-white font-sans">{children}</body>
+    </html>
   );
 }
