@@ -51,7 +51,7 @@ const HowWeCanHelp = () => {
       className="relative z-10 py-20 px-6 text-white text-center"
     >
       {/* Fondo negro fijo */}
-      <div className="fixed inset-0 bg-trasparent z-0"></div>
+    
 
       {/* Contenedor principal */}
       <div className="relative z-10 max-w-7xl mx-auto p-6 rounded-3xl border-4 border-transparent bg-black bg-clip-padding shadow-lg shadow-pink-500/30 ring-4 ring-cyan-400/40 hover:ring-pink-500/50 transition-all duration-700 ease-in-out">
