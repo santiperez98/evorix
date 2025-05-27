@@ -58,7 +58,10 @@ const Navbar: React.FC = () => {
     }
   };
 
-  const navItems: string[] = ['Nosotros', 'Servicios', 'Contacto', 'Clientes'];
+  const navItems: string[] = ['Nosotros', 'Servicios', 'Contacto'];
+if (user) {
+  navItems.push('Clientes');
+}
 
   return (
     <motion.nav className="w-full absolute z-50 bg-transparent backdrop-blur-none transition-all duration-500">
