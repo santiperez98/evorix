@@ -61,19 +61,19 @@ const HowWeCanHelp = () => {
           animate={isVisible ? { opacity: 1 } : {}}
           transition={{ duration: 0.8, delay: 0.2 }}
         >
-          ¿Cómo Podemos Impulsar Tu Negocio?
+          Servicios diseñados para escalar tu negocio
         </motion.h2>
 
-        <motion.p
-          className="mt-4 text-lg text-gray-300 max-w-2xl mx-auto"
-          initial={{ opacity: 0 }}
-          animate={isVisible ? { opacity: 1 } : {}}
-          transition={{ duration: 0.8, delay: 0.4 }}
-        >
-          Potenciamos marcas con estrategias digitales innovadoras, optimización SEO y desarrollo web
-          de alto impacto. ¡Lleva tu negocio al siguiente nivel con{' '}
-          <span className="text-pink-400 font-semibold">Evorix</span>!
-        </motion.p>
+<motion.p
+  className="mt-4 text-lg text-gray-300 max-w-2xl mx-auto"
+  initial={{ opacity: 0 }}
+  animate={isVisible ? { opacity: 1 } : {}}
+  transition={{ duration: 0.8, delay: 0.4 }}
+>
+  Desarrollamos estrategias digitales completas que impulsan tu marca:
+  visibilidad SEO, sitios web únicos y campañas efectivas. Con{' '}
+  <span className="text-pink-400 font-semibold">Evorix</span>, cada clic cuenta.
+</motion.p>
 
         <motion.div
           className="mt-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 place-items-center"

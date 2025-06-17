@@ -47,18 +47,18 @@ const AboutPreview: React.FC = () => {
           transition={{ duration: 0.8 }}
         />
 
-        <p className="mt-6 text-base md:text-lg text-gray-300 leading-relaxed">
-          En <span className="text-cyan-400 font-semibold">Evorix</span>, fusionamos creatividad y tecnología
-          para llevar tu negocio al siguiente nivel. Nos especializamos en{" "}
-          <span className="text-purple-400 font-semibold">
-            desarrollo web, branding, marketing digital y optimización SEO
-          </span>, creando soluciones digitales que generan impacto.
-        </p>
-        <p className="mt-4 text-base md:text-lg text-gray-300 leading-relaxed">
-          Nuestra misión es hacer que tu marca brille en el mundo digital, con{" "}
-          <span className="text-pink-400 font-semibold">diseños futuristas</span>
-          {" "}y estrategias inteligentes que potencien tu presencia en línea.
-        </p>
+<p className="mt-6 text-base md:text-lg text-gray-300 leading-relaxed">
+  En <span className="text-cyan-400 font-semibold">Evorix</span>, conectamos estrategia y tecnología
+  para transformar tu presencia digital. Nos especializamos en
+  <span className="text-purple-400 font-semibold">
+    desarrollo web impactante, branding memorable, marketing enfocado y posicionamiento SEO efectivo
+  </span> para empresas con visión de futuro.
+</p>
+<p className="mt-4 text-base md:text-lg text-gray-300 leading-relaxed">
+  Nuestra meta es impulsar marcas únicas en un entorno competitivo,
+  con <span className="text-pink-400 font-semibold">estética innovadora</span> y planificación digital
+  centrada en resultados concretos.
+</p>
 
         {/* Botón CTA */}
         <motion.a

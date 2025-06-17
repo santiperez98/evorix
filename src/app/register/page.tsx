@@ -5,6 +5,8 @@ import { useRouter } from 'next/navigation';
 import axios, { AxiosResponse } from 'axios';
 import { GoogleLogin } from '@react-oauth/google';
 import jwtDecode, { JwtPayload } from 'jwt-decode';
+import Navbar from '../components/Navbar';
+import Footer from '../components/Footer';
 
 // Define la estructura del formulario
 interface FormData {
@@ -103,6 +105,8 @@ export default function RegisterForm() {
   };
 
   return (
+    <>
+    <Navbar />
     <div className="flex justify-center items-center h-screen bg-gray-900">
       <div className="max-w-md p-8 bg-gray-800 text-white rounded-lg shadow-lg border border-purple-500">
         <h2 className="text-2xl mb-4 text-purple-400">Registro</h2>
@@ -152,5 +156,8 @@ export default function RegisterForm() {
         </div>
       </div>
     </div>
+    <Footer />
+    </>
+  
   );
 }

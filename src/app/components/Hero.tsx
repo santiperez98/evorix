@@ -1,14 +1,19 @@
 'use client';
+
 import Spline from "@splinetool/react-spline";
 import { motion } from "framer-motion";
 import { useState, useEffect } from "react";
 import { TypeAnimation } from "react-type-animation";
 import Image from "next/image";
-import mobileImage from "../../../public/LOGO1.png"; // Imagen para móviles
+import mobileImage from "../../../public/LOGO1.png";
+import { useRouter } from "next/navigation";
+import React from "react";
 
 const Hero: React.FC = () => {
   const [hovered, setHovered] = useState<boolean>(false);
   const [isMobile, setIsMobile] = useState<boolean>(false);
+  const [isFading, setIsFading] = useState<boolean>(false); // 🆕
+  const router = useRouter();
 
   useEffect(() => {
     const checkIfMobile = () => setIsMobile(window.innerWidth <= 768);
@@ -19,8 +24,18 @@ const Hero: React.FC = () => {
     };
   }, []);
 
+  const handleClick = () => {
+    setIsFading(true); // 🆕 activa el fadeout
+    setTimeout(() => {
+      router.push("/servicios"); // 🆕 redirige después del fadeout
+    }, 500); // debe durar lo mismo que el tiempo del fade
+  };
+
   return (
-    <div
+    <motion.div
+      initial={{ opacity: 1 }}
+      animate={{ opacity: isFading ? 0 : 1 }} // 🆕 animación de salida
+      transition={{ duration: 0.5 }}
       className="relative h-screen w-full flex flex-col md:flex-row justify-center items-center bg-cover bg-center bg-fixed overflow-hidden px-6 md:px-16"
       style={{
         backgroundImage:
@@ -29,7 +44,6 @@ const Hero: React.FC = () => {
         backgroundPosition: "center",
       }}
     >
-      {/* Mostrar Spline en desktop y una imagen en móviles */}
       {isMobile ? (
         <div className="w-[90%] sm:w-[70%] md:w-full flex justify-center z-10">
           <Image
@@ -46,9 +60,7 @@ const Hero: React.FC = () => {
         </div>
       )}
 
-      {/* Contenedor principal para los textos y el botón */}
       <div className="z-10 text-white max-w-lg md:absolute md:left-[15%] md:top-1/3 flex flex-col items-center md:items-start">
-        {/* Texto animado */}
         <h1 className="text-3xl md:text-5xl font-extrabold bg-gradient-to-r from-cyan-400 via-purple-500 to-pink-500 text-transparent bg-clip-text text-center md:text-left">
           <TypeAnimation
             sequence={[
@@ -63,16 +75,17 @@ const Hero: React.FC = () => {
             repeat={Infinity}
           />
         </h1>
-        {/* Contenedor para el texto fijo y el botón */}
+
         <div className="mt-4 flex flex-col items-center md:items-start">
-          {/* Texto fijo */}
           <p className="font-bold text-lg text-gray-300 text-center md:text-left">
             Desarrollo web, branding, marketing digital y más. Diseñamos experiencias innovadoras para impulsar tu marca.
           </p>
+
           <button
             className="mt-6 px-6 py-3 bg-gradient-to-r from-cyan-500 to-purple-600 text-white font-semibold rounded-lg shadow-lg flex items-center gap-2 transition-all duration-300 hover:opacity-80 relative overflow-hidden"
             onMouseEnter={() => setHovered(true)}
             onMouseLeave={() => setHovered(false)}
+            onClick={handleClick} // 🆕 fadeout + redirección
           >
             Descubre Más
             <motion.span
@@ -86,7 +99,7 @@ const Hero: React.FC = () => {
           </button>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 };
 

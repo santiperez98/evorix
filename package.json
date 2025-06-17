@@ -11,6 +11,8 @@
   "dependencies": {
     "@dotlottie/player-component": "^2.7.12",
     "@fontsource/inter": "^5.2.5",
+    "@headlessui/react": "^2.2.4",
+    "@heroicons/react": "^2.2.0",
     "@react-oauth/google": "^0.12.1",
     "@splinetool/react-spline": "^4.0.0",
     "aos": "^2.3.4",
