@@ -47,17 +47,16 @@ const ProjectsAndStats: React.FC = () => {
         viewport={{ once: true }}
       >
         <div className="text-center mb-16 max-w-4xl mx-auto">
-          <p className="text-cyan-400 uppercase tracking-wider font-bold text-sm mb-3">
-            Proyectos en Acción
-          </p>
-          <h2 className="text-4xl md:text-5xl font-extrabold mb-4 leading-tight">
-            Creamos soluciones{" "}
-            <span className="text-emerald-400">reales</span> para{" "}
-            <span className="text-pink-400">clientes reales</span>
-          </h2>
-          <p className="text-gray-300 text-lg">
-            Un vistazo a los sitios que ya están generando resultados.
-          </p>
+  <p className="text-cyan-400 uppercase tracking-wider font-bold text-sm mb-3">
+  Resultados que hablan
+</p>
+<h2 className="text-4xl md:text-5xl font-extrabold mb-4 leading-tight">
+  <span className="text-emerald-400">Impacto</span> digital real para
+  <span className="text-pink-400"> marcas reales</span>
+</h2>
+<p className="text-gray-300 text-lg">
+  Mirá algunos de los proyectos que ya están generando ventas y conexiones.
+</p>
         </div>
 
         <div className="flex flex-wrap justify-center gap-10 max-w-7xl mx-auto">

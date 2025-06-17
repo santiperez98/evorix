@@ -33,16 +33,16 @@ const ServiceOverview: React.FC = () => {
      
       />
       <div className="relative z-10 max-w-6xl mx-auto text-center">
-        <h2 className="text-3xl md:text-5xl font-extrabold mb-6">
-          En <span className="text-indigo-400">Evorix</span> lo hacemos simple,<br />
-          pero detrás hay un equipo completo para tu empresa
-        </h2>
-        <h3 className="text-xl md:text-2xl font-semibold mb-4">
-          Cada negocio digital necesita una visión estratégica
-        </h3>
-        <p className="text-gray-300 max-w-3xl mx-auto mb-12">
-          En el mundo online actual, el éxito depende de múltiples factores. Nuestro equipo integra tecnología, creatividad y datos para llevar tu negocio al siguiente nivel.
-        </p>
+<h2 className="text-3xl md:text-5xl font-extrabold mb-6">
+  En <span className="text-indigo-400">Evorix</span> simplificamos lo complejo,<br />
+  con un equipo multidisciplinario enfocado en tu éxito digital
+</h2>
+<h3 className="text-xl md:text-2xl font-semibold mb-4">
+  Tu negocio merece una estrategia clara y ejecutable
+</h3>
+<p className="text-gray-300 max-w-3xl mx-auto mb-12">
+  Combinamos datos, diseño y desarrollo para crear experiencias digitales potentes que generan resultados visibles.
+</p>
         {/* Services */}
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-8 text-center">
           {services.map((service, idx) => (
