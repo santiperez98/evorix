@@ -62,7 +62,7 @@ const AboutPreview: React.FC = () => {
 
         {/* Botón CTA */}
         <motion.a
-          href="#contacto"
+          href="/contacto"
           className="mt-6 inline-block px-5 md:px-6 py-3 text-base md:text-lg font-semibold text-white bg-gradient-to-r from-cyan-500 to-pink-500 rounded-xl shadow-lg hover:scale-105 transition-transform"
           whileHover={{ scale: 1.1 }}
         >
