@@ -5,7 +5,7 @@ import Link from 'next/link';
 import { FaFacebook, FaInstagram, FaTwitter, FaRobot } from 'react-icons/fa';
 import { motion, useAnimation } from 'framer-motion';
 import { useState, useEffect } from 'react';
-import image1 from '../../../public/TEXT LOGO.png';
+import image1 from '../../../public/TEXT LOGO.jpg';
 
 interface Shape {
   width: string;

@@ -5,7 +5,7 @@ import { useEffect } from 'react';
 import { FaArrowRight } from 'react-icons/fa';
 import { useRouter } from 'next/navigation';
 import Image from 'next/image';
-import image1 from '../../../public/mundo.png';
+import image1 from '../../../public/mundo.jpg';
 
 const CallToAction = () => {
   const router = useRouter();
