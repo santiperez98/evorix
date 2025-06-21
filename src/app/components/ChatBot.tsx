@@ -86,7 +86,7 @@ const ChatBot = () => {
     if (conversationState === 'ask-email') {
       setClientInfo({ ...clientInfo, email: text });
       setConversationState('ask-description');
-      sendResponse('Último paso: contame brevemente qué necesitás o qué tipo de proyecto tenés en mente.');
+      sendResponse('Último paso: Contame brevemente que necesitás o que tipo de proyecto tenés en mente.');
       return;
     }
 

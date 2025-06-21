@@ -19,21 +19,33 @@ const Navbar: React.FC = () => {
   const [user, setUser] = useState<User | null>(null);
   const router = useRouter();
 
-  useEffect(() => {
-    const fetchUser = async () => {
-      try {
-        const res = await fetch('http://localhost:3001/api/auth/me', {
-          credentials: 'include',
-        });
-        if (!res.ok) throw new Error('No autenticado');
-        const data = await res.json();
-        setUser(data);
-      } catch (error) {
+useEffect(() => {
+  const fetchUser = async () => {
+    try {
+      const res = await fetch('http://localhost:3001/api/auth/me', {
+        credentials: 'include',
+      });
+
+      if (res.status === 401) {
+        // Usuario no autenticado, no hacemos nada
+        return;
+      }
+
+      if (!res.ok) throw new Error('Error al verificar autenticación');
+
+      const data = await res.json();
+      setUser(data);
+    } catch (error) {
+      // Solo mostramos el error si no es un 401
+      if ((error as Error).message !== 'No autenticado') {
         console.error('Error al obtener el usuario:', error);
       }
-    };
-    fetchUser();
-  }, []);
+    }
+  };
+
+  fetchUser();
+}, []);
+
 
   const handleLogout = async () => {
     try {
