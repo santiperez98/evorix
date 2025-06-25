@@ -13,12 +13,12 @@ const HowWeCanHelp = () => {
   const sectionRef = useRef<HTMLElement | null>(null);
 
   const services: Service[] = [
-    { title: 'Desarrollo Web Avanzado', img: '/desaweb.jpg', color: 'from-cyan-500 to-blue-500' },
-    { title: 'Estrategias de Marketing Digital', img: '/marke.jpg', color: 'from-purple-500 to-pink-500' },
-    { title: 'SEO & Posicionamiento', img: '/seo.jpg', color: 'from-green-500 to-teal-500' },
-    { title: 'Community Management', img: '/cm.png', color: 'from-yellow-500 to-orange-500' },
-    { title: 'E-Commerce & Tiendas Online', img: '/tienda.jpg', color: 'from-red-500 to-pink-500' },
-    { title: 'Diseño UX/UI Profesional', img: '/uxui.jpg', color: 'from-indigo-500 to-purple-500' },
+    { title: 'Desarrollo Web Avanzado', img: '/desaweb.webp', color: 'from-cyan-500 to-blue-500' },
+    { title: 'Estrategias de Marketing Digital', img: '/marke.webp', color: 'from-purple-500 to-pink-500' },
+    { title: 'SEO & Posicionamiento', img: '/seo.webp', color: 'from-green-500 to-teal-500' },
+    { title: 'Community Management', img: '/cm.webp', color: 'from-yellow-500 to-orange-500' },
+    { title: 'E-Commerce & Tiendas Online', img: '/tienda.webp', color: 'from-red-500 to-pink-500' },
+    { title: 'Diseño UX/UI Profesional', img: '/uxui.webp', color: 'from-indigo-500 to-purple-500' },
   ];
 
   useEffect(() => {

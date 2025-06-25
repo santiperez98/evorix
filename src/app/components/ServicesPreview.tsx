@@ -26,7 +26,7 @@ type Service = {
 const services: Service[] = [
   {
     name: 'Gestión de Proyecto',
-    image: '/gestion.jpg',
+    image: '/gestion.webp',
     text: 'Planificamos, ejecutamos y controlamos cada etapa del proyecto para que tu idea se transforme en resultados concretos.',
     features: ['Organización efectiva', 'Gestión de tiempo', 'Entregables claros'],
     extraInfo: 'Más de 30 proyectos finalizados con éxito.',
@@ -36,7 +36,7 @@ const services: Service[] = [
   },
   {
     name: 'Desarrollo Web',
-    image: '/desarrollo.jpg',
+    image: '/desarrollo.webp',
     text: 'Creamos sitios rápidos, intuitivos y modernos que cautivan desde el primer clic.',
     features: ['Diseño responsive', 'Código limpio', 'Rendimiento elevado'],
     extraInfo: '98% de nuestros clientes aumentaron su tasa de conversión.',
@@ -46,7 +46,7 @@ const services: Service[] = [
   },
   {
     name: 'SEO',
-    image: '/seo.jpg',
+    image: '/seo.webp',
     text: 'Te ayudamos a posicionarte en Google para que tus clientes te encuentren primero.',
     features: ['Palabras clave', 'SEO técnico', 'Contenido optimizado'],
     extraInfo: '300% más visitas mensuales en promedio.',
@@ -56,7 +56,7 @@ const services: Service[] = [
   },
   {
     name: 'Marketing',
-    image: '/marketing.jpg',
+    image: '/marketing.webp',
     text: 'Diseñamos campañas que conectan y venden.',
     features: ['Publicidad online', 'Email marketing', 'Análisis de campañas'],
     extraInfo: 'Retorno promedio x4 en campañas activas.',
@@ -66,7 +66,7 @@ const services: Service[] = [
   },
   {
     name: 'Community Manager',
-    image: '/comu.jpg',
+    image: '/comu.webp',
     text: 'Gestionamos tus redes con contenido estratégico y conexión real.',
     features: ['Contenido atractivo', 'Interacción activa', 'Crecimiento orgánico'],
     extraInfo: 'Aumento del 150% en seguidores en 3 meses.',

@@ -24,7 +24,7 @@ const pasos: Paso[] = [
     descripcion:
       'Entendemos tu negocio, objetivos y público para desarrollar una estrategia digital sólida.',
     icono: <FaLightbulb className="text-white text-4xl" />,
-    imagen: '/ruta/imagen1.png',
+    imagen: '/ruta/imagen1.webp',
     reverse: false,
   },
   {
@@ -33,7 +33,7 @@ const pasos: Paso[] = [
     descripcion:
       'Creamos una identidad visual única que represente tu marca y conecte con tu audiencia.',
     icono: <FaPencilRuler className="text-white text-4xl" />,
-    imagen: '/ruta/imagen2.png',
+    imagen: '/ruta/imagen2.webp',
     reverse: true,
   },
   {
@@ -42,7 +42,7 @@ const pasos: Paso[] = [
     descripcion:
       'Diseñamos y desarrollamos sitios y apps optimizados, escalables y veloces.',
     icono: <FaCode className="text-white text-4xl" />,
-    imagen: '/ruta/imagen3.png',
+    imagen: '/ruta/imagen3.webp',
     reverse: false,
   },
   {
@@ -51,7 +51,7 @@ const pasos: Paso[] = [
     descripcion:
       'Publicamos el proyecto y lo posicionamos con buenas prácticas de SEO técnico.',
     icono: <FaRocket className="text-white text-4xl" />,
-    imagen: '/ruta/imagen4.png',
+    imagen: '/ruta/imagen4.webp',
     reverse: true,
   },
   {
@@ -60,7 +60,7 @@ const pasos: Paso[] = [
     descripcion:
       'Monitoreamos resultados, mejoramos constantemente y te damos soporte personalizado.',
     icono: <FaHeadset className="text-white text-4xl" />,
-    imagen: '/ruta/imagen5.png',
+    imagen: '/ruta/imagen5.webp',
     reverse: false,
   },
 ];
