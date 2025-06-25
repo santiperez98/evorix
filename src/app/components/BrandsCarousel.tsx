@@ -1,10 +1,10 @@
 import { motion } from 'framer-motion';
 import Image from 'next/image';
-import image1 from '../../../public/rio.png';
-import image2 from '../../../public/nyg.png';
-import image3 from '../../../public/reba.png';
-import image4 from '../../../public/cera.png';
-import image5 from '../../../public/ladia.png';
+import image1 from '../../../public/rio.webp';
+import image2 from '../../../public/nyg.webp';
+import image3 from '../../../public/reba.webp';
+import image4 from '../../../public/cera.webp';
+import image5 from '../../../public/ladia.webp';
 import { StaticImageData } from 'next/image';
 
 const BrandsCarousel: React.FC = () => {

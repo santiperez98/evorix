@@ -47,18 +47,18 @@ const AboutPreview: React.FC = () => {
           transition={{ duration: 0.8 }}
         />
 
-<p className="mt-6 text-base md:text-lg text-gray-300 leading-relaxed">
-  En <span className="text-cyan-400 font-semibold">Evorix</span>, conectamos estrategia y tecnología
-  para transformar tu presencia digital. Nos especializamos en
-  <span className="text-purple-400 font-semibold">
-    desarrollo web impactante, branding memorable, marketing enfocado y posicionamiento SEO efectivo
-  </span> para empresas con visión de futuro.
-</p>
-<p className="mt-4 text-base md:text-lg text-gray-300 leading-relaxed">
-  Nuestra meta es impulsar marcas únicas en un entorno competitivo,
-  con <span className="text-pink-400 font-semibold">estética innovadora</span> y planificación digital
-  centrada en resultados concretos.
-</p>
+        <p className="mt-6 text-base md:text-lg text-gray-300 leading-relaxed">
+          En <span className="text-cyan-400 font-semibold">Evorix</span>, conectamos estrategia y tecnología
+          para transformar tu presencia digital. Nos especializamos en
+          <span className="text-purple-400 font-semibold">
+            desarrollo web impactante, branding memorable, marketing enfocado y posicionamiento SEO efectivo
+          </span> para empresas con visión de futuro.
+        </p>
+        <p className="mt-4 text-base md:text-lg text-gray-300 leading-relaxed">
+          Nuestra meta es impulsar marcas únicas en un entorno competitivo,
+          con <span className="text-pink-400 font-semibold">estética innovadora</span> y planificación digital
+          centrada en resultados concretos.
+        </p>
 
         {/* Botón CTA */}
         <motion.a
@@ -72,13 +72,13 @@ const AboutPreview: React.FC = () => {
 
       {/* Imagen futurista */}
       <motion.img
-        src="/hombre.png"
+        src="/hombre.webp"
         alt="Profesional futurista interactuando con tecnología"
         className="w-4/5 sm:w-3/5 md:w-2/5 lg:w-1/3 rounded-xl shadow-lg mt-10 md:mt-0 relative z-10"
-          style={{
-    WebkitMaskImage: 'linear-gradient(black 80%, transparent)',
-    maskImage: 'linear-gradient(black 80%, transparent)',
-  }}
+        style={{
+          WebkitMaskImage: 'linear-gradient(black 80%, transparent)',
+          maskImage: 'linear-gradient(black 80%, transparent)',
+        }}
         initial={{ opacity: 0, x: 50 }}
         animate={isVisible ? { opacity: 1, x: 0 } : {}}
         transition={{ duration: 0.8 }}

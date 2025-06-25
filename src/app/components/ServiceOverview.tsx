@@ -25,7 +25,7 @@ const ServiceOverview: React.FC = () => {
   return (
     <section
       className="relative text-white py-20 px-6"
-      style={{ backgroundImage: 'url("/blanconegro.png")', backgroundSize: 'cover', backgroundPosition: 'center' }}
+      style={{ backgroundImage: 'url("/blanconegro.webp")', backgroundSize: 'cover', backgroundPosition: 'center' }}
     >
       {/* Background overlay image */}
       <div

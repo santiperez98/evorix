@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 import { useState, useEffect } from "react";
 import { TypeAnimation } from "react-type-animation";
 import Image from "next/image";
-import mobileImage from "../../../public/LOGO1.png";
+import mobileImage from "../../../public/LOGO1.webp";
 import { useRouter } from "next/navigation";
 import React from "react";
 
@@ -30,6 +30,21 @@ const Hero: React.FC = () => {
       router.push("/servicios"); // 🆕 redirige después del fadeout
     }, 500); // debe durar lo mismo que el tiempo del fade
   };
+  const texts = [
+  "IMPULSAMOS TU NEGOCIO CON TECNOLOGIA.",
+  "DESARROLLO WEB Y SOFTWARE A MEDIDA.",
+  "SOLUCIONES DIGITALES INNOVADORAS.",
+];
+
+const [currentIndex, setCurrentIndex] = useState(0);
+
+useEffect(() => {
+  const interval = setInterval(() => {
+    setCurrentIndex((prevIndex) => (prevIndex + 1) % texts.length);
+  }, 5000); // cada 5 segundos
+
+  return () => clearInterval(interval); // limpia el intervalo al desmontar
+}, []);
 
   return (
     <motion.div
@@ -39,7 +54,7 @@ const Hero: React.FC = () => {
       className="relative h-screen w-full flex flex-col md:flex-row justify-center items-center bg-cover bg-center bg-fixed overflow-hidden px-6 md:px-16"
       style={{
         backgroundImage:
-          "linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('/nasa.jpg')",
+          "linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('/nasa.webp')",
         backgroundSize: "cover",
         backgroundPosition: "center",
       }}
@@ -62,18 +77,7 @@ const Hero: React.FC = () => {
 
       <div className="z-10 text-white max-w-lg md:absolute md:left-[15%] md:top-1/3 flex flex-col items-center md:items-start">
         <h1 className="text-3xl md:text-5xl font-extrabold bg-gradient-to-r from-cyan-400 via-purple-500 to-pink-500 text-transparent bg-clip-text text-center md:text-left">
-          <TypeAnimation
-            sequence={[
-              "IMPULSAMOS TU NEGOCIO CON TECNOLOGIA.",
-              2000,
-              "DESARROLLO WEB Y SOFTWARE A MEDIDA.",
-              2000,
-              "SOLUCIONES DIGITALES INNOVADORAS.",
-              2000,
-            ]}
-            speed={50}
-            repeat={Infinity}
-          />
+<span>{texts[currentIndex]}</span>
         </h1>
 
         <div className="mt-4 flex flex-col items-center md:items-start">

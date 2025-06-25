@@ -100,47 +100,64 @@ export default function ServicesPage() {
     <>
       <Navbar />
 
-      {/* Hero Section */}
-      <section className="bg-gradient-to-b from-black via-gray-900 to-black text-white py-24 px-6 font-sans">
- <div className="max-w-5xl mx-auto text-center mb-20">
-    <motion.h2
-      variants={fadeInUp}
-      initial="hidden"
-      whileInView="visible"
-      viewport={{ once: true }}
-      className="text-4xl md:text-6xl font-bold mb-8 bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 to-fuchsia-500"
-    >
-      Soluciones digitales para crecer
-    </motion.h2>
-    <motion.p
-      variants={fadeInUp}
-      initial="hidden"
-      whileInView="visible"
-      viewport={{ once: true }}
-      className="text-lg md:text-xl text-gray-300 max-w-3xl mx-auto mb-6"
-    >
-      En{" "}
-      <span className="font-bold text-fuchsia-400">Evorix</span>{" "}
-      transformamos ideas en productos digitales. Acompañamos tu negocio desde el diseño hasta la ejecución con una visión estratégica y moderna.
-    </motion.p>
-    <motion.p
-      variants={fadeInUp}
-      initial="hidden"
-      whileInView="visible"
-      viewport={{ once: true }}
-      className="mt-2 text-gray-400"
-    >
-      Descubrí cómo podemos ayudarte a destacarte online con nuestras soluciones integrales 👇
-    </motion.p>
-  </div>
+      {/* Hero */}
+      <section className="bg-black text-white py-20 px-6">
+        <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center gap-12">
+          {/* Texto */}
+          <div className="flex-1 text-center md:text-left">
+            <motion.h2
+              variants={fadeInUp}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+              className="text-4xl md:text-6xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 to-fuchsia-500"
+            >
+              Soluciones digitales para crecer
+            </motion.h2>
+            <motion.p
+              variants={fadeInUp}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+              className="text-lg md:text-xl text-gray-300 mb-4"
+            >
+              En <span className="font-bold text-fuchsia-400">Evorix</span> transformamos ideas en productos digitales. Acompañamos tu negocio desde el diseño hasta la ejecución con una visión estratégica y moderna.
+            </motion.p>
+            <motion.p
+              variants={fadeInUp}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+              className="text-gray-400"
+            >
+              Descubrí cómo podemos ayudarte a destacarte online con nuestras soluciones integrales 👇
+            </motion.p>
+          </div>
 
-        {/* Services Grid */}
+          {/* Imagen decorativa */}
+          <motion.div
+            variants={fadeInUp}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            className="flex-1 flex justify-center"
+          >
+            <img
+              src="/service.webp"
+              alt="Servicios Evorix"
+              className="w-full max-w-md object-contain"
+              loading="lazy"
+            />
+          </motion.div>
+        </div>
+
+        {/* Grid de servicios */}
         <motion.div
           variants={stagger}
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
-          className="grid grid-cols-1 md:grid-cols-2 gap-10"
+          className="grid grid-cols-1 md:grid-cols-2 gap-10 mt-20"
         >
           {services.map((service, index) => (
             <ServiceCard key={index} service={service} />
@@ -172,7 +189,6 @@ export default function ServicesPage() {
   );
 }
 
-// Componente de tarjeta individual de servicio
 type Service = {
   title: string;
   description: string;
@@ -185,44 +201,38 @@ type Service = {
 function ServiceCard({ service }: { service: Service }) {
   const { title, description, features, image, whatsappMsg, color } = service;
 
- return (
+  return (
     <motion.div
       whileHover={{ y: -10 }}
       transition={{ type: "spring", stiffness: 300 }}
-      className="bg-gray-800 p-6 rounded-2xl shadow-xl border border-gray-700 hover:border-opacity-30 hover:border-gray-300 transition-all"
+      className="bg-gray-800 p-6 rounded-2xl shadow-xl border border-gray-700 hover:border-opacity-30 transition-all"
     >
-      {/* Contenedor principal para la imagen y el título */}
-      <div className="relative mb-4">
-        {/* Imagen grande */}
-        <img
-          src={image}
-          alt={title}
-          className="w-18 h-18 object-cover "
-        />
+      {/* Imagen */}
+      <img
+        src={image}
+        alt={title}
+        className="w-full h-48 object-contain mb-4 mx-auto"
+        loading="lazy"
+      />
 
-        {/* Título centrado sobre la imagen */}
-        <div
-          className="absolute inset-0 flex items-center justify-center text-cyan-400 font-semibold text-2xl text-shadow-md "
-        >
-          <span>{title}</span>
-        </div>
-      </div>
+      {/* Título fuera de la imagen */}
+      <h3 className="text-xl font-bold text-white mb-2 text-center">{title}</h3>
 
-      {/* Descripción del servicio */}
-      <p className="text-gray-300 mb-4">{description}</p>
+      {/* Descripción */}
+      <p className="text-gray-300 mb-4 text-center">{description}</p>
 
-      {/* Lista de características */}
+      {/* Features */}
       <ul className="space-y-2 mb-6">
-        {features.map((feat: string, i: number) => (
+        {features.map((feat, i) => (
           <li key={i} className="flex items-center text-gray-400">
             <span className="mr-2 text-green-400">✓</span> {feat}
           </li>
         ))}
       </ul>
 
-      {/* Botón de WhatsApp */}
+      {/* Botón */}
       <a
-        href={`https://wa.me/549xxxxxxxxxx?text=${encodeURIComponent(whatsappMsg)}`}
+        href={`https://wa.me/549XXXXXXXXXX?text=${encodeURIComponent(whatsappMsg)}`}
         target="_blank"
         rel="noopener noreferrer"
         className={`inline-block w-full text-center py-2 rounded-full bg-gradient-to-r ${color} text-white font-medium hover:opacity-90 transition`}
@@ -231,5 +241,4 @@ function ServiceCard({ service }: { service: Service }) {
       </a>
     </motion.div>
   );
-
 }

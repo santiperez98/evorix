@@ -4,8 +4,9 @@ import { motion, AnimatePresence } from 'framer-motion';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import Image from 'next/image';
-import logo from '../../../public/TEXT LOGO.png';
-import userImage from '../../../public/user.jpg';
+import logo from '../../../public/TEXT LOGO.webp';
+import userImage from '../../../public/user.webp';
+
 
 // Tipado del usuario
 interface User {

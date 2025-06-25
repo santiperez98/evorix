@@ -23,6 +23,7 @@ const Home: React.FC = () => {
       <ServicesPreview />
       <CallToAction />
       <ChatBot/>
+      
       <Footer />
     </div>
   );
