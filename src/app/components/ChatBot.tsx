@@ -49,7 +49,7 @@ const ChatBot = () => {
   };
 
   const handleUserMessage = (text: string) => {
-    const newMessages = [...messages, { sender: 'user', text }];
+    const newMessages = [...messages, { sender: 'user' as const, text }];
     setMessages(newMessages);
     handleBotResponse(text.toLowerCase(), newMessages);
   };
@@ -57,7 +57,7 @@ const ChatBot = () => {
   const handleBotResponse = (text: string, updatedMessages: Message[]) => {
     const sendResponse = (res: string) => {
       setTimeout(() => {
-        setMessages([...updatedMessages, { sender: 'bot', text: res }]);
+        setMessages([...updatedMessages, { sender: 'bot' as const, text: res }]);
         playNotification();
       }, 600);
     };
@@ -131,7 +131,7 @@ const ChatBot = () => {
     setMessages(prev => [
       ...prev,
       {
-        sender: 'bot',
+        sender: 'bot' as const,
         text: 'Puedo derivarte con un asesor por WhatsApp o seguir ayudándote desde aquí. ¿Qué preferís?',
       },
     ]);
@@ -156,17 +156,17 @@ const ChatBot = () => {
         if (affirmative.some(w => lower.includes(w))) {
           redirectToWhatsApp(pendingRedirect);
         } else if (stayHere.some(w => lower.includes(w))) {
-          setMessages([...messages, { sender: 'user', text: input.trim() }]);
           setMessages(prev => [
             ...prev,
-            { sender: 'bot', text: 'Perfecto, seguimos desde aquí. ¿En qué más puedo ayudarte?' },
+            { sender: 'user' as const, text: input.trim() },
+            { sender: 'bot' as const, text: 'Perfecto, seguimos desde aquí. ¿En qué más puedo ayudarte?' },
           ]);
           setPendingRedirect(null);
         } else {
-          setMessages([...messages, { sender: 'user', text: input.trim() }]);
           setMessages(prev => [
             ...prev,
-            { sender: 'bot', text: 'Disculpá, no entendí tu respuesta. ¿Querés que te derive con un asesor o seguimos aquí?' },
+            { sender: 'user' as const, text: input.trim() },
+            { sender: 'bot' as const, text: 'Disculpá, no entendí tu respuesta. ¿Querés que te derive con un asesor o seguimos aquí?' },
           ]);
         }
         setInput('');
