@@ -1,18 +1,11 @@
-// ChatBot.tsx
 'use client';
 import { useEffect, useState, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { BsChatDotsFill } from 'react-icons/bs';
 import { IoMdClose } from 'react-icons/io';
 import clsx from 'clsx';
-import dynamic from 'next/dynamic'; // ✅ Importa dynamic
+import Image from 'next/image';
 
-
-// ✅ Importa Lottie de forma dinámica con SSR desactivado
-const Lottie = dynamic(() => import('lottie-react'), { ssr: false });
-
-// ✅ Importa la animación normalmente (esto está bien en el servidor)
-import botAnimation from '../../../public/botanimacion.json';
 type Message = {
   sender: 'bot' | 'user';
   text: string;
@@ -43,7 +36,7 @@ const ChatBot = () => {
   const welcomeMessage = () => {
     setMessages([
       {
-        sender: 'bot' as const,
+        sender: 'bot',
         text: '¡Hola! Soy el asistente virtual de Evorix. ¿En qué puedo ayudarte hoy?',
       },
     ]);
@@ -86,7 +79,7 @@ const ChatBot = () => {
     if (conversationState === 'ask-email') {
       setClientInfo({ ...clientInfo, email: text });
       setConversationState('ask-description');
-      sendResponse('Último paso: Contame brevemente que necesitás o que tipo de proyecto tenés en mente.');
+      sendResponse('Último paso: Contame brevemente que necesitás o qué tipo de proyecto tenés en mente.');
       return;
     }
 
@@ -99,7 +92,7 @@ const ChatBot = () => {
       return;
     }
 
-    const greetings = ['hola', 'buenas', 'buenas tardes', 'buenos días', 'buen día', 'saludos'];
+    const greetings = ['hola', 'buenas', 'buenas tardes', 'buenos días', 'saludos'];
     if (greetings.some(greet => text.includes(greet))) {
       sendResponse('¡Hola! ¿Cómo puedo ayudarte? Estoy para responder tus dudas o, si lo preferís, puedo ponerte en contacto con un asesor.');
       return;
@@ -138,7 +131,7 @@ const ChatBot = () => {
     setMessages(prev => [
       ...prev,
       {
-        sender: 'bot',
+        sender: 'bot' as const,
         text: 'Puedo derivarte con un asesor por WhatsApp o seguir ayudándote desde aquí. ¿Qué preferís?',
       },
     ]);
@@ -146,7 +139,7 @@ const ChatBot = () => {
   };
 
   const redirectToWhatsApp = (text: string) => {
-    const phone = '5491123456789';
+    const phone = '5491123456789'; // ⚠️ Reemplazá por tu número real
     const url = `https://wa.me/${phone}?text=${encodeURIComponent(text)}`;
     window.open(url, '_blank');
     setPendingRedirect(null);
@@ -158,22 +151,22 @@ const ChatBot = () => {
       if (pendingRedirect) {
         const lower = input.toLowerCase();
         const affirmative = ['asesor', 'whatsapp', 'sí', 'dale', 'claro'];
-        const stayHere = ['aquí', 'aca', 'aqui', 'no', 'seguir acá', 'seguir aqui', 'prefiero seguir'];
+        const stayHere = ['aquí', 'aca', 'aqui', 'no', 'seguir acá', 'seguir aqui'];
 
         if (affirmative.some(w => lower.includes(w))) {
           redirectToWhatsApp(pendingRedirect);
         } else if (stayHere.some(w => lower.includes(w))) {
-          setMessages([...messages, { sender: 'user', text: input.trim() }]);
           setMessages(prev => [
             ...prev,
-            { sender: 'bot', text: 'Perfecto, seguimos desde aquí. ¿En qué más puedo ayudarte?' },
+            { sender: 'user' as const, text: input.trim() },
+            { sender: 'bot' as const, text: 'Perfecto, seguimos desde aquí. ¿En qué más puedo ayudarte?' },
           ]);
           setPendingRedirect(null);
         } else {
-          setMessages([...messages, { sender: 'user', text: input.trim() }]);
           setMessages(prev => [
             ...prev,
-            { sender: 'bot', text: 'Disculpá, no entendí tu respuesta. ¿Querés que te derive con un asesor o seguimos aquí?' },
+            { sender: 'user' as const, text: input.trim() },
+            { sender: 'bot' as const, text: 'Disculpá, no entendí tu respuesta. ¿Querés que te derive con un asesor o seguimos aquí?' },
           ]);
         }
         setInput('');
@@ -227,7 +220,14 @@ const ChatBot = () => {
             <div className="bg-gradient-to-r from-cyan-400 to-pink-500 p-3 flex justify-between items-center">
               <div className="flex items-center gap-2">
                 <div className="w-12 h-12 rounded-full overflow-hidden border border-white">
-                  <Lottie animationData={botAnimation} loop autoplay />
+                  <Image
+                    src="/bot.webp"
+                    alt="Asistente Evorix"
+                    width={48}
+                    height={48}
+                    className="rounded-full"
+                    loading="lazy"
+                  />
                 </div>
                 <h2 className="font-bold text-sm">Asistente Evorix</h2>
               </div>
