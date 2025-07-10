@@ -9,7 +9,7 @@ interface Service {
 }
 
 const HowWeCanHelp = () => {
-  const [isVisible, setIsVisible] = useState<boolean>(false);
+  const [isVisible, setIsVisible] = useState(false);
   const sectionRef = useRef<HTMLElement | null>(null);
 
   const services: Service[] = [
@@ -26,7 +26,6 @@ const HowWeCanHelp = () => {
       ([entry]) => {
         if (entry.isIntersecting) {
           setIsVisible(true);
-          // Una vez que es visible, dejamos de observar para que no cambie más
           observer.unobserve(entry.target);
         }
       },
@@ -50,10 +49,6 @@ const HowWeCanHelp = () => {
       transition={{ duration: 1 }}
       className="relative z-10 py-20 px-6 text-white text-center"
     >
-      {/* Fondo negro fijo */}
-    
-
-      {/* Contenedor principal */}
       <div className="relative z-10 max-w-7xl mx-auto p-6 rounded-3xl border-4 border-transparent bg-black bg-clip-padding shadow-lg shadow-pink-500/30 ring-4 ring-cyan-400/40 hover:ring-pink-500/50 transition-all duration-700 ease-in-out">
         <motion.h2
           className="text-4xl font-extrabold bg-gradient-to-r from-pink-500 via-cyan-400 to-purple-500 bg-clip-text text-transparent"
@@ -61,19 +56,17 @@ const HowWeCanHelp = () => {
           animate={isVisible ? { opacity: 1 } : {}}
           transition={{ duration: 0.8, delay: 0.2 }}
         >
-          Servicios diseñados para escalar tu negocio
+          Servicios para transformar tu negocio
         </motion.h2>
-
-<motion.p
-  className="mt-4 text-lg text-gray-300 max-w-2xl mx-auto"
-  initial={{ opacity: 0 }}
-  animate={isVisible ? { opacity: 1 } : {}}
-  transition={{ duration: 0.8, delay: 0.4 }}
->
-  Desarrollamos estrategias digitales completas que impulsan tu marca:
-  visibilidad SEO, sitios web únicos y campañas efectivas. Con{' '}
-  <span className="text-pink-400 font-semibold">Evorix</span>, cada clic cuenta.
-</motion.p>
+        <motion.p
+          className="mt-4 text-lg text-gray-300 max-w-2xl mx-auto"
+          initial={{ opacity: 0 }}
+          animate={isVisible ? { opacity: 1 } : {}}
+          transition={{ duration: 0.8, delay: 0.4 }}
+        >
+          Diseñamos estrategias a medida que convierten visitas en clientes y clientes en fans. Con{' '}
+          <span className="text-pink-400 font-semibold">Evorix</span>, tu marca no solo crece, se posiciona.
+        </motion.p>
 
         <motion.div
           className="mt-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 place-items-center"
@@ -98,7 +91,6 @@ const HowWeCanHelp = () => {
                 whileHover={{ scale: 1.1 }}
                 transition={{ duration: 0.3 }}
               />
-
               <motion.div
                 className={`absolute inset-0 opacity-0 hover:opacity-90 transition-opacity duration-500 flex flex-col items-center justify-end p-6 bg-gradient-to-b ${service.color}`}
               >

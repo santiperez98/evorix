@@ -10,13 +10,10 @@ const AboutPreview: React.FC = () => {
       ([entry]) => entry.isIntersecting && setIsVisible(true),
       { threshold: 0.1 }
     );
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current);
-      return () => {
-        if (sectionRef.current) observer.unobserve(sectionRef.current);
-      };
-    }
-    return undefined;
+    if (sectionRef.current) observer.observe(sectionRef.current);
+    return () => {
+      if (sectionRef.current) observer.unobserve(sectionRef.current);
+    };
   }, []);
 
   return (
@@ -34,7 +31,7 @@ const AboutPreview: React.FC = () => {
         transition={{ duration: 0.8 }}
       >
         <h2 className="text-3xl md:text-4xl font-extrabold bg-gradient-to-r from-cyan-400 via-purple-500 to-pink-500 bg-clip-text text-transparent">
-          Crecemos juntos 🚀
+          Conectamos tu visión con resultados 🚀
         </h2>
         <motion.div
           className="w-20 md:w-24 h-1 bg-gradient-to-r from-cyan-400 to-pink-500 mt-2 mx-auto md:mx-0"
@@ -44,10 +41,13 @@ const AboutPreview: React.FC = () => {
         />
 
         <p className="mt-6 text-base md:text-lg text-gray-300 leading-relaxed">
-          En <span className="text-cyan-400 font-semibold">Evorix</span>, combinamos estrategia, creatividad y desarrollo tecnológico para llevar tu marca a nuevos horizontes. Creamos productos digitales que impactan y resultados que perduran.
+          En <span className="text-cyan-400 font-semibold">Evorix</span> unimos creatividad, tecnología y planes digitales 
+          hechos a medida para llevar tu marca al siguiente nivel. 
+          Creamos productos que atraen, inspiran y transforman la manera en que conectás con tus clientes.
         </p>
         <p className="mt-4 text-base md:text-lg text-gray-300 leading-relaxed">
-          Nuestro equipo te acompaña de principio a fin, con diseños memorables y estrategias que maximizan tu alcance y conversión.
+          Nuestro equipo trabaja codo a codo con vos, con diseños que dejan huella y 
+          soluciones enfocadas en maximizar el valor de tu inversión.
         </p>
 
         <motion.a
@@ -55,28 +55,8 @@ const AboutPreview: React.FC = () => {
           className="mt-6 inline-block px-5 md:px-6 py-3 text-base md:text-lg font-semibold text-white bg-gradient-to-r from-cyan-500 to-pink-500 rounded-xl shadow-lg hover:scale-105 transition-transform"
           whileHover={{ scale: 1.1 }}
         >
-          Empecemos tu proyecto juntos!
+          Empecemos tu proyecto juntos
         </motion.a>
-
-        {/* Bloque de estadísticas */}
-        <div className="mt-10 flex justify-center md:justify-start gap-6 flex-wrap">
-          {[
-            { value: "+50", label: "proyectos completados" },
-            { value: "+20", label: "clientes recurrentes" },
-            { value: "98%", label: "satisfacción garantizada" },
-          ].map((stat, idx) => (
-            <motion.div
-              key={idx}
-              className="flex flex-col items-center bg-gradient-to-br from-cyan-600 to-purple-700 p-4 rounded-xl shadow-lg"
-              initial={{ opacity: 0, y: 20 }}
-              animate={isVisible ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.6, delay: idx * 0.2 }}
-            >
-              <span className="text-3xl font-bold">{stat.value}</span>
-              <span className="text-sm text-gray-200">{stat.label}</span>
-            </motion.div>
-          ))}
-        </div>
       </motion.div>
 
       <motion.img

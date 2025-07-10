@@ -27,23 +27,16 @@ const ServiceOverview: React.FC = () => {
       className="relative text-white py-20 px-6"
       style={{ backgroundImage: 'url("/blanconegro.webp")', backgroundSize: 'cover', backgroundPosition: 'center' }}
     >
-      {/* Background overlay image */}
-      <div
-        className="absolute inset-0 opacity-10 bg-cover bg-center bg-no-repeat"
-     
-      />
       <div className="relative z-10 max-w-6xl mx-auto text-center">
-<h2 className="text-3xl md:text-5xl font-extrabold mb-6">
-  En <span className="text-indigo-400">Evorix</span> simplificamos lo complejo,<br />
-  con un equipo multidisciplinario enfocado en tu éxito digital
-</h2>
-<h3 className="text-xl md:text-2xl font-semibold mb-4">
-  Tu negocio merece una estrategia clara y ejecutable
-</h3>
-<p className="text-gray-300 max-w-3xl mx-auto mb-12">
-  Combinamos datos, diseño y desarrollo para crear experiencias digitales potentes que generan resultados visibles.
-</p>
-        {/* Services */}
+        <h2 className="text-3xl md:text-5xl font-extrabold mb-6">
+          Más que servicios, soluciones para crecer
+        </h2>
+        <h3 className="text-xl md:text-2xl font-semibold mb-4">
+          Tu negocio necesita resultados, nosotros los hacemos posibles.
+        </h3>
+        <p className="text-gray-300 max-w-3xl mx-auto mb-12">
+          Unimos estrategia, diseño y tecnología para crear experiencias que fidelizan y convierten.
+        </p>
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-8 text-center">
           {services.map((service, idx) => (
             <div
