@@ -1,14 +1,14 @@
 "use client";
-
-import { useEffect, useRef } from "react";
-import { motion, useAnimation, useInView } from "framer-motion";
+import Head from "next/head";
+import { motion } from "framer-motion";
+import { useInView } from "react-intersection-observer";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import Image from "next/image";
-import AboutNew from "../components/AboutNew";
 import { FaRocket, FaLightbulb, FaHandshake } from "react-icons/fa";
+import AboutNew from "../components/AboutNew";
 
-const techLogos: string[] = [
+const techLogos = [
   "/react.webp",
   "/nextjs.webp",
   "/nodejs.webp",
@@ -19,153 +19,193 @@ const techLogos: string[] = [
 const AboutUsData = {
   title: "Sobre Evorix",
   subtitle: "Pasión, tecnología y compromiso en cada línea de código.",
-  imageSrc: "/about-us-image.webp",
-  imageAlt: "Fundador de Evorix trabajando en su espacio creativo",
+  imageSrc: "/santip.png",
+  imageAlt: "Santiago Pérez, Fundador de Evorix",
   agencyTitle: "Un Proyecto Personal con Visión Futurista",
   agencyDescription:
-    "Mi nombre es Santiago Pérez, fundador y CEO de Evorix. Soy el desarrollador principal detrás de cada proyecto, desde la planificación hasta la ejecución. Aunque cuento con ayudantes que me apoyan ocasionalmente, cada línea de código, diseño o estrategia pasa por mis manos. Mi objetivo es claro: ayudarte a crecer digitalmente con soluciones eficientes, modernas y adaptadas a tus necesidades reales.",
+    "Soy Santiago Pérez, fundador y CEO de Evorix. El desarrollador principal detrás de cada proyecto, desde la planificación hasta la ejecución. Cada línea de código, diseño o estrategia pasa por mis manos.",
   services: [
-    "Desarrollo Web a medida con foco en velocidad, escalabilidad y diseño moderno.",
-    "Optimización SEO para mejorar tu posicionamiento orgánico en buscadores.",
-    "Marketing Digital con enfoque analítico y creativo.",
-    "Implementación de sitios autoadministrables con WordPress.",
-    "Gestión estratégica de redes sociales orientada a resultados.",
-    "Branding digital claro, coherente y visualmente impactante.",
+    "Desarrollo Web a medida con foco en velocidad y diseño moderno.",
+    "SEO para mejorar tu posicionamiento orgánico.",
+    "Marketing Digital con enfoque analítico.",
+    "Sitios autoadministrables con WordPress.",
+    "Gestión de redes orientada a resultados.",
+    "Branding digital claro y coherente.",
   ],
   callToAction: "Conocé cómo puedo potenciar tu presencia digital",
   teamTitle: "Sobre el Fundador",
   teamMembers: [
     {
       name: "Santiago Pérez",
-      role: "Fundador, CEO y Desarrollador Principal",
-      imageSrc: "/team/santiago.jpg",
+      role: "Fundador y Desarrollador Principal",
+      imageSrc: "/santip.png",
     },
   ],
 };
 
-const sectionVariants = {
-  hidden: { opacity: 0, y: 50 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.7, ease: "easeOut", staggerChildren: 0.2 },
+const features = [
+  {
+    icon: <FaRocket className="text-5xl text-cyan-500 mx-auto mb-4" />,
+    title: "Innovación Constante",
+    desc: "Soluciones digitales pensadas para el futuro.",
   },
-};
-
-const itemVariants = {
-  hidden: { opacity: 0, y: 20 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.5 } },
-};
+  {
+    icon: <FaLightbulb className="text-5xl text-cyan-500 mx-auto mb-4" />,
+    title: "Creatividad Estratégica",
+    desc: "Diseño y código con intención.",
+  },
+  {
+    icon: <FaHandshake className="text-5xl text-cyan-500 mx-auto mb-4" />,
+    title: "Colaboración Transparente",
+    desc: "Comunicación clara y compromiso real.",
+  },
+];
 
 export default function SobreNosotrosPage() {
-  const esenciaRef = useRef<HTMLDivElement>(null);
-  const isInViewEsencia = useInView(esenciaRef, { once: true, amount: 0.3 });
-  const controlsEsencia = useAnimation();
+  const { ref: refEsencia, inView: inViewEsencia } = useInView({
+    triggerOnce: true,
+    threshold: 0.3,
+  });
 
-  const aboutNewRef = useRef<HTMLDivElement>(null);
-  const isInViewAboutNew = useInView(aboutNewRef, { once: true, amount: 0.3 });
-  const controlsAboutNew = useAnimation();
-
-  useEffect(() => {
-    if (isInViewEsencia) controlsEsencia.start("visible");
-    if (isInViewAboutNew) controlsAboutNew.start("visible");
-  }, [isInViewEsencia, isInViewAboutNew]);
+  const { ref: refAbout, inView: inViewAbout } = useInView({
+    triggerOnce: true,
+    threshold: 0.3,
+  });
 
   return (
-    <div className="bg-black text-gray-200 font-sans">
-      <Navbar />
-
-      <div className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden">
-        <div
-          className="absolute inset-0 bg-cover bg-center bg-fixed z-0 opacity-40"
-          style={{ backgroundImage: "url('/nosobg.webp')" }}
+    <>
+      <Head>
+        <title>Sobre Nosotros | Evorix</title>
+        <meta
+          name="description"
+          content="Conocé a Evorix: innovación, diseño y compromiso en cada proyecto digital."
         />
-        <div className="absolute inset-0 bg-gradient-to-br from-black via-fuchsia-900/30 to-cyan-900/30 z-0 opacity-70" />
+        <meta property="og:title" content="Sobre Nosotros | Evorix" />
+        <meta
+          property="og:description"
+          content="Somos una agencia digital con visión futurista, liderada por Santiago Pérez."
+        />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+      </Head>
 
-        <motion.section
-          className="relative z-10 text-center px-4 py-20 md:py-32"
-          initial={{ opacity: 0, scale: 0.8 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 1, delay: 0.2, ease: "anticipate" }}
-        >
-          <h1 className="text-5xl md:text-7xl lg:text-8xl font-extrabold mb-6">
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-fuchsia-500 drop-shadow-[0_0_15px_rgba(0,255,255,0.6)]">Conectamos</span>
-            <span className="block md:inline text-gray-100 drop-shadow-[0_0_10px_rgba(200,200,200,0.3)]"> tu Visión </span>
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-fuchsia-500 to-cyan-400 drop-shadow-[0_0_15px_rgba(255,0,255,0.6)]">al Futuro.</span>
-          </h1>
-          <p className="mt-6 text-lg md:text-2xl text-gray-300 max-w-3xl mx-auto leading-relaxed drop-shadow-sm">
-            En <span className="text-cyan-400 font-semibold text-xl">Evorix</span>, combino innovación, diseño y funcionalidad para crear soluciones digitales reales.
-          </p>
+      <div className="bg-black text-gray-200 font-sans">
+        <Navbar />
 
-          <div className="mt-16 w-full overflow-hidden">
-            <motion.div
-              className="flex gap-8 md:gap-12 px-4 animate-scroll-horizontal"
-              animate={{ x: ["0%", "-100%"] }}
-              transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
-            >
-              {[...techLogos, ...techLogos].map((logo, index) => (
-                <motion.div
-                  key={`tech-${index}`}
-                  className="flex-shrink-0 w-[100px] h-[100px] md:w-[150px] md:h-[150px] bg-black/70 backdrop-blur-md rounded-2xl shadow-lg border border-gray-700 hover:border-fuchsia-500 transition-all duration-300 flex items-center justify-center p-4"
-                  whileHover={{ scale: 1.1, y: -5 }}
-                >
-                  <Image
-                    src={logo}
-                    alt={`Tech logo ${index + 1}`}
-                    width={100}
-                    height={100}
-                    className="object-contain"
-                  />
-                </motion.div>
-              ))}
-            </motion.div>
-          </div>
-        </motion.section>
-      </div>
+        {/* HERO */}
+        <section className="relative min-h-screen flex flex-col items-center justify-center text-center px-4 py-20 md:py-32 overflow-hidden">
+          <div
+            className="absolute inset-0 bg-cover bg-center bg-fixed opacity-30"
+            style={{ backgroundImage: "url('/nosobg.webp')" }}
+          />
+          <div className="absolute inset-0 bg-gradient-to-br from-black via-fuchsia-900/40 to-cyan-900/40 z-0" />
 
-      <div className="scroll-content-wrapper">
-        <motion.section
-          ref={esenciaRef}
-          className="section-sticky py-16 md:py-24 bg-gray-900 h-screen flex items-center"
-          initial="hidden"
-          animate={controlsEsencia}
-          variants={sectionVariants}
-        >
-          <div className="container mx-auto px-6 text-center">
-            <motion.h2 variants={itemVariants} className="text-4xl md:text-5xl font-bold mb-4">
+          <motion.div
+            className="relative z-10"
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 1 }}
+          >
+            <h1 className="text-5xl md:text-7xl font-extrabold mb-6 leading-tight">
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-fuchsia-500">
+                Conectamos
+              </span>{" "}
+              tu Visión{" "}
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-fuchsia-500 to-cyan-400">
+                al Futuro.
+              </span>
+            </h1>
+            <p className="mt-6 text-lg md:text-2xl max-w-3xl mx-auto text-gray-300">
+              En <span className="text-cyan-400 font-semibold">Evorix</span>,
+              combino innovación, diseño y funcionalidad para crear soluciones
+              digitales reales.
+            </p>
+
+            <div className="mt-16 w-full overflow-hidden will-change-transform">
+              <motion.div
+                className="flex gap-8 md:gap-12 px-4"
+                animate={{ x: ["0%", "-100%"] }}
+                transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
+              >
+                {[...techLogos, ...techLogos].map((logo, i) => (
+                  <div
+                    key={i}
+                    className="flex-shrink-0 w-24 h-24 md:w-36 md:h-36 bg-black/70 backdrop-blur-md rounded-2xl shadow-lg border border-gray-700 hover:border-fuchsia-500 transition-all duration-300 flex items-center justify-center p-4"
+                  >
+                    <Image
+                      src={logo}
+                      alt={`Logo tecnología ${i + 1}`}
+                      width={100}
+                      height={100}
+                      loading="lazy"
+                      className="object-contain"
+                    />
+                  </div>
+                ))}
+              </motion.div>
+            </div>
+          </motion.div>
+        </section>
+
+        {/* ESENCIA */}
+        <section ref={refEsencia} className="py-24 bg-gray-900">
+          <motion.div
+            initial={{ opacity: 0, y: 50 }}
+            animate={inViewEsencia ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.7 }}
+            className="container mx-auto px-6 text-center"
+          >
+            <h2 className="text-4xl md:text-5xl font-bold mb-4">
               Nuestra <span className="text-cyan-400">Esencia</span> Digital
-            </motion.h2>
-            <motion.p variants={itemVariants} className="text-lg md:text-xl text-gray-400 mb-12 max-w-2xl mx-auto">
+            </h2>
+            <p className="text-lg md:text-xl text-gray-400 mb-12 max-w-2xl mx-auto">
               Tecnología, creatividad y compromiso impulsan todo lo que hacemos.
-            </motion.p>
+            </p>
+
             <div className="grid md:grid-cols-3 gap-8 md:gap-12">
-              {[FaRocket, FaLightbulb, FaHandshake].map((Icon, index) => (
+              {features.map((f, i) => (
                 <motion.div
-                  key={index}
-                  variants={itemVariants}
+                  key={i}
+                  whileHover={{ scale: 1.05 }}
                   className="bg-black p-8 rounded-xl shadow-2xl hover:shadow-[0_0_30px_rgba(0,255,255,0.3)] border border-gray-800 hover:border-cyan-500/50 transition-all duration-400"
                 >
-                  <Icon className="text-5xl mb-6 mx-auto text-cyan-500" />
+                  {f.icon}
                   <h3 className="text-2xl font-semibold text-fuchsia-400 mb-3">
-                    {index === 0 ? "Innovación Constante" : index === 1 ? "Creatividad Estratégica" : "Colaboración Transparente"}
+                    {f.title}
                   </h3>
                   <p className="text-gray-400 text-sm leading-relaxed">
-                    {index === 0 ? "Soluciones digitales pensadas para el futuro." :
-                     index === 1 ? "Diseño y código con intención y estilo." :
-                     "Comunicación clara y compromiso real en cada proyecto."}
+                    {f.desc}
                   </p>
                 </motion.div>
               ))}
             </div>
-          </div>
-        </motion.section>
+          </motion.div>
+        </section>
 
-        <div ref={aboutNewRef} className="section-sticky py-16 md:py-24 bg-black h-screen flex items-center">
-          <AboutNew data={AboutUsData} />
-        </div>
+        {/* ABOUT */}
+        <section ref={refAbout} className="py-24 bg-black">
+          <motion.div
+            initial={{ opacity: 0, y: 50 }}
+            animate={inViewAbout ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.7 }}
+            className="flex flex-col items-center"
+          >
+            <AboutNew data={AboutUsData} />
+
+            {/* Imagen directa en JSX */}
+            <div className="mt-12">
+              <Image
+                src="/santip.png"
+                alt="Santiago Pérez, Fundador de Evorix"
+                width={300}
+                height={300}
+                className="rounded-full border-4 border-cyan-400 shadow-xl"
+              />
+            </div>
+          </motion.div>
+        </section>
+
+        <Footer />
       </div>
-
-      <Footer />
-    </div>
+    </>
   );
 }
