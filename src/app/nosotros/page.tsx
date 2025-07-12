@@ -91,114 +91,128 @@ export default function SobreNosotrosPage() {
       <div className="bg-black text-gray-200 font-sans">
         <Navbar />
 
-        {/* HERO */}
-        <section className="relative min-h-screen flex flex-col items-center justify-center text-center px-4 py-20 md:py-32 overflow-hidden">
+{/* HERO */}
+<section className="relative min-h-screen flex flex-col items-center justify-center text-center px-4 py-16 sm:py-20 md:py-32 overflow-hidden">
+  <div
+    className="absolute inset-0 bg-cover bg-center bg-fixed opacity-30"
+    style={{ backgroundImage: "url('/nosobg.webp')" }}
+  />
+  <div className="absolute inset-0 bg-gradient-to-br from-black via-fuchsia-900/40 to-cyan-900/40 z-0" />
+
+  <motion.div
+    className="relative z-10"
+    initial={{ opacity: 0, scale: 0.9 }}
+    animate={{ opacity: 1, scale: 1 }}
+    transition={{ duration: 1 }}
+  >
+<h1
+  className="font-extrabold mb-6"
+  style={{
+    fontSize: "clamp(2rem, 5vw + 1rem, 5rem)",
+    lineHeight: "1.2",
+    textAlign: "center",
+  }}
+>
+  <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-fuchsia-500">
+    Conectamos
+  </span>{" "}
+  tu Visión{" "}
+  <span className="text-transparent bg-clip-text bg-gradient-to-r from-fuchsia-500 to-cyan-400">
+    al Futuro.
+  </span>
+</h1>
+<p
+  className="mt-6 mx-auto text-gray-300 break-words"
+  style={{
+    maxWidth: "clamp(20rem, 80%, 50rem)",
+    fontSize: "clamp(1rem, 2.5vw, 1.5rem)",
+    lineHeight: "1.6",
+    textAlign: "center"
+  }}
+>
+  En <span className="text-cyan-400 font-semibold">Evorix</span>,
+  combino innovación, diseño y funcionalidad para crear soluciones
+  digitales reales.
+</p>
+
+    <div className="mt-12 w-full overflow-hidden px-2 sm:px-4">
+      <motion.div
+        className="flex gap-6 sm:gap-8 md:gap-12"
+        animate={{ x: ["0%", "-100%"] }}
+        transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
+      >
+        {[...techLogos, ...techLogos].map((logo, i) => (
           <div
-            className="absolute inset-0 bg-cover bg-center bg-fixed opacity-30"
-            style={{ backgroundImage: "url('/nosobg.webp')" }}
-          />
-          <div className="absolute inset-0 bg-gradient-to-br from-black via-fuchsia-900/40 to-cyan-900/40 z-0" />
-
-          <motion.div
-            className="relative z-10"
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 1 }}
+            key={i}
+            className="flex-shrink-0 w-20 h-20 sm:w-24 sm:h-24 md:w-36 md:h-36 bg-black/70 backdrop-blur-md rounded-2xl shadow-lg border border-gray-700 hover:border-fuchsia-500 transition-all duration-300 flex items-center justify-center p-4"
           >
-            <h1 className="text-5xl md:text-7xl font-extrabold mb-6 leading-tight">
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-fuchsia-500">
-                Conectamos
-              </span>{" "}
-              tu Visión{" "}
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-fuchsia-500 to-cyan-400">
-                al Futuro.
-              </span>
-            </h1>
-            <p className="mt-6 text-lg md:text-2xl max-w-3xl mx-auto text-gray-300">
-              En <span className="text-cyan-400 font-semibold">Evorix</span>,
-              combino innovación, diseño y funcionalidad para crear soluciones
-              digitales reales.
-            </p>
+            <Image
+              src={logo}
+              alt={`Logo tecnología ${i + 1}`}
+              width={100}
+              height={100}
+              loading="lazy"
+              className="object-contain"
+            />
+          </div>
+        ))}
+      </motion.div>
+    </div>
+  </motion.div>
+</section>
 
-            <div className="mt-16 w-full overflow-hidden will-change-transform">
-              <motion.div
-                className="flex gap-8 md:gap-12 px-4"
-                animate={{ x: ["0%", "-100%"] }}
-                transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
-              >
-                {[...techLogos, ...techLogos].map((logo, i) => (
-                  <div
-                    key={i}
-                    className="flex-shrink-0 w-24 h-24 md:w-36 md:h-36 bg-black/70 backdrop-blur-md rounded-2xl shadow-lg border border-gray-700 hover:border-fuchsia-500 transition-all duration-300 flex items-center justify-center p-4"
-                  >
-                    <Image
-                      src={logo}
-                      alt={`Logo tecnología ${i + 1}`}
-                      width={100}
-                      height={100}
-                      loading="lazy"
-                      className="object-contain"
-                    />
-                  </div>
-                ))}
-              </motion.div>
-            </div>
-          </motion.div>
-        </section>
+{/* ESENCIA */}
+<section ref={refEsencia} className="py-16 sm:py-24 bg-gray-900">
+  <motion.div
+    initial={{ opacity: 0, y: 50 }}
+    animate={inViewEsencia ? { opacity: 1, y: 0 } : {}}
+    transition={{ duration: 0.7 }}
+    className="container mx-auto px-6 text-center"
+  >
+    <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4">
+      Nuestra <span className="text-cyan-400">Esencia</span> Digital
+    </h2>
+    <p className="text-base sm:text-lg md:text-xl text-gray-400 mb-12 max-w-2xl mx-auto">
+      Tecnología, creatividad y compromiso impulsan todo lo que hacemos.
+    </p>
 
-        {/* ESENCIA */}
-        <section ref={refEsencia} className="py-24 bg-gray-900">
-          <motion.div
-            initial={{ opacity: 0, y: 50 }}
-            animate={inViewEsencia ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.7 }}
-            className="container mx-auto px-6 text-center"
-          >
-            <h2 className="text-4xl md:text-5xl font-bold mb-4">
-              Nuestra <span className="text-cyan-400">Esencia</span> Digital
-            </h2>
-            <p className="text-lg md:text-xl text-gray-400 mb-12 max-w-2xl mx-auto">
-              Tecnología, creatividad y compromiso impulsan todo lo que hacemos.
-            </p>
-
-            <div className="grid md:grid-cols-3 gap-8 md:gap-12">
-              {features.map((f, i) => (
-                <motion.div
-                  key={i}
-                  whileHover={{ scale: 1.05 }}
-                  className="bg-black p-8 rounded-xl shadow-2xl hover:shadow-[0_0_30px_rgba(0,255,255,0.3)] border border-gray-800 hover:border-cyan-500/50 transition-all duration-400"
-                >
-                  {f.icon}
-                  <h3 className="text-2xl font-semibold text-fuchsia-400 mb-3">
-                    {f.title}
-                  </h3>
-                  <p className="text-gray-400 text-sm leading-relaxed">
-                    {f.desc}
-                  </p>
-                </motion.div>
-              ))}
-            </div>
-          </motion.div>
-        </section>
+    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 sm:gap-10 md:gap-12">
+      {features.map((f, i) => (
+        <motion.div
+          key={i}
+          whileHover={{ scale: 1.05 }}
+          className="bg-black p-6 sm:p-8 rounded-xl shadow-2xl hover:shadow-[0_0_30px_rgba(0,255,255,0.3)] border border-gray-800 hover:border-cyan-500/50 transition-all duration-400"
+        >
+          {f.icon}
+          <h3 className="text-xl sm:text-2xl font-semibold text-fuchsia-400 mb-3">
+            {f.title}
+          </h3>
+          <p className="text-gray-400 text-sm sm:text-base leading-relaxed">
+            {f.desc}
+          </p>
+        </motion.div>
+      ))}
+    </div>
+  </motion.div>
+</section>
 
         {/* ABOUT */}
-        <section ref={refAbout} className="py-24 bg-black">
+        <section ref={refAbout} className="py-16 md:py-24 bg-black">
           <motion.div
             initial={{ opacity: 0, y: 50 }}
             animate={inViewAbout ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.7 }}
-            className="flex flex-col items-center"
+            className="flex flex-col items-center px-6"
           >
             <AboutNew data={AboutUsData} />
 
-            {/* Imagen directa en JSX */}
             <div className="mt-12">
               <Image
                 src="/santip.png"
                 alt="Santiago Pérez, Fundador de Evorix"
                 width={300}
                 height={300}
-                className="rounded-full border-4 border-cyan-400 shadow-xl"
+                className="rounded-full border-4 border-cyan-400 shadow-xl object-cover w-40 sm:w-52 md:w-72 h-auto"
               />
             </div>
           </motion.div>

@@ -38,7 +38,7 @@ const services: Service[] = [
   },
   {
     name: 'SEO',
-    image: '/seo.webp',
+    image: '/seo2.webp',
     text: 'Te posicionamos en Google para que tus clientes te encuentren primero.',
     features: ['Palabras clave', 'SEO técnico', 'Contenido optimizado'],
     extraInfo: '300% más visitas mensuales en promedio.',
@@ -58,7 +58,7 @@ const services: Service[] = [
   },
   {
     name: 'Community Manager',
-    image: '/cm.webp',
+    image: '/cm2.webp',
     text: 'Gestionamos tus redes con contenido estratégico y conexión real.',
     features: ['Contenido atractivo', 'Interacción activa', 'Crecimiento orgánico'],
     extraInfo: '150% más seguidores en 3 meses.',
