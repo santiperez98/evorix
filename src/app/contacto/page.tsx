@@ -27,7 +27,7 @@ const ContactPage: React.FC = () => {
               </div>
               <div className="flex items-center gap-2">
                 <FaEnvelope size={30} className="text-cyan-400" />
-                <span className="text-lg">contacto@tuempresa.com</span>
+                <span className="text-lg">evorix.contacto@gmail.com</span>
               </div>
             </div>
 
