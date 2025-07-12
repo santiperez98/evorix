@@ -16,7 +16,7 @@ const services = [
       "Diseños mobile-first",
       "Optimización de carga y SEO técnico",
     ],
-    image: "/desarrollo-web.svg",
+    image: "/desarrollo-web.webp",
     whatsappMsg: "Hola! Estoy interesado en el servicio de Desarrollo Web 🚀",
     color: "from-cyan-400 to-blue-500",
   },
@@ -30,7 +30,7 @@ const services = [
       "Estrategia de contenidos",
       "Mejora de velocidad (Core Web Vitals)",
     ],
-    image: "/seo-servicios.svg",
+    image: "/seo22.webp",
     whatsappMsg: "Hola! Quiero más info sobre el servicio de SEO 🔍",
     color: "from-green-400 to-emerald-500",
   },
@@ -44,7 +44,7 @@ const services = [
       "Estrategias personalizadas",
       "Optimización de embudos de conversión",
     ],
-    image: "/mark-servicios.svg",
+    image: "/md22.webp",
     whatsappMsg: "Hola! Me interesa el servicio de Marketing Digital 📣",
     color: "from-purple-400 to-pink-500",
   },
@@ -58,7 +58,7 @@ const services = [
       "Análisis de métricas",
       "Tonos de comunicación por marca",
     ],
-    image: "/cm-servicios.svg",
+    image: "/cm22.webp",
     whatsappMsg: "¡Hola! Quiero saber más sobre Community Manager 💬",
     color: "from-yellow-400 to-orange-500",
   },
@@ -72,7 +72,7 @@ const services = [
       "Tipografía y tono de voz",
       "Rediseño o evolución de marca",
     ],
-    image: "/branding-servicios.svg",
+    image: "/branding-servicios.webp",
     whatsappMsg: "Hola, me interesa el servicio de Branding 🎨",
     color: "from-indigo-400 to-violet-500",
   },
@@ -100,9 +100,9 @@ export default function ServicesPage() {
     <>
       <Navbar />
 
-      {/* Hero */}
-      <section className="bg-black text-white py-20 px-6">
-        <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center gap-12">
+      {/* Hero optimizado */}
+      <section className="bg-black text-white pt-24 md:pt-32 pb-20 px-6">
+        <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center md:gap-16 gap-12">
           {/* Texto */}
           <div className="flex-1 text-center md:text-left">
             <motion.h2
@@ -144,9 +144,8 @@ export default function ServicesPage() {
           >
             <img
               src="/service.webp"
-              alt="Servicios Evorix"
-              className="w-full max-w-md object-contain"
-              loading="lazy"
+              alt="Servicios digitales Evorix: Desarrollo web, SEO, Marketing"
+              className="w-full max-w-sm md:max-w-md object-contain"
             />
           </motion.div>
         </div>
@@ -207,7 +206,6 @@ function ServiceCard({ service }: { service: Service }) {
       transition={{ type: "spring", stiffness: 300 }}
       className="bg-gray-800 p-6 rounded-2xl shadow-xl border border-gray-700 hover:border-opacity-30 transition-all"
     >
-      {/* Imagen */}
       <img
         src={image}
         alt={title}
@@ -215,13 +213,9 @@ function ServiceCard({ service }: { service: Service }) {
         loading="lazy"
       />
 
-      {/* Título fuera de la imagen */}
       <h3 className="text-xl font-bold text-white mb-2 text-center">{title}</h3>
-
-      {/* Descripción */}
       <p className="text-gray-300 mb-4 text-center">{description}</p>
 
-      {/* Features */}
       <ul className="space-y-2 mb-6">
         {features.map((feat, i) => (
           <li key={i} className="flex items-center text-gray-400">
@@ -230,7 +224,6 @@ function ServiceCard({ service }: { service: Service }) {
         ))}
       </ul>
 
-      {/* Botón */}
       <a
         href={`https://wa.me/549XXXXXXXXXX?text=${encodeURIComponent(whatsappMsg)}`}
         target="_blank"
