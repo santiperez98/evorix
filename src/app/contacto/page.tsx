@@ -33,13 +33,13 @@ const ContactPage: React.FC = () => {
 
             {/* Redes Sociales */}
             <div className="mt-8 flex justify-center space-x-6">
-              <a href="https://facebook.com/tu_cuenta" target="_blank" rel="noopener noreferrer">
+              <a href="https://www.instagram.com/evorix.digital/" target="_blank" rel="noopener noreferrer">
                 <FaFacebook className="text-2xl text-cyan-400 hover:text-cyan-300 cursor-pointer transition" />
               </a>
-              <a href="https://instagram.com/tu_cuenta" target="_blank" rel="noopener noreferrer">
+              <a href="https://www.instagram.com/evorix.digital/" target="_blank" rel="noopener noreferrer">
                 <FaInstagram className="text-2xl text-cyan-400 hover:text-cyan-300 cursor-pointer transition" />
               </a>
-              <a href="https://linkedin.com/in/tu_perfil" target="_blank" rel="noopener noreferrer">
+              <a href="https://www.linkedin.com/in/evorix-undefined-359349375/" target="_blank" rel="noopener noreferrer">
                 <FaLinkedin className="text-2xl text-cyan-400 hover:text-cyan-300 cursor-pointer transition" />
               </a>
             </div>

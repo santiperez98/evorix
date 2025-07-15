@@ -91,28 +91,34 @@ const Footer = () => {
         {/* Redes actualizadas */}
 <div className="flex space-x-6">
   <motion.a
-    href="#"
+    href="https://www.facebook.com/evorix.digital/"
     className="text-2xl text-gray-300 hover:text-white transition duration-300 relative"
     whileHover={{ scale: 1.3 }}
     whileTap={{ scale: 0.9 }}
+        target="_blank"
+    rel="noopener noreferrer"
   >
     <FaFacebook />
   </motion.a>
 
   <motion.a
-    href="#"
+    href="https://www.instagram.com/evorix.digital/"
     className="text-2xl text-gray-300 hover:text-white transition duration-300 relative"
     whileHover={{ scale: 1.3 }}
     whileTap={{ scale: 0.9 }}
+        target="_blank"
+    rel="noopener noreferrer"
   >
     <FaInstagram />
   </motion.a>
 
   <motion.a
-    href="#"
+    href="https://www.linkedin.com/company/evorix-agencia-digital/"
     className="text-2xl text-gray-300 hover:text-white transition duration-300 relative"
     whileHover={{ scale: 1.3 }}
     whileTap={{ scale: 0.9 }}
+        target="_blank"
+    rel="noopener noreferrer"
   >
     <FaLinkedin />
   </motion.a>
@@ -124,6 +130,8 @@ const Footer = () => {
     whileHover={{ scale: 1.3 }}
     whileTap={{ scale: 0.9 }}
     aria-label="X"
+    target="_blank"
+    rel="noopener noreferrer"
   >
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -146,7 +154,7 @@ const Footer = () => {
             </div>
           </div>
           <a
-            href="https://wa.me/549XXXXXXXXXX"
+            href="https://wa.me/5492604609798"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center px-6 py-2 bg-gradient-to-r from-green-500 to-green-600 text-white font-semibold rounded-full shadow hover:shadow-lg transition-all duration-300"
