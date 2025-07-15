@@ -13,8 +13,10 @@ module.exports = {
         'light': '#ffffff',
         'gray-light': '#f4f4f4',
       },
-        fontFamily: {
-        sans: ["Inter", "sans-serif"],
+      fontFamily: {
+        logo: ["'Exo 2'", "sans-serif"],       // para tu logo
+        orbitron: ["Orbitron", "sans-serif"],  // para títulos / slogans
+        sans: ["'Exo 2'", "sans-serif"],       // para párrafos (sobreescribe font-sans)
       },
     },
   },

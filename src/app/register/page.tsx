@@ -60,7 +60,7 @@ export default function RegisterForm() {
     e.preventDefault();
     try {
       const response: AxiosResponse<RegisterResponseData> = await axios.post(
-        'http://localhost:3001/api/auth/register',
+        'https://evorix-back.onrender.com/api/auth/register',
         formData,
         {
           withCredentials: true,
@@ -83,7 +83,7 @@ export default function RegisterForm() {
 
         if (name && email) {
           const response: AxiosResponse<GoogleLoginResponseData> = await axios.post(
-            'http://localhost:3001/api/auth/google',
+            'https://evorix-back.onrender.com/api/auth/google',
             { name, email },
             { withCredentials: true }
           );

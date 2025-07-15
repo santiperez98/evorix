@@ -30,7 +30,7 @@ const RegisterForm: React.FC = () => {
     e.preventDefault();
     try {
       const response = await axios.post<{ message: string }>(
-        'http://localhost:3001/usuarios',
+        'https://evorix-back.onrender.com/usuarios',
         form,
         { withCredentials: true }
       );

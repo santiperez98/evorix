@@ -22,7 +22,7 @@ export default function UserDashboard() {
 
   useEffect(() => {
     axios
-      .get<User>("http://localhost:3001/api/auth/me", { withCredentials: true })
+      .get<User>("https://evorix-back.onrender.com/api/auth/me", { withCredentials: true })
       .then((res) => {
         if (res.data.role?.toLowerCase() !== "cliente") {
           router.replace("/");
@@ -37,7 +37,7 @@ export default function UserDashboard() {
   }, [router]);
 
   const handleLogout = async () => {
-    await axios.post("http://localhost:3001/api/auth/logout", {}, { withCredentials: true });
+    await axios.post("https://evorix-back.onrender.com/api/auth/logout", {}, { withCredentials: true });
     router.push("/login");
   };
 
