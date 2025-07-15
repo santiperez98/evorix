@@ -28,7 +28,7 @@ const AboutUsData = {
     "Desarrollo Web a medida con foco en velocidad y diseño moderno.",
     "SEO para mejorar tu posicionamiento orgánico.",
     "Marketing Digital con enfoque analítico.",
-    "Sitios autoadministrables con WordPress.",
+    "Sitios autoadministrables.",
     "Gestión de redes orientada a resultados.",
     "Branding digital claro y coherente.",
   ],

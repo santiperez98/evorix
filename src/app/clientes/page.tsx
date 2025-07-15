@@ -7,16 +7,24 @@ import { motion } from "framer-motion";
 import { FiLogOut } from "react-icons/fi";
 import { FaFileInvoiceDollar, FaRocket, FaRobot } from "react-icons/fa";
 
+interface User {
+  id: number;
+  name: string;
+  email: string;
+  role: string;
+  // puedes agregar más campos según tu API
+}
+
 export default function UserDashboard() {
-  const [user, setUser] = useState(null);
-  const [loading, setLoading] = useState(true);
+  const [user, setUser] = useState<User | null>(null);
+  const [loading, setLoading] = useState<boolean>(true);
   const router = useRouter();
 
   useEffect(() => {
     axios
-      .get("http://localhost:3001/api/auth/me", { withCredentials: true })
+      .get<User>("http://localhost:3001/api/auth/me", { withCredentials: true })
       .then((res) => {
-        if (res.data.role?.toLowerCase() !== "user") {
+        if (res.data.role?.toLowerCase() !== "cliente") {
           router.replace("/");
         } else {
           setUser(res.data);
@@ -112,7 +120,7 @@ export default function UserDashboard() {
         ))}
       </motion.div>
 
-      {/* Facturación ficticia formal */}
+      {/* Facturación ficticia */}
       <section className="mb-12">
         <h3 className="text-2xl mb-4">📄 Tus Facturas (demo)</h3>
         <div className="bg-zinc-800 border border-cyan-700 p-4 rounded-lg">

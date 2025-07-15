@@ -23,7 +23,7 @@ const ContactPage: React.FC = () => {
             <div className="flex justify-center gap-8">
               <div className="flex items-center gap-2">
                 <FaPhone size={30} className="text-cyan-400" />
-                <span className="text-lg">+1 234 567 890</span>
+                <span className="text-lg">+54 2604 609798</span>
               </div>
               <div className="flex items-center gap-2">
                 <FaEnvelope size={30} className="text-cyan-400" />
