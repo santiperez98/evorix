@@ -2,47 +2,39 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Importa slick carousel */
+@import '~slick-carousel/slick/slick.css';
+@import '~slick-carousel/slick/slick-theme.css';
+
+/* Colores base */
 :root {
   --background: #000000;
-  --foreground: #000000;
+  --foreground: #ededed;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #000000;
-    --foreground: #ededed;
-  }
-}
-
+/* Fuente global */
 body {
   color: var(--foreground);
   background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: 'Exo 2', sans-serif;
 }
+
+/* Animaciones */
 @keyframes marquee {
-  0% {
-    transform: translateX(100%); /* Empieza fuera de la pantalla a la derecha */
-  }
-  100% {
-    transform: translateX(-100%); /* Termina fuera de la pantalla a la izquierda */
-  }
+  0% { transform: translateX(100%); }
+  100% { transform: translateX(-100%); }
 }
 
 .animate-marquee {
   display: flex;
-  animation: marquee 15s linear infinite; /* La duración puede ajustarse a tus necesidades */
+  animation: marquee 15s linear infinite;
 }
+
 @keyframes loop-scroll {
-  0% {
-    transform: translateX(0);
-  }
-  100% {
-    transform: translateX(-50%);
-  }
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
 }
 
 .animate-loop-scroll {
   animation: loop-scroll 30s linear infinite;
 }
-@import '~slick-carousel/slick/slick.css';
-@import '~slick-carousel/slick/slick-theme.css';

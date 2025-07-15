@@ -11,7 +11,9 @@
   },
   "dependencies": {
     "@dotlottie/player-component": "^2.7.12",
+    "@fontsource/exo-2": "^5.2.6",
     "@fontsource/inter": "^5.2.5",
+    "@fontsource/orbitron": "^5.2.6",
     "@headlessui/react": "^2.2.4",
     "@heroicons/react": "^2.2.0",
     "@react-oauth/google": "^0.12.1",

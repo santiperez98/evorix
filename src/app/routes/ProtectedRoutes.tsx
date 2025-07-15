@@ -19,7 +19,7 @@ const ProtectedRoute: React.FC<ProtectedRouteProps> = ({ children }) => {
   const [auth, setAuth] = useState<boolean | null>(null);
 
   useEffect(() => {
-    axios.get<AuthResponse>('http://localhost:3001/api/auth/me', { withCredentials: true })
+    axios.get<AuthResponse>('https://evorix-back.onrender.com/api/auth/me', { withCredentials: true })
       .then((response: AxiosResponse<AuthResponse>) => {
         setAuth(response.data?.isAuthenticated || false);
       })

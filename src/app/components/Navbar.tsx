@@ -4,7 +4,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import Image from 'next/image';
-import logo from '../../../public/TEXT LOGO.webp';
+import logo from '../../../public/TEXT LOGO.png';
 import userImage from '../../../public/user.webp';
 
 
@@ -23,7 +23,7 @@ const Navbar: React.FC = () => {
 useEffect(() => {
   const fetchUser = async () => {
     try {
-      const res = await fetch('http://localhost:3001/api/auth/me', {
+      const res = await fetch('https://evorix-back.onrender.com/api/auth/me', {
         credentials: 'include',
       });
 
@@ -50,7 +50,7 @@ useEffect(() => {
 
   const handleLogout = async () => {
     try {
-      await fetch('http://localhost:3001/api/auth/logout', {
+      await fetch('https://evorix-back.onrender.com/api/auth/logout', {
         method: 'POST',
         credentials: 'include',
       });
@@ -149,7 +149,7 @@ useEffect(() => {
           >
             <Image src={logo} alt="Logo" width={150} height={70} className="relative z-10" />
             <motion.div
-              className="absolute inset-0 bg-gradient-to-r from-cyan-500 via-purple-600 to-pink-500 rounded-lg opacity-30 blur-lg"
+              className="absolute inset-0  rounded-lg opacity-30 blur-lg"
               layoutId="neon-glow"
             />
           </motion.div>

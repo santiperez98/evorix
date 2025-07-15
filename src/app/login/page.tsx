@@ -51,7 +51,7 @@ export default function LoginForm() {
     e.preventDefault();
     try {
       const response: AxiosResponse<LoginResponseData> = await axios.post(
-        'http://localhost:3001/api/auth/login',
+        'https://evorix-back.onrender.com/api/auth/login',
         formData,
         {
           withCredentials: true,
@@ -82,7 +82,7 @@ export default function LoginForm() {
 
         if (name && email) {
           const response: AxiosResponse<GoogleLoginResponseData> = await axios.post(
-            'http://localhost:3001/api/auth/google',
+            'https://evorix-back.onrender.com/api/auth/google',
             { name, email },
             { withCredentials: true }
           );
