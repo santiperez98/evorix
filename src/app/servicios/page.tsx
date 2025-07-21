@@ -100,34 +100,31 @@ export default function ServicesPage() {
     <>
       <Navbar />
 
-      {/* Hero optimizado */}
+            {/* Hero optimizado */}
       <section className="bg-black text-white pt-24 md:pt-32 pb-20 px-6">
         <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center md:gap-16 gap-12">
           {/* Texto */}
           <div className="flex-1 text-center md:text-left">
             <motion.h2
-              variants={fadeInUp}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true }}
+              initial={{ opacity: 0, y: 40 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, ease: "easeOut" }}
               className="text-4xl md:text-6xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 to-fuchsia-500"
             >
               Soluciones digitales para crecer
             </motion.h2>
             <motion.p
-              variants={fadeInUp}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true }}
+              initial={{ opacity: 0, y: 40 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, ease: "easeOut", delay: 0.2 }}
               className="text-lg md:text-xl text-gray-300 mb-4"
             >
               En <span className="font-bold text-fuchsia-400">Evorix</span> transformamos ideas en productos digitales. Acompañamos tu negocio desde el diseño hasta la ejecución con una visión estratégica y moderna.
             </motion.p>
             <motion.p
-              variants={fadeInUp}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true }}
+              initial={{ opacity: 0, y: 40 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, ease: "easeOut", delay: 0.4 }}
               className="text-gray-400"
             >
               Descubrí cómo podemos ayudarte a destacarte online con nuestras soluciones integrales 👇
@@ -136,10 +133,9 @@ export default function ServicesPage() {
 
           {/* Imagen decorativa */}
           <motion.div
-            variants={fadeInUp}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
+            initial={{ opacity: 0, y: 40 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, ease: "easeOut", delay: 0.6 }}
             className="flex-1 flex justify-center"
           >
             <img

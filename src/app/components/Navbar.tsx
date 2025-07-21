@@ -1,121 +1,167 @@
 'use client';
+
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import Image from 'next/image';
+
 import logo from '../../../public/TEXT LOGO.png';
-import userImage from '../../../public/user.webp';
+import userImage from '../../../public/user.webp'; // Default user image
 
-
-// Tipado del usuario
 interface User {
+  id: string;
   name?: string;
+  email: string;
   picture?: string;
-  role?: 'admin' | 'user' | string;
+  role?: 'admin' | 'user';
+  provider?: string;
 }
 
 const Navbar: React.FC = () => {
-  const [isOpen, setIsOpen] = useState<boolean>(false);
-  const [user, setUser] = useState<User | null>(null);
   const router = useRouter();
+  const [isOpen, setIsOpen] = useState(false);
+  const [user, setUser] = useState<User | null>(null);
 
-useEffect(() => {
-  const fetchUser = async () => {
-    try {
-      const res = await fetch('https://evorix-back.onrender.com/api/auth/me', {
-        credentials: 'include',
-      });
+  useEffect(() => {
+    const token = localStorage.getItem('access_token');
+    const storedUser = localStorage.getItem('user');
 
-      if (res.status === 401) {
-        // Usuario no autenticado, no hacemos nada
-        return;
-      }
-
-      if (!res.ok) throw new Error('Error al verificar autenticación');
-
-      const data = await res.json();
-      setUser(data);
-    } catch (error) {
-      // Solo mostramos el error si no es un 401
-      if ((error as Error).message !== 'No autenticado') {
-        console.error('Error al obtener el usuario:', error);
+    if (storedUser) {
+      try {
+        const parsedUser = JSON.parse(storedUser);
+        setUser(parsedUser);
+      } catch (e) {
+        console.error('Error parsing stored user:', e);
       }
     }
-  };
 
-  fetchUser();
-}, []);
-
-
-  const handleLogout = async () => {
-    try {
-      await fetch('https://evorix-back.onrender.com/api/auth/logout', {
-        method: 'POST',
-        credentials: 'include',
-      });
+    if (!token) {
       setUser(null);
-      router.push('/login');
-      router.refresh();
-    } catch (error) {
-      console.error('Error al cerrar sesión:', error);
+      localStorage.removeItem('user');
+      return;
     }
+
+    const fetchUser = async () => {
+      try {
+        const res = await fetch('http://localhost:3001/users/me', {
+          method: 'GET',
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+
+        if (res.ok) {
+          const data = await res.json();
+          setUser(data);
+          localStorage.setItem('user', JSON.stringify(data));
+        } else {
+          setUser(null);
+          localStorage.removeItem('user');
+          localStorage.removeItem('access_token');
+        }
+      } catch (error) {
+        console.error('Error fetching user:', error);
+        setUser(null);
+        localStorage.removeItem('access_token');
+        localStorage.removeItem('user');
+      }
+    };
+
+    fetchUser();
+  }, []);
+
+  const handleLogout = () => {
+    localStorage.removeItem('access_token');
+    localStorage.removeItem('user');
+    setUser(null);
+    router.push('/login');
   };
 
-  const navItems: string[] = ['Nosotros', 'Servicios', 'Contacto'];
-  if (user) {
-    navItems.push('Clientes');
-  }
+  const navItems = ['Nosotros', 'Servicios', 'Contacto'];
+  if (user) navItems.push('Clientes');
 
-  // Dropdown Component Inline
   const UserDropdown = () => {
     const [isDropdownOpen, setDropdownOpen] = useState(false);
-
     return (
       <div className="relative">
         <button
           onClick={() => setDropdownOpen(!isDropdownOpen)}
           className="flex items-center space-x-2 px-4 py-2 bg-gradient-to-r from-blue-600 to-blue-800 text-white rounded-full shadow-lg hover:shadow-blue-500/50 transition-all duration-300"
         >
-          <span>Ingresar</span>
-          <div className="w-6 h-6 relative">
-            <Image src={userImage} alt="Avatar" fill className="rounded-full object-cover" />
-          </div>
+          {user ? (
+            <>
+              <span>{user.name || 'Cuenta'}</span>
+              <div className="w-6 h-6 relative">
+                <Image
+                  src={user.picture || userImage}
+                  alt="Avatar"
+                  fill
+                  className="rounded-full object-cover"
+                />
+              </div>
+            </>
+          ) : (
+            <>
+              <span>Cuenta</span>
+              <div className="w-6 h-6 relative">
+                <Image
+                  src={userImage}
+                  alt="Avatar"
+                  fill
+                  className="rounded-full object-cover"
+                />
+              </div>
+            </>
+          )}
         </button>
 
-        {/* Dropdown Menu */}
         {isDropdownOpen && (
           <>
-            <div
-              className="absolute right-0 mt-2 w-40 bg-gray-900 border border-gray-700 rounded-xl shadow-2xl z-50 animate-fadeIn"
-            >
+            <div className="absolute right-0 mt-2 w-40 bg-gray-900 border border-gray-700 rounded-xl shadow-2xl z-50 animate-fadeIn">
               <ul className="py-2">
-                <li>
-                  <Link href="/login">
+                {user ? (
+                  <li>
                     <button
-                      onClick={() => setDropdownOpen(false)}
-                      className="block w-full text-left px-4 py-2 text-white hover:bg-gray-800 transition-colors duration-200"
+                      onClick={() => {
+                        handleLogout();
+                        setDropdownOpen(false);
+                      }}
+                      className="block w-full text-left px-4 py-2 text-white hover:bg-gray-800 transition"
                     >
-                      Login
+                      Logout
                     </button>
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/register">
-                    <button
-                      onClick={() => setDropdownOpen(false)}
-                      className="block w-full text-left px-4 py-2 text-white hover:bg-gray-800 transition-colors duration-200"
-                    >
-                      Register
-                    </button>
-                  </Link>
-                </li>
+                  </li>
+                ) : (
+                  <>
+                    <li>
+                      <Link href="/login">
+                        <button
+                          onClick={() => setDropdownOpen(false)}
+                          className="block w-full text-left px-4 py-2 text-white hover:bg-gray-800 transition"
+                        >
+                          Login
+                        </button>
+                      </Link>
+                    </li>
+                    <li>
+                      <Link href="/register">
+                        <button
+                          onClick={() => setDropdownOpen(false)}
+                          className="block w-full text-left px-4 py-2 text-white hover:bg-gray-800 transition"
+                        >
+                          Register
+                        </button>
+                      </Link>
+                    </li>
+                  </>
+                )}
               </ul>
             </div>
             <div
               className="fixed inset-0 z-40 bg-transparent"
               onClick={() => setDropdownOpen(false)}
-            ></div>
+            />
           </>
         )}
       </div>
@@ -123,7 +169,7 @@ useEffect(() => {
   };
 
   return (
-    <motion.nav className="w-full absolute z-50 bg-transparent backdrop-blur-none transition-all duration-500">
+    <motion.nav className="w-full absolute top-0 left-0 z-50 bg-transparent backdrop-blur-none transition-all duration-500">
       <style jsx>{`
         @keyframes fadeIn {
           from {
@@ -140,25 +186,32 @@ useEffect(() => {
         }
       `}</style>
 
-      <div className="container mx-auto px-6 py-4 flex justify-between items-center">
-        <Link href="/">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
+        <Link href="/" className="flex items-center">
           <motion.div
             className="relative flex items-center"
             whileHover={{ scale: 1.05 }}
             transition={{ type: 'spring', stiffness: 300 }}
           >
-            <Image src={logo} alt="Logo" width={150} height={70} className="relative z-10" />
-            <motion.div
-              className="absolute inset-0  rounded-lg opacity-30 blur-lg"
-              layoutId="neon-glow"
+            <Image
+              src={logo}
+              alt="Logo"
+              width={120}
+              height={50}
+              className="relative z-10"
             />
           </motion.div>
         </Link>
 
-        {/* Menú Desktop */}
-        <div className="hidden md:flex space-x-6 items-center">
+        {/* Desktop nav */}
+        <div className="hidden md:flex items-center space-x-6">
           {navItems.map((item) => (
-            <motion.div key={item} className="relative group" whileHover={{ scale: 1.05 }} transition={{ duration: 0.3 }}>
+            <motion.div
+              key={item}
+              className="relative group"
+              whileHover={{ scale: 1.05 }}
+              transition={{ duration: 0.3 }}
+            >
               <Link
                 href={`/${item.toLowerCase().replace(/\s+/g, '-')}`}
                 className="text-white text-lg font-medium relative z-10"
@@ -171,7 +224,7 @@ useEffect(() => {
                 animate={{ width: '100%' }}
                 transition={{ duration: 0.5 }}
               />
-              <div className="absolute inset-0 bg-gradient-to-r from-cyan-500 via-purple-600 to-pink-500 opacity-0 group-hover:opacity-20 blur-lg transition-all duration-300" />
+              <div className="absolute inset-0 bg-gradient-to-r from-cyan-500 via-purple-600 to-pink-500 opacity-0 group-hover:opacity-20 blur-lg transition" />
             </motion.div>
           ))}
 
@@ -192,7 +245,6 @@ useEffect(() => {
             </motion.div>
           )}
 
-          {/* Reemplazamos los botones Login/Register por el dropdown */}
           {user ? (
             <div className="flex items-center space-x-4">
               <div className="relative w-10 h-10">
@@ -203,10 +255,12 @@ useEffect(() => {
                   className="rounded-full border-2 border-cyan-500 object-cover"
                 />
               </div>
-              <span className="text-white font-medium hidden sm:inline">{user.name || 'Usuario'}</span>
+              <span className="text-white font-medium hidden sm:inline">
+                {user.name || 'Usuario'}
+              </span>
               <button
                 onClick={handleLogout}
-                className="px-4 py-1.5 bg-gradient-to-r from-red-600 to-red-800 hover:bg-gradient-to-l text-white rounded-full shadow-lg hover:shadow-red-500/50 transition-all duration-300 text-sm sm:text-base"
+                className="px-4 py-1.5 bg-gradient-to-r from-red-600 to-red-800 text-white rounded-full shadow-lg hover:shadow-red-500/50 transition-all duration-300 text-sm sm:text-base"
               >
                 Logout
               </button>
@@ -216,36 +270,25 @@ useEffect(() => {
           )}
         </div>
 
-        {/* Mobile toggle */}
+        {/* Mobile menu button */}
         <div className="md:hidden">
           <button
             onClick={() => setIsOpen(!isOpen)}
-            className="text-white p-2 rounded-lg hover:bg-gray-800/50 transition-all duration-300"
+            className="text-white p-2 rounded-lg hover:bg-gray-800/50 transition"
+            aria-label="Toggle menu"
           >
             <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24">
               {isOpen ? (
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M6 18L18 6M6 6l12 12"
-                  className="stroke-white"
-                />
+                <path d="M6 18L18 6M6 6l12 12" stroke="white" strokeWidth="2" />
               ) : (
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M4 6h16M4 12h16M4 18h16"
-                  className="stroke-white"
-                />
+                <path d="M4 6h16M4 12h16M4 18h16" stroke="white" strokeWidth="2" />
               )}
             </svg>
           </button>
         </div>
       </div>
 
-      {/* Menú móvil */}
+      {/* Mobile menu */}
       <AnimatePresence>
         {isOpen && (
           <motion.div
@@ -255,29 +298,26 @@ useEffect(() => {
             className="md:hidden mt-4 space-y-4 bg-gray-900/90 backdrop-blur-lg rounded-lg p-6 shadow-xl"
           >
             {navItems.map((item) => (
-              <motion.div key={item} whileHover={{ scale: 1.05 }}>
-                <Link
-                  href={`/${item.toLowerCase().replace(/\s+/g, '-')}`}
-                  className="block text-white text-lg font-medium"
-                  onClick={() => setIsOpen(false)}
-                >
-                  {item}
-                </Link>
-              </motion.div>
+              <Link
+                key={item}
+                href={`/${item.toLowerCase().replace(/\s+/g, '-')}`}
+                onClick={() => setIsOpen(false)}
+                className="block text-white text-lg font-medium text-center"
+              >
+                {item}
+              </Link>
             ))}
+
             {user?.role === 'admin' && (
-              <motion.div whileHover={{ scale: 1.05 }}>
-                <Link
-                  href="/dashboard"
-                  className="block text-white text-lg font-medium"
-                  onClick={() => setIsOpen(false)}
-                >
-                  Dashboard
-                </Link>
-              </motion.div>
+              <Link
+                href="/dashboard"
+                onClick={() => setIsOpen(false)}
+                className="block text-white text-lg font-medium text-center"
+              >
+                Dashboard
+              </Link>
             )}
 
-            {/* Auth Mobile */}
             {user ? (
               <div className="flex flex-col items-center space-y-4">
                 <div className="relative w-16 h-16">
@@ -288,10 +328,13 @@ useEffect(() => {
                     className="rounded-full border-2 border-cyan-500 object-cover"
                   />
                 </div>
-                <span className="text-white font-medium">{user.name || 'Usuario'}</span>
+                <span className="text-white font-medium">{user.name}</span>
                 <button
-                  onClick={handleLogout}
-                  className="w-full px-4 py-2 bg-gradient-to-r from-red-600 to-red-800 hover:bg-gradient-to-l text-white rounded-full shadow-lg hover:shadow-red-500/50 transition-all duration-300 text-lg"
+                  onClick={() => {
+                    handleLogout();
+                    setIsOpen(false);
+                  }}
+                  className="w-full px-4 py-2 bg-gradient-to-r from-red-600 to-red-800 text-white rounded-full shadow-lg hover:shadow-red-500/50 transition"
                 >
                   Logout
                 </button>
@@ -300,7 +343,7 @@ useEffect(() => {
               <div className="flex flex-col items-center space-y-4">
                 <Link href="/login">
                   <button
-                    className="w-full px-5 py-2 bg-gradient-to-r from-blue-600 to-blue-800 hover:bg-gradient-to-l text-white rounded-full shadow-lg hover:shadow-blue-500/50 transition-all duration-300"
+                    className="w-full px-5 py-2 bg-gradient-to-r from-blue-600 to-blue-800 text-white rounded-full shadow-lg hover:shadow-blue-500/50 transition"
                     onClick={() => setIsOpen(false)}
                   >
                     Login
@@ -308,7 +351,7 @@ useEffect(() => {
                 </Link>
                 <Link href="/register">
                   <button
-                    className="w-full px-5 py-2 bg-gradient-to-r from-green-600 to-green-800 hover:bg-gradient-to-l text-white rounded-full shadow-lg hover:shadow-green-500/50 transition-all duration-300"
+                    className="w-full px-5 py-2 bg-gradient-to-r from-green-600 to-green-800 text-white rounded-full shadow-lg hover:shadow-green-500/50 transition"
                     onClick={() => setIsOpen(false)}
                   >
                     Register

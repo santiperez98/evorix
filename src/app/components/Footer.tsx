@@ -123,25 +123,6 @@ const Footer = () => {
     <FaLinkedin />
   </motion.a>
 
-  {/* X icon SVG */}
-  <motion.a
-    href="#"
-    className="text-gray-300 hover:text-white transition duration-300 relative"
-    whileHover={{ scale: 1.3 }}
-    whileTap={{ scale: 0.9 }}
-    aria-label="X"
-    target="_blank"
-    rel="noopener noreferrer"
-  >
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      fill="currentColor"
-      viewBox="0 0 1200 1227"
-      className="w-6 h-6"
-    >
-      <path d="M1175 109.6c15.1-19.9 19.1-45.7 10.8-69.2-8.3-23.5-27.4-41.4-51.2-48.6-23.9-7.2-49.5-2.6-69.5 12.5L720 309.7 402.7 4.6c-20-15.2-45.7-19.2-69.6-10.9-23.8 8.3-41.7 27.4-48.9 51.2-7.2 23.9-2.6 49.5 12.5 69.4L480.6 400 42.5 868c-15.1 19.8-19.1 45.6-10.8 69.1 8.3 23.5 27.4 41.4 51.2 48.6 23.9 7.2 49.5 2.6 69.5-12.5L720 509.2l317.3 305.1c20 15.1 45.7 19.1 69.6 10.8 23.8-8.3 41.7-27.3 48.9-51.1 7.2-23.8 2.6-49.5-12.5-69.4L919.4 400l255.6-290.4z" />
-    </svg>
-  </motion.a>
 </div>
 
         {/* Soporte */}
