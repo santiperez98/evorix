@@ -8,6 +8,11 @@ const nextConfig = {
     remotePatterns: [
       {
         protocol: 'https',
+        hostname: 'lh3.googleusercontent.com',
+        pathname: '**',
+      },
+      {
+        protocol: 'https',
         hostname: 'via.placeholder.com',
         port: '',
         pathname: '/**',
@@ -17,6 +22,11 @@ const nextConfig = {
         hostname: 'evorix.vercel.app',
         port: '',
         pathname: '/**',
+      },
+            {
+        protocol: 'https',
+        hostname: 'ui-avatars.com',
+        pathname: '/api/**',
       },
     ],
   },

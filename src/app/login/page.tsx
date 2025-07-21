@@ -4,32 +4,17 @@ import { useState, ChangeEvent, FormEvent } from 'react';
 import { useRouter } from 'next/navigation';
 import axios, { AxiosResponse } from 'axios';
 import Navbar from '../components/Navbar';
-import { GoogleLogin } from '@react-oauth/google';
-import jwtDecode, { JwtPayload } from 'jwt-decode';
 
-// Define la estructura del formulario
+// Interfaces
 interface FormData {
   email: string;
   password: string;
 }
 
-// Define la estructura de la respuesta de inicio de sesión
 interface LoginResponseData {
   token: string;
   role: 'admin' | 'user';
-  user: any; // Puedes definir una interfaz más específica para el usuario si lo deseas
-}
-
-// Define la estructura de la respuesta de inicio de sesión con Google
-interface GoogleLoginResponseData {
-  user: any; // Puedes definir una interfaz más específica para el usuario de Google
-}
-
-// Define la estructura de la carga útil del token JWT de Google (ajusta según tu caso)
-interface GoogleJwtPayload extends JwtPayload {
-  name?: string;
-  email?: string;
-  // Añade otras propiedades que esperes del token de Google
+  user: any;
 }
 
 export default function LoginForm() {
@@ -47,61 +32,31 @@ export default function LoginForm() {
     });
   };
 
-  const handleSubmit = async (e: FormEvent) => {
-    e.preventDefault();
-    try {
-      const response: AxiosResponse<LoginResponseData> = await axios.post(
-        'https://evorix-back.onrender.com/api/auth/login',
-        formData,
-        {
-          withCredentials: true,
-        }
-      );
+const handleSubmit = async (e: FormEvent) => {
+  e.preventDefault();
+  try {
+    const response = await axios.post(
+      'http://localhost:3001/auth/login',
+      formData
+    );
 
-      const { role, user } = response.data;
+    // backend responde { access_token, user }
+    const { access_token, user } = response.data;
+    localStorage.setItem('access_token', access_token);
+    localStorage.setItem('user', JSON.stringify(user));
 
-      localStorage.setItem('role', role);
-      localStorage.setItem('user', JSON.stringify(user));
+    router.push(user.role === 'admin' ? '/dashboard' : '/');
+  } catch (err: any) {
+    console.error('Error en el login:', err.response?.data || err.message);
+    setError('Credenciales inválidas.');
+  }
+};
 
-      router.push(role === 'admin' ? '/dashboard' : '/');
-    } catch (err: any) {
-      console.error('Error en el login:', err.response?.data || err.message);
-      setError('Credenciales inválidas.');
-    }
-  };
 
-  const handleGoogleSuccess = async (credentialResponse: any) => { // Mantenemos 'any' por ahora
-    console.log('credentialResponse:', credentialResponse);
-
-    try {
-      const credential = credentialResponse?.credential;
-      if (credential) {
-        const decoded: GoogleJwtPayload = jwtDecode(credential);
-        const name = decoded?.name;
-        const email = decoded?.email;
-
-        if (name && email) {
-          const response: AxiosResponse<GoogleLoginResponseData> = await axios.post(
-            'https://evorix-back.onrender.com/api/auth/google',
-            { name, email },
-            { withCredentials: true }
-          );
-
-          localStorage.setItem('user', JSON.stringify(response.data.user));
-          router.push('/');
-        } else {
-          console.error('No se encontraron nombre o email en el token de Google.');
-          setError('Error al obtener información de Google.');
-        }
-      } else {
-        console.error('No se recibió credencial de Google.');
-        setError('Error al iniciar sesión con Google.');
-      }
-    } catch (error) {
-      console.error('Error al iniciar sesión con Google:', error);
-      setError('Error al iniciar sesión con Google.');
-    }
-  };
+  // Nueva función para Google
+const handleGoogleLogin = () => {
+  window.location.href = 'http://localhost:3001/auth/google';
+};
 
   return (
     <>
@@ -137,12 +92,14 @@ export default function LoginForm() {
             </button>
           </form>
 
-          <div className="mt-4 text-center">
-            <p className="mb-2">O inicia sesión con:</p>
-            <GoogleLogin
-              onSuccess={(credentialResponse) => handleGoogleSuccess(credentialResponse)}
-              onError={() => console.log('Error en login con Google')}
-            />
+          <div className="mt-6 text-center">
+            <p className="mb-2">O inicia sesión con Google:</p>
+            <button
+              onClick={handleGoogleLogin}
+              className="w-full bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded"
+            >
+              Continuar con Google
+            </button>
           </div>
         </div>
       </div>
