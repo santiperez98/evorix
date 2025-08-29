@@ -9,7 +9,7 @@ import { FaRocket, FaLightbulb, FaHandshake } from "react-icons/fa";
 import AboutNew from "../components/AboutNew";
 
 const techLogos = [
-  "/react.webp",
+  "/react1.webp",
   "/nextjs.webp",
   "/nodejs.webp",
   "/tail.webp",
